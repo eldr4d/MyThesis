@@ -1,0 +1,24 @@
+@article{robocup,
+  author = {Hiroaki Kitano and Minoru Asada and Yasuo Kuniyoshi and Itsuki Noda
+	and Eiichi Osawa and Hitoshi Matsubara},
+  title = {RoboCup: {A} Challenge Problem for {AI}},
+  journal = {AI Magazine},
+  year = {1997},
+  volume = {18},
+  pages = {73--85},
+  number = {1}
+}
+	
+@OTHER{SPLrules2012,
+  author = {{RoboCup Technical Committee}},
+  title = {{Standard Platform League} Rule Book},
+  year = {2012}
+  note = {Only available online: \url{http://www.b-human.de/downloads/bhuman11_coderelease.pdf}}
+}
+
+@Misc{bhuman,
+  author = {Thomas R{\"o}fer and Tim Laue and Judith M{\"u}ller and Alexander Fabisch and Fynn Feldpausch and Katharina Gillmann and Colin Graf and Thijs Jeffry de Haas and Alexander H{\"a}rtl and Arne Humann and Daniel Honsel and Philipp Kastner and Tobias Kastner and Carsten K{\"o}nemann and Benjamin Markowsky and Ole Jan Lars Riemann and Felix Wenk},
+  title = {B-Human Team Report and Code Release 2011},
+  year = {2011},
+  note = {Only available online: \url{http://www.tzi.de/spl/pub/Website/Downloads/Rules2012.pdf}}
+}

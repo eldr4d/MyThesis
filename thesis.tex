@@ -1,0 +1,145 @@
+%input macros (i.e. write your own macros file called MacroFile1.tex)
+\include{Macros/MacroFile1}
+\documentclass[report,12pt]{Classes/CUEDthesisPSnPDF}
+\usepackage{amsmath}
+\usepackage{multirow}
+\usepackage{layouts}
+\usepackage{array}
+\allowdisplaybreaks
+\ifpdf
+    \pdfinfo { /Title  (Thesis)
+               /Creator (TeX)
+               /Producer (pdfTeX)
+               /Author (Nikolaos Kofinas nikofinas@gmail.com)
+               /CreationDate (D:20120619000000)  %format D:YYYYMMDDhhmmss
+               /ModDate (D:20120619000000)
+               /Subject ()
+               /Keywords (Robocup, Kouretes,Kinematics,Nao,Kofinas,Inverse, Thesis)}
+    \pdfcatalog { /PageMode (/UseOutlines)
+                  /OpenAction (fitbh)  }
+\fi
+
+\title{{\LARGE Forward and Inverse Kinematics\\for the Nao Humanoid Robot}}%\\Cartesian control of robot joints}
+\ifpdf
+  \author{Nikolaos Kofinas}
+  \collegeordept{\href{http://www.ece.tuc.gr}{Department of Electronic and Computer Engineering}}
+  \university{\href{http://www.tuc.gr}{Technical University of Crete, Greece}}
+  \crest{\includegraphics[height=40mm]{Figures/TUClogocolor.jpg}}
+\else
+  \author{Nikolaos Kofinas}
+  \collegeordept{Department of Electronic and Computer Engineering}
+  \university{Technical University of Crete, Greece}
+  \crest{\includegraphics[height=40mm]{Figures/TUClogocolor.jpg}}
+\fi
+
+\committee{
+\begin{normalsize}Thesis Committee\end{normalsize}\\
+Assistant Professor Michail G. Lagoudakis (ECE)\\
+Professor Minos Garofalakis (ECE)\\
+Assistant Professor Aggelos Bletsas (ECE)
+}
+\degreedate{Chania, Jule 2012}
+
+\rfoot{July 2012}
+\cfoot{\thepage}
+\lfoot{Nikolaos Kofinas}
+
+
+% turn of those nasty overfull and underfull hboxes
+\hbadness=10000
+\hfuzz=50pt
+
+\usepackage{fancyvrb}
+\DefineVerbatimEnvironment{code}{Verbatim}{fontsize=\small}
+\DefineVerbatimEnvironment{example}{Verbatim}{fontsize=\small}
+
+\usepackage{subfigure}
+
+% Put all the style files you want in the directory StyleFiles and usepackage like this:
+%\usepackage{StyleFiles/watermark}
+
+\begin{document}
+
+%\language{english}
+\en
+
+ \renewcommand\baselinestretch{1.2}
+\baselineskip=18pt plus1pt
+
+% A page with the abstract on including title and author etc may be
+% required to be handed in separately. If this is not so, then comment
+% the below 3 lines (between '\begin{abstractseparte}' and 
+% 'end{abstractseparate}'), normally like a declaration ... needs some more
+% work, mind as environment abstracts creates a new page!
+% \begin{abstractseparate}
+%   \input{Abstract/abstract}
+% \end{abstractseparate}
+
+
+
+% Using the watermark package which is in StyleFiles/
+% and to remove DRAFT COPY ONLY appearing on the top of all pages comment out below line
+%\watermark{DRAFT COPY ONLY}
+
+ % English Title Page
+\maketitle
+    \cleardoublepage
+ % Greek Title Page
+ {\gr
+     \thispagestyle{empty}
+  \begin{center}
+    \setlength{\parskip}{0pt}
+    {\large \sc {\href{http://www.tuc.gr}{����������� ������}} \par}
+      \vspace*{1ex}
+    {\large \sc {\href{http://www.ece.tuc.gr}{����� ������������ ��������� ��� ��������� �����������}} \par}
+      \vspace*{20mm}
+    { \Large {\bfseries {{\LARGE \gr ������ ��� ���������� ���������� ��� �� ������������ ������ Nao}}} \par}
+	{\large \vspace*{10mm} {\includegraphics[height=40mm]{Figures/TUClogocolor.jpg} \par} \vspace*{15mm}}	
+    {{\Large �������� �������} \par}
+	\vspace*{15mm}
+    {\large {\begin{normalsize}���������� ��������\end{normalsize}\\
+����. ���. ������ �. ���������� (����)\\
+���. ����� ����������� (����)\\
+����. ���. ������� �������� (����)} \par}
+	\vfill
+    {\large �����, ������� 2012}
+  \end{center}
+  \null\vfill
+}
+    \cleardoublepage
+
+%set the number of sectioning levels that get number and appear in the contents
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{2}
+
+\frontmatter
+ \include{Acknowldegment/Acknowldegment}
+ \include{Abstract/abstract}
+
+\tableofcontents
+\listoffigures
+%\printglossary  %% Print the nomenclature
+%\addcontentsline{toc}{chapter}{Nomenclature}
+
+
+\mainmatter
+
+ \include{Chapter1/tex}
+ \include{Chapter2/tex}
+ \include{Chapter3/tex}
+ \include{Chapter4/tex}
+ \include{Chapter5/tex}
+ \include{Chapter6/tex}
+ \include{Chapter7/tex}
+ \include{Chapter8/tex}
+ \include{Chapter9/tex}
+
+
+
+\bibliographystyle{StyleFiles/splncs}
+\renewcommand{\bibname}{References} % changes default name Bibliography to References
+\bibliography{thesis}
+\addcontentsline{toc}{chapter}{References} %adds References to contents page
+
+
+\end{document}

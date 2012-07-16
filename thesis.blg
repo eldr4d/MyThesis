@@ -1,0 +1,64 @@
+This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
+The top-level auxiliary file: thesis.aux
+A level-1 auxiliary file: Acknowldegment/Acknowldegment.aux
+A level-1 auxiliary file: Abstract/abstract.aux
+A level-1 auxiliary file: Chapter1/tex.aux
+A level-1 auxiliary file: Chapter2/tex.aux
+A level-1 auxiliary file: Chapter3/tex.aux
+A level-1 auxiliary file: Chapter4/tex.aux
+A level-1 auxiliary file: Chapter5/tex.aux
+A level-1 auxiliary file: Chapter6/tex.aux
+A level-1 auxiliary file: Chapter7/tex.aux
+A level-1 auxiliary file: Chapter8/tex.aux
+A level-1 auxiliary file: Chapter9/tex.aux
+The style file: StyleFiles/splncs.bst
+Database file #1: thesis.bib
+Warning--entry type for "SPLrules2012" isn't style-file defined
+--line 12 of file thesis.bib
+I was expecting a `,' or a `}'---line 16 of file thesis.bib
+ :   
+ :   note = {Only available online: \url{http://www.b-human.de/downloads/bhuman11_coderelease.pdf}}
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You've used 3 entries,
+            2087 wiz_defined-function locations,
+            516 strings with 4656 characters,
+and the built_in function-call counts, 845 in all, are:
+= -- 53
+> -- 77
+< -- 1
++ -- 27
+- -- 24
+* -- 76
+:= -- 147
+add.period$ -- 2
+call.type$ -- 3
+change.case$ -- 3
+chr.to.int$ -- 0
+cite$ -- 3
+duplicate$ -- 29
+empty$ -- 64
+format.name$ -- 24
+if$ -- 176
+int.to.chr$ -- 0
+int.to.str$ -- 3
+missing$ -- 1
+newline$ -- 16
+num.names$ -- 3
+pop$ -- 13
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 20
+stack$ -- 0
+substring$ -- 24
+swap$ -- 13
+text.length$ -- 1
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 0
+while$ -- 6
+width$ -- 4
+write$ -- 31
+(There was 1 error message)

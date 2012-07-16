@@ -1,0 +1,19 @@
+\begin{thebibliography}{1}
+
+\bibitem{robocup}
+Kitano, H., Asada, M., Kuniyoshi, Y., Noda, I., Osawa, E., Matsubara, H.:
+\newblock Robocup: {A} challenge problem for {AI}.
+\newblock AI Magazine \textbf{18}(1) (1997)  73--85
+
+\bibitem{SPLrules2012}
+{RoboCup Technical Committee}:
+\newblock {Standard Platform League} rule book (2012)
+
+\bibitem{bhuman}
+R{\"o}fer, T., Laue, T., M{\"u}ller, J., Fabisch, A., Feldpausch, F., Gillmann,
+  K., Graf, C., de~Haas, T.J., H{\"a}rtl, A., Humann, A., Honsel, D., Kastner,
+  P., Kastner, T., K{\"o}nemann, C., Markowsky, B., Riemann, O.J.L., Wenk, F.:
+\newblock B-human team report and code release 2011 (2011) Only available
+  online: \url{http://www.tzi.de/spl/pub/Website/Downloads/Rules2012.pdf}.
+
+\end{thebibliography}

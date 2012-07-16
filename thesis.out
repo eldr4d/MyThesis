@@ -1,0 +1,47 @@
+\BOOKMARK [0][]{chapter.1}{1 Introduction}{}
+\BOOKMARK [1][]{section.1.1}{1.1 Thesis Constribution}{chapter.1}
+\BOOKMARK [1][]{section.1.2}{1.2 Thesis Outline}{chapter.1}
+\BOOKMARK [0][]{chapter.2}{2 Background}{}
+\BOOKMARK [1][]{section.2.1}{2.1 RoboCup}{chapter.2}
+\BOOKMARK [2][]{subsection.2.1.1}{2.1.1 The Standard Platform League}{section.2.1}
+\BOOKMARK [1][]{section.2.2}{2.2 Kouretes Robocup SPL Team}{chapter.2}
+\BOOKMARK [1][]{section.2.3}{2.3 Affine Transformations}{chapter.2}
+\BOOKMARK [1][]{section.2.4}{2.4 Robot Kinematics}{chapter.2}
+\BOOKMARK [2][]{subsection.2.4.1}{2.4.1 Forward Kinematics}{section.2.4}
+\BOOKMARK [2][]{subsection.2.4.2}{2.4.2 Inverse Kinematics}{section.2.4}
+\BOOKMARK [1][]{section.2.5}{2.5 DH \(Denavit \040Hartenberg\) Parameters}{chapter.2}
+\BOOKMARK [1][]{section.2.6}{2.6 Mathematica}{chapter.2}
+\BOOKMARK [0][]{chapter.3}{3 Problem statement}{}
+\BOOKMARK [1][]{section.3.1}{3.1 The NAO Robot}{chapter.3}
+\BOOKMARK [2][]{subsection.3.1.1}{3.1.1 NAO Cartesian Restrictions}{section.3.1}
+\BOOKMARK [1][]{section.3.2}{3.2 Kinematics for NAO}{chapter.3}
+\BOOKMARK [2][]{subsection.3.2.1}{3.2.1 The Forward Kinematics problem for NAO}{section.3.2}
+\BOOKMARK [2][]{subsection.3.2.2}{3.2.2 The Inverse Kinematics problem for NAO}{section.3.2}
+\BOOKMARK [0][]{chapter.4}{4 Related Work}{}
+\BOOKMARK [1][]{section.4.1}{4.1 Aldebaran Forward and Inverse Kinematics Solution}{chapter.4}
+\BOOKMARK [1][]{section.4.2}{4.2 BHuman Inverse Kinematics Solution}{chapter.4}
+\BOOKMARK [1][]{section.4.3}{4.3 QIAU Inverse Kinematics Solution}{chapter.4}
+\BOOKMARK [0][]{chapter.5}{5 Kinematics for NAO: Our approach}{}
+\BOOKMARK [1][]{section.5.1}{5.1 Forward Kinematics for the NAO Robot}{chapter.5}
+\BOOKMARK [2][]{subsection.5.1.1}{5.1.1 Forward Kinematics for the Head}{section.5.1}
+\BOOKMARK [2][]{subsection.5.1.2}{5.1.2 Forward Kinematics for the Left Arm}{section.5.1}
+\BOOKMARK [2][]{subsection.5.1.3}{5.1.3 Forward Kinematics for the Right Arm}{section.5.1}
+\BOOKMARK [2][]{subsection.5.1.4}{5.1.4 Forward Kinematics for the Left Leg}{section.5.1}
+\BOOKMARK [2][]{subsection.5.1.5}{5.1.5 Forward Kinematics for the Right Leg}{section.5.1}
+\BOOKMARK [2][]{subsection.5.1.6}{5.1.6 Forward Kinematics for merged chains}{section.5.1}
+\BOOKMARK [2][]{subsection.5.1.7}{5.1.7 Calculation of Center Of Mass with Forward Kinematics}{section.5.1}
+\BOOKMARK [1][]{section.5.2}{5.2 Inverse Kinematics for NAO}{chapter.5}
+\BOOKMARK [2][]{subsection.5.2.1}{5.2.1 Inverse Kinematics for the Head}{section.5.2}
+\BOOKMARK [2][]{subsection.5.2.2}{5.2.2 Inverse Kinematics for the Left Hand}{section.5.2}
+\BOOKMARK [2][]{subsection.5.2.3}{5.2.3 Inverse Kinematics for the Right Hand}{section.5.2}
+\BOOKMARK [2][]{subsection.5.2.4}{5.2.4 Inverse Kinematics for the Left Leg}{section.5.2}
+\BOOKMARK [2][]{subsection.5.2.5}{5.2.5 Inverse Kinematics for the Right Leg}{section.5.2}
+\BOOKMARK [2][]{subsection.5.2.6}{5.2.6 Undefined Target Points For Legs}{section.5.2}
+\BOOKMARK [0][]{chapter.6}{6 Implementation}{}
+\BOOKMARK [1][]{section.6.1}{6.1 KMat: Kouretes Math Library}{chapter.6}
+\BOOKMARK [1][]{section.6.2}{6.2 Nao Kinematics in c++}{chapter.6}
+\BOOKMARK [1][]{section.6.3}{6.3 Demo Program}{chapter.6}
+\BOOKMARK [0][]{chapter.7}{7 Results}{}
+\BOOKMARK [0][]{chapter.8}{8 Future Work}{}
+\BOOKMARK [0][]{chapter.9}{9 Conclusion}{}
+\BOOKMARK [0][]{chapter*.3}{References}{}

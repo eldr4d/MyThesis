@@ -1,0 +1,57 @@
+\select@language {greek}
+\select@language {english}
+\select@language {greek}
+\select@language {greek}
+\select@language {greek}
+\select@language {english}
+\select@language {greek}
+\select@language {english}
+\select@language {greek}
+\select@language {english}
+\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
+\contentsline {section}{\numberline {1.1}Thesis Constribution}{1}{section.1.1}
+\contentsline {section}{\numberline {1.2}Thesis Outline}{2}{section.1.2}
+\contentsline {chapter}{\numberline {2}Background}{3}{chapter.2}
+\contentsline {section}{\numberline {2.1}RoboCup}{3}{section.2.1}
+\contentsline {subsection}{\numberline {2.1.1}The Standard Platform League}{3}{subsection.2.1.1}
+\contentsline {section}{\numberline {2.2}Kouretes Robocup SPL Team}{4}{section.2.2}
+\contentsline {section}{\numberline {2.3}Affine Transformations}{6}{section.2.3}
+\contentsline {section}{\numberline {2.4}Robot Kinematics}{10}{section.2.4}
+\contentsline {subsection}{\numberline {2.4.1}Forward Kinematics}{10}{subsection.2.4.1}
+\contentsline {subsection}{\numberline {2.4.2}Inverse Kinematics}{10}{subsection.2.4.2}
+\contentsline {section}{\numberline {2.5}DH (Denavit \discretionary {-}{}{} Hartenberg) Parameters}{11}{section.2.5}
+\contentsline {section}{\numberline {2.6}Mathematica}{12}{section.2.6}
+\contentsline {chapter}{\numberline {3}Problem statement}{13}{chapter.3}
+\contentsline {section}{\numberline {3.1}The NAO Robot}{13}{section.3.1}
+\contentsline {subsection}{\numberline {3.1.1}NAO Cartesian Restrictions}{14}{subsection.3.1.1}
+\contentsline {section}{\numberline {3.2}Kinematics for NAO}{19}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}The Forward Kinematics problem for NAO}{19}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}The Inverse Kinematics problem for NAO}{19}{subsection.3.2.2}
+\contentsline {chapter}{\numberline {4}Related Work}{21}{chapter.4}
+\contentsline {section}{\numberline {4.1}Aldebaran Forward and Inverse Kinematics Solution}{21}{section.4.1}
+\contentsline {section}{\numberline {4.2}BHuman Inverse Kinematics Solution}{22}{section.4.2}
+\contentsline {section}{\numberline {4.3}QIAU Inverse Kinematics Solution}{22}{section.4.3}
+\contentsline {chapter}{\numberline {5}Kinematics for NAO: Our approach}{23}{chapter.5}
+\contentsline {section}{\numberline {5.1}Forward Kinematics for the NAO Robot}{23}{section.5.1}
+\contentsline {subsection}{\numberline {5.1.1}Forward Kinematics for the Head}{26}{subsection.5.1.1}
+\contentsline {subsection}{\numberline {5.1.2}Forward Kinematics for the Left Arm}{26}{subsection.5.1.2}
+\contentsline {subsection}{\numberline {5.1.3}Forward Kinematics for the Right Arm}{27}{subsection.5.1.3}
+\contentsline {subsection}{\numberline {5.1.4}Forward Kinematics for the Left Leg}{28}{subsection.5.1.4}
+\contentsline {subsection}{\numberline {5.1.5}Forward Kinematics for the Right Leg}{28}{subsection.5.1.5}
+\contentsline {subsection}{\numberline {5.1.6}Forward Kinematics for merged chains}{29}{subsection.5.1.6}
+\contentsline {subsection}{\numberline {5.1.7}Calculation of Center Of Mass with Forward Kinematics}{30}{subsection.5.1.7}
+\contentsline {section}{\numberline {5.2}Inverse Kinematics for NAO}{31}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}Inverse Kinematics for the Head}{32}{subsection.5.2.1}
+\contentsline {subsection}{\numberline {5.2.2}Inverse Kinematics for the Left Hand}{33}{subsection.5.2.2}
+\contentsline {subsection}{\numberline {5.2.3}Inverse Kinematics for the Right Hand}{37}{subsection.5.2.3}
+\contentsline {subsection}{\numberline {5.2.4}Inverse Kinematics for the Left Leg}{38}{subsection.5.2.4}
+\contentsline {subsection}{\numberline {5.2.5}Inverse Kinematics for the Right Leg}{42}{subsection.5.2.5}
+\contentsline {subsection}{\numberline {5.2.6}Undefined Target Points For Legs}{44}{subsection.5.2.6}
+\contentsline {chapter}{\numberline {6}Implementation}{45}{chapter.6}
+\contentsline {section}{\numberline {6.1}KMat: Kouretes Math Library}{45}{section.6.1}
+\contentsline {section}{\numberline {6.2}Nao Kinematics in c++}{45}{section.6.2}
+\contentsline {section}{\numberline {6.3}Demo Program}{45}{section.6.3}
+\contentsline {chapter}{\numberline {7}Results}{47}{chapter.7}
+\contentsline {chapter}{\numberline {8}Future Work}{49}{chapter.8}
+\contentsline {chapter}{\numberline {9}Conclusion}{51}{chapter.9}
+\contentsline {chapter}{References}{53}{chapter*.3}
