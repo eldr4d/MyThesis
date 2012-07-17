@@ -428,7 +428,14 @@ Next, we will extract the \(\theta_6\) angle. We can extract this angle from the
 \theta_6 &= \arctan\left(\frac{p_y}{p_z}\right)&\text{if} \left(l_2\cos\theta_5 + l_1 \cos\left(\theta_4 + \theta_5\right)\right) \neq 0
 \end{align*}
 \end{small}\\
-Because we don't know $\theta_5$, we can't find when this equation is zero. So we will have division by zero, but in reality we will not have this problem, because we are using the atan2 function in our program and the result will be just undefined. So, the program will continue to run but the validation step will reject all the solutions. In figure~\ref{fig:undefined} we can see the locus of the equation, wich gives the undefined points, along with the values of the ankle pitch ($\theta_5$) and knee pitch ($\theta_4$) for a series of moves of the robot. This table will be discussed later in this section.\\
+Because we don't know $\theta_5$, we can't find when this equation is zero. So we will have division by zero, but in reality we will not have this problem, because we are using the atan2 function in our program and the result will be just undefined. So, the program will continue to run but the validation step will reject all the solutions. In figure~\ref{fig:unlocus} we can see the locus of the equation, wich gives the undefined points. In Subsection~\ref{undefined} we present the locus along with the values of the ankle pitch ($\theta_5$) and knee pitch ($\theta_4$) for a series of moves of the robot and we discuss what we do when we are in this locus.\\
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[height = 10cm]{Figures/locus.png}
+ 		\caption{Undefined Locus For Legs}
+ 		\label{fig:unlocus}
+	\end{center}
+\end{figure}
 Now we can reconstruct and remove the rotation at the end and the transformation from ankle pitch to ankle roll from the chain to make it simpler:
 \[
 T_{\text{llegRotated}'} = T_\text{llegRotated}\left(T^6_5R_z\left(\pi\right)R_y(-\tfrac{\pi}{2})\right)^{-1}
@@ -548,6 +555,7 @@ T_{\text{rlegInv}''} &= T_{\text{rlegInv}'}\left(T^4_3T^5_4\right)^{-1} \\
 \end{small}
 
 \subsection{Undefined Target Points For Legs}
+\label{undefined}
 As we mentioned before, we have some target points for which we can't find an inverse kinematics solution. These target points are presented in the figure below, alongside with all the values of the angles that are responsible for this singularity.
 \begin{figure}[h]
 	\begin{center}

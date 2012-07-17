@@ -256,7 +256,7 @@ The \(joint\) space reveals very little information about the position of the en
 Generally it is very easy for humans to give a target point or design a trajectory in \(3-dimensional\) space, but if we want the end effector to follow the trajectory, we must assign the right values to the joints of the kinematic chain. So, we need a way to go from \(3-dimensional\) space back to \(joint\) space. The problem of inverse kinematics is application specific and every kinematic chain has a different solution. The solution of the problem can be analytical or it can be approximate (e.g with Jacobian approximation method). As the DOF increases, each point in the \(3-dimensional\) space may have more than one matching point in the \(joint\) space, so we may have more than one solution in the \(joint\) space for a given point in \(3-dimensional\) space.\\
 
 \section{DH (Denavit \- Hartenberg) Parameters}
-Denavit and Hartenberg found a way to create a transformation matrix that describes points in one end of the joint to a coordinate system that is fixed to the other end, as a function of the joint state. They found that we can construct this transformation matrix using only 4 parameters, the DH (Denavit \- Hartenberg) Parameters. These parameters are: 
+Denavit and Hartenberg found a way to create a transformation matrix that describes points in one end of the joint to a coordinate system that is fixed to the other end, as a function of the joint state~\cite{dhparam1}~\cite{dhparam2}. They found that we can construct this transformation matrix using only 4 parameters, the DH (Denavit \- Hartenberg) Parameters. These parameters are: 
 \[a,\alpha,d \text{ and } \theta\]
 Before we can explain these parameters we must first establish the reference frame of each joint respectively to the previous joint reference frame.
 \begin{itemize}
@@ -288,4 +288,36 @@ We can notice that the above transformation matrix is an affine transformation m
 
 
 \section{Mathematica}
-Mathematica$^{\textrm{\copyright}}$ is a software tool for mathematic computations created by the Wolfram company [link]. It is very useful, because it can find solution to differential equations and can very easily execute symbolic computations. For the purpose of this thesis, we want a software with the capability to perform fast and large symbolic computations with matrices. Also it has the capability to simplify the symbolic results really fast. 
+Mathematica$^{\textrm{\copyright}}$ is a software tool for mathematic computations created by the Wolfram company [link]. It is very useful, because it can find solution to differential equations and can very easily execute symbolic computations. For the purpose of this thesis, we want a software with the capability to perform fast and large symbolic computations with matrices. Also it has the capability to simplify the symbolic results really fast. \\
+The following code is a small example for the symbolic computation. We construct two matrices with cosines and sines and we have two symbols, theta1 and theta2. Next we just do the multiplication between those to matrices and we simplify the result:
+\begin{scriptsize}
+\begin{verbatim}
+Matrix1 = {{Cos[theta1], -Sin[theta1]}, {Cos[theta1], -Cos[theta1]}};
+Matrix2 = {{Cos[theta2], -Sin[theta2]}, {Cos[theta2], -Cos[theta2]}};
+T = Matrix1.Matrix2;
+Simplify[T];
+MatrixForm[%]
+\end{verbatim}
+\end{scriptsize}
+The symbolic computations are the following:
+\begin{small}
+\begin{align*}
+\text{Matrix1} &= \begin{bmatrix}
+\cos\theta_1 & -\sin\theta_1\\
+\cos\theta_1 & -\cos\theta_1
+\end{bmatrix}\\
+\text{Matrix2} &= \begin{bmatrix}
+\cos\theta_2 & -\sin\theta_2\\
+\cos\theta_2 & -\cos\theta_2
+\end{bmatrix}\\
+\text{T} &= \begin{bmatrix}
+\cos\theta_1\cos\theta_2 - \cos\theta_2\sin\theta_1 &   \cos\theta_2 \sin\theta_1 - \cos\theta_1 \sin\theta_2\\
+0 & \cos\theta_1 \cos\theta_2 - \cos\theta_1 \sin\theta_2
+\end{bmatrix}\\
+\text{T}_{\text{simplified}} &= \begin{bmatrix}
+\cos\theta_2\left(\cos\theta_1 - \sin\theta_1\right) & \sin\left(\theta_1 - \theta_2\right)\\
+ 0 & \cos\theta_1 \left(\cos\theta_2 - \sin\theta_2\right)
+\end{bmatrix}
+\end{align*}\\
+\end{small}
+The example above is very simple, but in our work we worked with larger symbolic matrix and we couldn't work with the tables before the simplified step.

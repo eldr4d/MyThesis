@@ -22,3 +22,29 @@
   year = {2011},
   note = {Only available online: \url{http://www.tzi.de/spl/pub/Website/Downloads/Rules2012.pdf}}
 }
+
+@Misc{kmat,
+  author = {Emmanouel Orfanoudakis},
+  title = {Reliable Object Recognition for the RoboCup Domain},
+  INSTITUTION =  {Technical University of Crete},
+  YEAR =         {2011},
+  }
+  
+@article{dhparam1,
+  author = {J. Denavit and R.S. Hartenberg},
+  title = {A kinematic notation for lower-pair mechanisms based on matrices},
+   journal = {Trans ASME J. Appl. Mech},
+  YEAR =         {1955},
+  }
+@article{dhparam2,
+  author = {Hartenberg, R. S., and J. Denavit},
+  title = {Kinematic Synthesis of Linkages},
+   journal = { New York: McGraw-Hill},
+  YEAR =         {1964},
+  }
+  
+  @unpublished{iran,
+  author = {Maani Ghaffari Jadidi, Ehsan Hashemi, Mohammad Ali Zakeri Harandi, Houman Sadjadian},
+  title = {Kinematic Modeling Improvement and Trajectory Planning of the NAO Biped Robot},
+   note = {Published in academia.edu}
+  }

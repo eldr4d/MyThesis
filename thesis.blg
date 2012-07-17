@@ -10,7 +10,6 @@ A level-1 auxiliary file: Chapter5/tex.aux
 A level-1 auxiliary file: Chapter6/tex.aux
 A level-1 auxiliary file: Chapter7/tex.aux
 A level-1 auxiliary file: Chapter8/tex.aux
-A level-1 auxiliary file: Chapter9/tex.aux
 The style file: StyleFiles/splncs.bst
 Database file #1: thesis.bib
 Warning--entry type for "SPLrules2012" isn't style-file defined
@@ -20,45 +19,49 @@ I was expecting a `,' or a `}'---line 16 of file thesis.bib
  :   note = {Only available online: \url{http://www.b-human.de/downloads/bhuman11_coderelease.pdf}}
 (Error may have been on previous line)
 I'm skipping whatever remains of this entry
-You've used 3 entries,
+Name 1 in "Hartenberg, R. S., and J. Denavit" has a comma at the end for entry dhparam2
+while executing---line 2175 of file StyleFiles/splncs.bst
+Too many commas in name 1 of "Maani Ghaffari Jadidi, Ehsan Hashemi, Mohammad Ali Zakeri Harandi, Houman Sadjadian" for entry iran
+while executing---line 2175 of file StyleFiles/splncs.bst
+You've used 6 entries,
             2087 wiz_defined-function locations,
-            516 strings with 4656 characters,
-and the built_in function-call counts, 845 in all, are:
-= -- 53
-> -- 77
+            529 strings with 5073 characters,
+and the built_in function-call counts, 1261 in all, are:
+= -- 90
+> -- 97
 < -- 1
-+ -- 27
-- -- 24
-* -- 76
-:= -- 147
-add.period$ -- 2
-call.type$ -- 3
-change.case$ -- 3
++ -- 35
+- -- 29
+* -- 95
+:= -- 218
+add.period$ -- 5
+call.type$ -- 6
+change.case$ -- 6
 chr.to.int$ -- 0
-cite$ -- 3
-duplicate$ -- 29
-empty$ -- 64
-format.name$ -- 24
-if$ -- 176
+cite$ -- 6
+duplicate$ -- 54
+empty$ -- 107
+format.name$ -- 29
+if$ -- 270
 int.to.chr$ -- 0
-int.to.str$ -- 3
-missing$ -- 1
-newline$ -- 16
-num.names$ -- 3
-pop$ -- 13
+int.to.str$ -- 6
+missing$ -- 3
+newline$ -- 31
+num.names$ -- 6
+pop$ -- 23
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 20
+skip$ -- 25
 stack$ -- 0
 substring$ -- 24
-swap$ -- 13
+swap$ -- 17
 text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 0
-while$ -- 6
-width$ -- 4
-write$ -- 31
-(There was 1 error message)
+while$ -- 9
+width$ -- 7
+write$ -- 60
+(There were 3 error messages)

@@ -9,11 +9,27 @@ Kitano, H., Asada, M., Kuniyoshi, Y., Noda, I., Osawa, E., Matsubara, H.:
 {RoboCup Technical Committee}:
 \newblock {Standard Platform League} rule book (2012)
 
+\bibitem{dhparam1}
+Denavit, J., Hartenberg, R.:
+\newblock A kinematic notation for lower-pair mechanisms based on matrices.
+\newblock Trans ASME J. Appl. Mech (1955)
+
+\bibitem{dhparam2}
+Hartenberg, R.S., Denavit, J.:
+\newblock Kinematic synthesis of linkages.
+\newblock New York: McGraw-Hill (1964)
+
 \bibitem{bhuman}
 R{\"o}fer, T., Laue, T., M{\"u}ller, J., Fabisch, A., Feldpausch, F., Gillmann,
   K., Graf, C., de~Haas, T.J., H{\"a}rtl, A., Humann, A., Honsel, D., Kastner,
   P., Kastner, T., K{\"o}nemann, C., Markowsky, B., Riemann, O.J.L., Wenk, F.:
 \newblock B-human team report and code release 2011 (2011) Only available
   online: \url{http://www.tzi.de/spl/pub/Website/Downloads/Rules2012.pdf}.
+
+\bibitem{iran}
+Maani Ghaffari~Jadidi, Ehsan~Hashemi, M.A.Z.H.H.S.:
+\newblock Kinematic modeling improvement and trajectory planning of the nao
+  biped robot.
+\newblock Published in \url{htt[://www.academia.edu}
 
 \end{thebibliography}
