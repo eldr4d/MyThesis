@@ -307,7 +307,7 @@ We can do the division because $\theta_4$ doesn't reach $\frac{\pi}{2} $ so, the
 &T_{(2,4)} = p_y = l_1 + l_3\cos\theta_2 + l_4\left(\cos\theta_2\cos\theta_4 - \cos\theta_3\sin\theta_2\sin\theta_4\right)&\Leftrightarrow\\
 &p_y - l_1 =l_3\cos\theta_2 + l_4\cos\theta_2\cos\theta_4 - l_4\left(-\frac{\cos\theta_2\sin\theta_4 + T_{(2,2)}}{\cos\theta_4}\right)\sin\theta_4&\Leftrightarrow\\
 &p_y - l_1 - \frac{l_4\sin\theta_4 T_{(2,2)}}{\cos\theta_4} = \cos\theta_2\left(l_3 + l_4\cos\theta_4 + l_4\frac{{\sin\theta_4}^2}{\cos\theta_4}\right)&\Leftrightarrow\\
-&\theta_2 = \arccos\left(\cfrac{p_y - l_1 - \frac{l_4\sin\theta_4 T_{(2,2)}}{\cos\theta_4}}{l_3 + l_4\cos\theta_4 + l_4\frac{\sin^2\theta_4}{\cos\theta_4}}\right) & \text{because }   l_3 + l_4\cos\theta_4 + l_4\frac{\sin^2\theta_4}{\cos\theta_4}>0
+&\theta_2 = \arccos\left(\cfrac{p_y - l_1 - \frac{l_4\sin\theta_4 T_{(2,2)}}{\cos\theta_4}}{l_3 + l_4\cos\theta_4 + l_4\frac{\sin^2\theta_4}{\cos\theta_4}}\right) \hspace{2cm} \text{because }   l_3 + l_4\cos\theta_4 + l_4\frac{\sin^2\theta_4}{\cos\theta_4}>0 \hspace{-0.8cm}
 \end{align*}
 \end{small}\\
 Now the final \(\theta_2\) is: \(\theta_2 = \theta_2 + \frac{\pi}{2}\) because in the DH parameters we had added \(\frac{\pi}{2}\) to the \(\theta\) parameter for the second joint of the arm. From now on, we must substract \(\frac{\pi}{2}\) from \(\theta_2\) if we want to use it to calculate a result from the equations. Next we will calculate the $\theta_3$ angle:
@@ -325,7 +325,7 @@ Finally, we must extract the value for \(\theta_1\):
 &\cos\theta_1 = \cfrac{T_{(1,3)}}{\cos\left(\theta_2 - \frac{\pi}{2}\right)\sin\theta_3}  &\text{when} \quad \theta_3 = \left|\frac{\pi}{2}\right|
 \end{align*}
 \end{small}\\
-So, now we have two posible solutions for \(\theta_1\) and we choose between them depending on the value of \(\theta_3\). So, when $\theta_3 = \left|\frac{\pi}{2}\right|$:
+So, now we have two possible solutions for \(\theta_1\) and we choose between them depending on the value of \(\theta_3\). So, when $\theta_3 = \left|\frac{\pi}{2}\right|$:
 \begin{small}
 \begin{align*}
 &\theta_1 = \arccos\left(\cfrac{T_{(1,3)}}{\cos\left(\theta_2 - \frac{\pi}{2}\right)\sin\theta_3}\right)
@@ -374,12 +374,13 @@ As we can see, the changes don't have any impact in our solution for the left ar
 
 \begin{small}
 \begin{align*}
+T_\text{rhandUnrotated} &= T_\text{rhand}{\left(R_z(-\pi)\right)}^{-1}\\
 \theta_4 &= \pi - \arccos\left(\cfrac{{l_3}^2 + {l_4}^2 - \sqrt{(s_x-p_x)^2 + (s_y-p_y)^2 + (s_z-p_z)^2}^2 }{2 l_3 l_4}\right)\\
 \theta_2 &= \pm\arccos\left(\cfrac{ - p_y - l_1 - \left(\frac{l_4\sin\theta_4T_{(2,2)}}{\cos\theta_4} \right)}{l_3 +l_4\cos\theta_4 + l_4\frac{\sin^2\theta_4}{\cos\theta_4}}\right)-\frac{\pi}{2}\\
 \theta_3 &= \arcsin\left(\cfrac{T_{(2,3)}}{\sin\left(\theta_2 + \frac{\pi}{2}\right)}\right)\displaybreak[0]\\
 \theta_3 &= \pi - \arcsin\left(\cfrac{T_{(2,3)}}{\sin\left(\theta_2 + \frac{\pi}{2}\right)}\right) \\
-\theta_1 &= \pm\arccos\left(\cfrac{T_{(3,3)} - \cfrac{T_{(1,3)}\sin\theta_3\cos\left(\theta_2 + \frac{\pi}{2}\right)}{\cos\theta_3}}{\cos\theta_3 + \cfrac{\cos^2\left(\theta_2 + \frac{\pi}{2}\right)\sin^2\theta_3}{\cos\theta_3}}\right) &\text{if } \theta_3 \neq \cfrac{\pi}{2} \\
-\theta_1 &= \pm\arccos\left(\cfrac{T_{(1,3)}}{\cos\left(\theta_2 +\frac{\pi}{2}\right)\sin\theta_3}\right) &\text{if } \theta_3 = \cfrac{\pi}{2}
+\theta_1 &= \pm\arccos\left(\cfrac{T_{(3,3)} - \cfrac{T_{(1,3)}\sin\theta_3\cos\left(\theta_2 + \frac{\pi}{2}\right)}{\cos\theta_3}}{\cos\theta_3 + \cfrac{\cos^2\left(\theta_2 + \frac{\pi}{2}\right)\sin^2\theta_3}{\cos\theta_3}}\right) \hspace{2cm}\text{if } \theta_3 \neq \cfrac{\pi}{2}& \\
+\theta_1 &= \pm\arccos\left(\cfrac{T_{(1,3)}}{\cos\left(\theta_2 +\frac{\pi}{2}\right)\sin\theta_3}\right) \hspace{4.4cm}\text{if } \theta_3 = \cfrac{\pi}{2}
 \end{align*}
 \end{small}
 
@@ -511,10 +512,10 @@ Below there are all the equations of inverse kinematics for the left leg:
 T_\text{llegInv} &= \left(R_x(\tfrac{\pi}{4})\left(\left(A^0_\text{Base}\right)^{-1} T_\text{lleg} \left(A^\text{End}_6\right)^{-1}\right)\right)^{-1} \\
 \theta_4 &=\pi - \arccos\left(\frac{{l_1}^2 + {l_2}^2 - \sqrt{\left(s_x-p_x\right)^2 + \left(s_y-p_y\right)^2 + \left(s_z-p_z\right)^2}^2}{2 l_1 l_2}\right) \\
 \theta_6 &= \arctan\left(\frac{p_y}{p_z}\right)\quad\quad\quad\text{if} \left(l_2\cos\theta_5 + l_1 \cos\left(\theta_4 + \theta_5\right)\right) \neq 0 \\
-T_{\text{llegInv}'} &= T_\text{llegInv}\left(T^6_5R_z\left(\pi\right)R_y(-\tfrac{\pi}{2})\right)^{-1} \\
+T_{\text{llegInv}'} &= \left(\left(T_\text{llegInv}\right)^{-1}\left(T^6_5R_z\left(\pi\right)R_y(-\tfrac{\pi}{2})\right)^{-1}\right)^{-1} \\
 \theta_5 &= \arcsin\left(-\frac{p_y\left(l_2+l_1\cos\theta_4\right) + l_1p_x\sin\theta_4}{{l_1}^2\sin^2\theta_4 + \left(l_2 + l_1\cos\theta_4\right)}\right) \\
 \theta_5 &= \pi - \arcsin\left(-\frac{p_y\left(l_2+l_1\cos\theta_4\right) + l_1p_x\sin\theta_4}{{l_1}^2\sin^2\theta_4 + \left(l_2 + l_1\cos\theta_4\right)}\right)\\
-T_{\text{llegInv}''} &= T_{\text{llegInv}'}\left(T^4_3T^5_4\right)^{-1} \\
+T_{\text{llegInv}''} &= \left(\left(T_{\text{llegInv}'}\right)^{-1}\left(T^4_3T^5_4\right)^{-1}\right)^{-1} \\
 \theta_2 &= \pm\arccos T_{\text{llegInv}''(2,3)} - \cfrac{\pi}{4} \\
 \theta_3 &= \arcsin\left(\cfrac{T_{\text{llegInv}''(2,2)}}{\sin\left(\theta_2+\frac{\pi}{4}\right)}\right) \\
 \theta_3 &= \pi - \arcsin\left(\cfrac{T_{\text{llegInv}''(2,2)}}{\sin\left(\theta_2+\frac{\pi}{4}\right)}\right) \\
@@ -546,10 +547,10 @@ After that, the symbolic matrix for the right leg is exactly the same as the sym
 T_\text{rlegInv} &= \left(R_x(\tfrac{\pi}{4})\left(\left(A^0_\text{Base}\right)^{-1} T_\text{rleg} \left(A^\text{End}_6\right)^{-1}\right)\right)^{-1} \\
 \theta_4 &=\pi - \arccos\left(\frac{{l_1}^2 + {l_2}^2 - \sqrt{\left(s_x-p_x\right)^2 + \left(s_y-p_y\right)^2 + \left(s_z-p_z\right)^2}^2}{2 l_1 l_2}\right) \\
 \theta_6 &= \arctan\left(\frac{p_y}{p_z}\right)\quad\quad\quad\text{if} \left(l_2\cos\theta_5 + l_1 \cos\left(\theta_4 + \theta_5\right)\right) \neq 0 \\
-T_{\text{rlegInv}'} &= T_\text{rlegInv}\left(T^6_5R_z\left(\pi\right)R_y(-\tfrac{\pi}{2})\right)^{-1} \\
+T_{\text{rlegInv}'} &= \left(\left(T_\text{rlegInv}\right)^{-1}\left(T^6_5R_z\left(\pi\right)R_y(-\tfrac{\pi}{2})\right)^{-1}\right)^{-1} \\
 \theta_5 &= \arcsin\left(-\frac{p_y\left(l_2+l_1\cos\theta_4\right) + l_1p_x\sin\theta_4}{{l_1}^2\sin^2\theta_4 + \left(l_2 + l_1\cos\theta_4\right)}\right) \\
 \theta_5 &= \pi - \arcsin\left(-\frac{p_y\left(l_2+l_1\cos\theta_4\right) + l_1p_x\sin\theta_4}{{l_1}^2\sin^2\theta_4 + \left(l_2 + l_1\cos\theta_4\right)}\right)\\
-T_{\text{rlegInv}''} &= T_{\text{rlegInv}'}\left(T^4_3T^5_4\right)^{-1} \\
+T_{\text{rlegInv}''} &= \left(\left(T_{\text{rlegInv}'}\right)^{-1}\left(T^4_3T^5_4\right)^{-1}\right)^{-1} \\
 \theta_2 &= \pm\arccos T_{\text{rlegInv}''(2,3)} + \cfrac{\pi}{4} \\
 \theta_3 &= \arcsin\left(\cfrac{T_{\text{rlegInv}''(2,2)}}{\sin\left(\theta_2 - \frac{\pi}{4}\right)}\right) \\
 \theta_3 &= \pi - \arcsin\left(\cfrac{T_{\text{rlegInv}''(2,2)}}{\sin\left(\theta_2 - \frac{\pi}{4}\right)}\right) \\
