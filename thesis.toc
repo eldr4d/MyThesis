@@ -9,7 +9,7 @@
 \select@language {greek}
 \select@language {english}
 \contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
-\contentsline {section}{\numberline {1.1}Thesis Constribution}{1}{section.1.1}
+\contentsline {section}{\numberline {1.1}Thesis Contribution}{1}{section.1.1}
 \contentsline {section}{\numberline {1.2}Thesis Outline}{2}{section.1.2}
 \contentsline {chapter}{\numberline {2}Background}{3}{chapter.2}
 \contentsline {section}{\numberline {2.1}RoboCup}{3}{section.2.1}
@@ -47,11 +47,11 @@
 \contentsline {subsection}{\numberline {5.2.4}Inverse Kinematics for the Left Leg}{40}{subsection.5.2.4}
 \contentsline {subsection}{\numberline {5.2.5}Inverse Kinematics for the Right Leg}{45}{subsection.5.2.5}
 \contentsline {subsection}{\numberline {5.2.6}Undefined Target Points For Legs}{46}{subsection.5.2.6}
-\contentsline {chapter}{\numberline {6}Implementation}{49}{chapter.6}
-\contentsline {section}{\numberline {6.1}KMat: Kouretes Math Library}{49}{section.6.1}
-\contentsline {section}{\numberline {6.2}Nao Kinematics in c++}{49}{section.6.2}
-\contentsline {chapter}{\numberline {7}Results}{51}{chapter.7}
-\contentsline {section}{\numberline {7.1}Demo Program}{51}{section.7.1}
-\contentsline {chapter}{\numberline {8}Conclusion}{53}{chapter.8}
-\contentsline {section}{\numberline {8.1}Future Work}{53}{section.8.1}
-\contentsline {chapter}{References}{55}{chapter*.3}
+\contentsline {section}{\numberline {5.3}Implementation}{47}{section.5.3}
+\contentsline {subsection}{\numberline {5.3.1}KMat: Kouretes Math Library}{48}{subsection.5.3.1}
+\contentsline {subsection}{\numberline {5.3.2}Nao Kinematics in C++}{48}{subsection.5.3.2}
+\contentsline {chapter}{\numberline {6}Results}{51}{chapter.6}
+\contentsline {section}{\numberline {6.1}Demo Program}{52}{section.6.1}
+\contentsline {chapter}{\numberline {7}Conclusion}{55}{chapter.7}
+\contentsline {section}{\numberline {7.1}Future Work}{55}{section.7.1}
+\contentsline {chapter}{References}{57}{chapter*.3}

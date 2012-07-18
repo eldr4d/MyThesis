@@ -9,7 +9,6 @@ A level-1 auxiliary file: Chapter4/tex.aux
 A level-1 auxiliary file: Chapter5/tex.aux
 A level-1 auxiliary file: Chapter6/tex.aux
 A level-1 auxiliary file: Chapter7/tex.aux
-A level-1 auxiliary file: Chapter8/tex.aux
 The style file: StyleFiles/splncs.bst
 Database file #1: thesis.bib
 Warning--entry type for "SPLrules2012" isn't style-file defined
@@ -19,49 +18,47 @@ I was expecting a `,' or a `}'---line 16 of file thesis.bib
  :   note = {Only available online: \url{http://www.b-human.de/downloads/bhuman11_coderelease.pdf}}
 (Error may have been on previous line)
 I'm skipping whatever remains of this entry
-Name 1 in "Hartenberg, R. S., and J. Denavit" has a comma at the end for entry dhparam2
-while executing---line 2175 of file StyleFiles/splncs.bst
 Too many commas in name 1 of "Maani Ghaffari Jadidi, Ehsan Hashemi, Mohammad Ali Zakeri Harandi, Houman Sadjadian" for entry iran
 while executing---line 2175 of file StyleFiles/splncs.bst
-You've used 6 entries,
+You've used 7 entries,
             2087 wiz_defined-function locations,
-            529 strings with 5073 characters,
-and the built_in function-call counts, 1261 in all, are:
-= -- 90
+            535 strings with 5200 characters,
+and the built_in function-call counts, 1440 in all, are:
+= -- 120
 > -- 97
 < -- 1
-+ -- 35
++ -- 36
 - -- 29
-* -- 95
-:= -- 218
-add.period$ -- 5
-call.type$ -- 6
-change.case$ -- 6
+* -- 100
+:= -- 245
+add.period$ -- 7
+call.type$ -- 7
+change.case$ -- 8
 chr.to.int$ -- 0
-cite$ -- 6
-duplicate$ -- 54
-empty$ -- 107
+cite$ -- 7
+duplicate$ -- 62
+empty$ -- 127
 format.name$ -- 29
-if$ -- 270
+if$ -- 320
 int.to.chr$ -- 0
-int.to.str$ -- 6
-missing$ -- 3
-newline$ -- 31
-num.names$ -- 6
-pop$ -- 23
+int.to.str$ -- 7
+missing$ -- 4
+newline$ -- 36
+num.names$ -- 7
+pop$ -- 27
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 25
+skip$ -- 29
 stack$ -- 0
 substring$ -- 24
-swap$ -- 17
+swap$ -- 18
 text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 0
-while$ -- 9
-width$ -- 7
-write$ -- 60
-(There were 3 error messages)
+while$ -- 10
+width$ -- 8
+write$ -- 73
+(There were 2 error messages)

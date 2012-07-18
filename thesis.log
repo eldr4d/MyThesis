@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.6.30)  17 JUL 2012 04:09
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.6.30)  18 JUL 2012 04:31
 entering extended mode
  %&-line parsing enabled.
 **thesis.tex
@@ -484,8 +484,11 @@ File: lgrcmr.fd 2008/01/04 v1.0 Greek Computer Modern
 )
 (./Acknowldegment/Acknowldegment.aux) (./Abstract/abstract.aux)
 (./Chapter1/tex.aux) (./Chapter2/tex.aux) (./Chapter3/tex.aux)
-(./Chapter4/tex.aux) (./Chapter5/tex.aux) (./Chapter6/tex.aux)
-(./Chapter7/tex.aux) (./Chapter8/tex.aux))
+(./Chapter4/tex.aux) (./Chapter5/tex.aux) (./Chapter6/tex.aux
+
+LaTeX Warning: Label `demo1' multiply defined.
+
+) (./Chapter7/tex.aux))
 \openout1 = `thesis.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 61.
@@ -629,9 +632,6 @@ File: umsb.fd 2009/06/22 v3.00 AMS symbols B
 
  (./Chapter1/tex.tex
 Chapter 1.
-
-LaTeX Warning: Reference `future' on page 1 undefined on input line 9.
-
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
 been already used, duplicate ignored
 <to be read again> 
@@ -650,7 +650,7 @@ l.127  \include{Chapter1/tex}
 
  (./Chapter2/tex.tex
 Chapter 2.
-<Figures/RoboCupSpl.jpg, id=356, 1027.84pt x 766.865pt>
+<Figures/RoboCupSpl.jpg, id=359, 1027.84pt x 766.865pt>
 File: Figures/RoboCupSpl.jpg Graphic file (type jpg)
 
 <use Figures/RoboCupSpl.jpg>pdfTeX warning (ext4): destination with the same id
@@ -663,7 +663,7 @@ l.16 \section
 
 
 ]
-<Figures/robocup2012-team.jpg, id=361, 602.25pt x 370.38374pt>
+<Figures/robocup2012-team.jpg, id=364, 602.25pt x 370.38374pt>
 File: Figures/robocup2012-team.jpg Graphic file (type jpg)
 
 <use Figures/robocup2012-team.jpg>pdfTeX warning (ext4): destination with the s
@@ -681,21 +681,21 @@ l.25
 
 ]
 Chapter 3.
-<Figures/nao-robot-dof.jpeg, id=422, 451.6875pt x 343.2825pt>
+<Figures/nao-robot-dof.jpeg, id=425, 451.6875pt x 343.2825pt>
 File: Figures/nao-robot-dof.jpeg Graphic file (type jpg)
 
 <use Figures/nao-robot-dof.jpeg>
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[15] <Figures/naolinks_1.png, id=427, 333.49594pt x 474.27188pt>
+[15] <Figures/naolinks_1.png, id=430, 333.49594pt x 474.27188pt>
 File: Figures/naolinks_1.png Graphic file (type png)
 
 <use Figures/naolinks_1.png>
 Overfull \vbox (17.69577pt too high) detected at line 32
  []
 
-<Figures/naolinks_2.png, id=429, 410.2828pt x 279.29344pt>
+<Figures/naolinks_2.png, id=432, 410.2828pt x 279.29344pt>
 File: Figures/naolinks_2.png Graphic file (type png)
 
 <use Figures/naolinks_2.png>
@@ -703,7 +703,7 @@ Overfull \hbox (32.83391pt too wide) in paragraph at lines 29--61
 [][] 
  []
 
-<Figures/headjoints.png, id=430, 393.72093pt x 258.21469pt>
+<Figures/headjoints.png, id=433, 393.72093pt x 258.21469pt>
 File: Figures/headjoints.png Graphic file (type png)
 
 <use Figures/headjoints.png>
@@ -711,7 +711,7 @@ Overfull \hbox (51.82635pt too wide) in paragraph at lines 66--72
 [][] 
  []
 
-<Figures/armsjoints.png, id=431, 1053.9375pt x 702.625pt>
+<Figures/armsjoints.png, id=434, 1053.9375pt x 702.625pt>
 File: Figures/armsjoints.png Graphic file (type png)
 
 <use Figures/armsjoints.png>
@@ -719,7 +719,7 @@ Overfull \hbox (51.82635pt too wide) in paragraph at lines 77--90
 [][] 
  []
 
-<Figures/legsjoints.png, id=432, 1068.99374pt x 622.325pt>
+<Figures/legsjoints.png, id=435, 1068.99374pt x 622.325pt>
 File: Figures/legsjoints.png Graphic file (type png)
 
 <use Figures/legsjoints.png>
@@ -752,7 +752,7 @@ Chapter 5.
 
 
 
-] <Figures/torso_frame.png, id=487, 231.264pt x 354.123pt>
+] <Figures/torso_frame.png, id=490, 231.264pt x 354.123pt>
 File: Figures/torso_frame.png Graphic file (type png)
 
 <use Figures/torso_frame.png> [26 <./Figures/torso_frame.png>]
@@ -809,65 +809,95 @@ Overfull \hbox (98.2375pt too wide) in paragraph at lines 308--308
  []
 
 [36] [37] [38] [39] [40]
-<Figures/locus.png, id=564, 476.13176pt x 357.09882pt>
+<Figures/locus.png, id=567, 476.13176pt x 357.09882pt>
 File: Figures/locus.png Graphic file (type png)
  <use Figures/locus.png>
 [41] [42 <./Figures/locus.png (PNG copy)>] [43] [44] [45]
-<Figures/undefined.png, id=586, 449.68pt x 337.26pt>
+<Figures/undefined.png, id=590, 449.68pt x 337.26pt>
 File: Figures/undefined.png Graphic file (type png)
 
-<use Figures/undefined.png>
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-) [46] [47 <./Figures/undefined.png (PNG copy)>]
+<use Figures/undefined.png> [46] [47 <./Figures/undefined.png (PNG copy)>]
+[48]) [49]
 \openout2 = `Chapter6/tex.aux'.
 
- (./Chapter6/tex.tex [48
+ (./Chapter6/tex.tex [50
 
 
 
 ]
 Chapter 6.
-) [49]
+[51] <Figures/Demo1/1.png, id=621, 1027.84pt x 578.16pt>
+File: Figures/Demo1/1.png Graphic file (type png)
+
+<use Figures/Demo1/1.png> <Figures/Demo1/2.png, id=622, 1027.84pt x 578.16pt>
+File: Figures/Demo1/2.png Graphic file (type png)
+
+<use Figures/Demo1/2.png> <Figures/Demo1/3.png, id=623, 1027.84pt x 578.16pt>
+File: Figures/Demo1/3.png Graphic file (type png)
+
+<use Figures/Demo1/3.png> <Figures/Demo1/4.png, id=624, 1027.84pt x 578.16pt>
+File: Figures/Demo1/4.png Graphic file (type png)
+
+<use Figures/Demo1/4.png> <Figures/Demo1/5.png, id=625, 1027.84pt x 578.16pt>
+File: Figures/Demo1/5.png Graphic file (type png)
+
+<use Figures/Demo1/5.png> <Figures/Demo1/6.png, id=626, 1027.84pt x 578.16pt>
+File: Figures/Demo1/6.png Graphic file (type png)
+
+<use Figures/Demo1/6.png> [52]
+<Figures/Demo2/1.png, id=631, 770.88pt x 578.16pt>
+File: Figures/Demo2/1.png Graphic file (type png)
+ <use Figures/Demo2/1.png>
+<Figures/Demo2/2.png, id=632, 770.88pt x 578.16pt>
+File: Figures/Demo2/2.png Graphic file (type png)
+ <use Figures/Demo2/2.png>
+<Figures/Demo2/3.png, id=633, 770.88pt x 578.16pt>
+File: Figures/Demo2/3.png Graphic file (type png)
+ <use Figures/Demo2/3.png>
+<Figures/Demo2/4.png, id=634, 770.88pt x 578.16pt>
+File: Figures/Demo2/4.png Graphic file (type png)
+ <use Figures/Demo2/4.png>
+<Figures/Demo2/5.png, id=635, 770.88pt x 578.16pt>
+File: Figures/Demo2/5.png Graphic file (type png)
+ <use Figures/Demo2/5.png>
+<Figures/Demo2/6.png, id=636, 770.88pt x 578.16pt>
+File: Figures/Demo2/6.png Graphic file (type png)
+ <use Figures/Demo2/6.png>
+[53 <./Figures/Demo1/1.png (PNG copy)> <./Figures/Demo1/2.png (PNG copy)> <./Fi
+gures/Demo1/3.png (PNG copy)> <./Figures/Demo1/4.png (PNG copy)> <./Figures/Dem
+o1/5.png (PNG copy)> <./Figures/Demo1/6.png (PNG copy)>]) [54 <./Figures/Demo2/
+1.png (PNG copy)> <./Figures/Demo2/2.png (PNG copy)> <./Figures/Demo2/3.png (PN
+G copy)> <./Figures/Demo2/4.png (PNG copy)> <./Figures/Demo2/5.png (PNG copy)> 
+<./Figures/Demo2/6.png (PNG copy)>]
 \openout2 = `Chapter7/tex.aux'.
 
- (./Chapter7/tex.tex [50
-
-
-
-]
+ (./Chapter7/tex.tex
 Chapter 7.
-) [51]
-\openout2 = `Chapter8/tex.aux'.
-
- (./Chapter8/tex.tex [52
+) [55
 
 
 
-]
-Chapter 8.
-) [53] (./thesis.bbl (./thesis.brf)
+] (./thesis.bbl (./thesis.brf)
 \tf@brf=\write8
 \openout8 = `thesis.brf'.
 
- [54
+ [56
 
 
-]) [55] (./thesis.aux
+]) [57] (./thesis.aux
 (./Acknowldegment/Acknowldegment.aux) (./Abstract/abstract.aux)
 (./Chapter1/tex.aux) (./Chapter2/tex.aux) (./Chapter3/tex.aux)
 (./Chapter4/tex.aux) (./Chapter5/tex.aux) (./Chapter6/tex.aux)
-(./Chapter7/tex.aux) (./Chapter8/tex.aux))
+(./Chapter7/tex.aux))
 
-LaTeX Warning: There were undefined references.
+LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 7532 strings out of 494985
- 106037 string characters out of 1181034
- 230421 words of memory out of 3000000
- 10310 multiletter control sequences out of 15000+50000
+ 7592 strings out of 494985
+ 107428 string characters out of 1181034
+ 230149 words of memory out of 3000000
+ 10363 multiletter control sequences out of 15000+50000
  22502 words of font info for 72 fonts, out of 3000000 for 9000
  73 hyphenation exceptions out of 8191
  45i,18n,46p,1617b,501s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -895,9 +925,9 @@ e/fonts/type1/public/cbfonts/grmn1440.pfb></usr/share/texmf-texlive/fonts/type1
 /public/cbfonts/grmn1728.pfb></usr/share/texmf-texlive/fonts/type1/public/cbfon
 ts/grxn1728.pfb></usr/share/texmf-texlive/fonts/type1/public/cbfonts/grxn2074.p
 fb>
-Output written on thesis.pdf (69 pages, 1570390 bytes).
+Output written on thesis.pdf (71 pages, 10206820 bytes).
 PDF statistics:
- 752 PDF objects out of 1000 (max. 8388607)
- 137 named destinations out of 1000 (max. 500000)
- 437 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 784 PDF objects out of 1000 (max. 8388607)
+ 143 named destinations out of 1000 (max. 500000)
+ 497 words of extra memory for PDF output out of 10000 (max. 10000000)
 

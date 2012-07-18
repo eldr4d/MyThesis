@@ -14,10 +14,10 @@ Denavit, J., Hartenberg, R.:
 \newblock A kinematic notation for lower-pair mechanisms based on matrices.
 \newblock Trans ASME J. Appl. Mech (1955)
 
-\bibitem{dhparam2}
-Hartenberg, R.S., Denavit, J.:
-\newblock Kinematic synthesis of linkages.
-\newblock New York: McGraw-Hill (1964)
+\bibitem{introroboticscraigbook}
+Craig, J.J.:
+\newblock Introduction to Robotics: Mechanics and Control. Third edn.
+\newblock Pearson Hall (2004)
 
 \bibitem{bhuman}
 R{\"o}fer, T., Laue, T., M{\"u}ller, J., Fabisch, A., Feldpausch, F., Gillmann,
@@ -31,5 +31,10 @@ Maani Ghaffari~Jadidi, Ehsan~Hashemi, M.A.Z.H.H.S.:
 \newblock Kinematic modeling improvement and trajectory planning of the nao
   biped robot.
 \newblock Published in \url{htt[://www.academia.edu}
+
+\bibitem{orfanoudakis2011}
+Orfanoudakis, E.:
+\newblock Reliable object recognition for the robocup domain.
+\newblock Diploma thesis, Technical University of Crete, Greece (2011)
 
 \end{thebibliography}

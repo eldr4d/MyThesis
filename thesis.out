@@ -1,5 +1,5 @@
 \BOOKMARK [0][]{chapter.1}{1 Introduction}{}
-\BOOKMARK [1][]{section.1.1}{1.1 Thesis Constribution}{chapter.1}
+\BOOKMARK [1][]{section.1.1}{1.1 Thesis Contribution}{chapter.1}
 \BOOKMARK [1][]{section.1.2}{1.2 Thesis Outline}{chapter.1}
 \BOOKMARK [0][]{chapter.2}{2 Background}{}
 \BOOKMARK [1][]{section.2.1}{2.1 RoboCup}{chapter.2}
@@ -37,11 +37,11 @@
 \BOOKMARK [2][]{subsection.5.2.4}{5.2.4 Inverse Kinematics for the Left Leg}{section.5.2}
 \BOOKMARK [2][]{subsection.5.2.5}{5.2.5 Inverse Kinematics for the Right Leg}{section.5.2}
 \BOOKMARK [2][]{subsection.5.2.6}{5.2.6 Undefined Target Points For Legs}{section.5.2}
-\BOOKMARK [0][]{chapter.6}{6 Implementation}{}
-\BOOKMARK [1][]{section.6.1}{6.1 KMat: Kouretes Math Library}{chapter.6}
-\BOOKMARK [1][]{section.6.2}{6.2 Nao Kinematics in c++}{chapter.6}
-\BOOKMARK [0][]{chapter.7}{7 Results}{}
-\BOOKMARK [1][]{section.7.1}{7.1 Demo Program}{chapter.7}
-\BOOKMARK [0][]{chapter.8}{8 Conclusion}{}
-\BOOKMARK [1][]{section.8.1}{8.1 Future Work}{chapter.8}
+\BOOKMARK [1][]{section.5.3}{5.3 Implementation}{chapter.5}
+\BOOKMARK [2][]{subsection.5.3.1}{5.3.1 KMat: Kouretes Math Library}{section.5.3}
+\BOOKMARK [2][]{subsection.5.3.2}{5.3.2 Nao Kinematics in C++}{section.5.3}
+\BOOKMARK [0][]{chapter.6}{6 Results}{}
+\BOOKMARK [1][]{section.6.1}{6.1 Demo Program}{chapter.6}
+\BOOKMARK [0][]{chapter.7}{7 Conclusion}{}
+\BOOKMARK [1][]{section.7.1}{7.1 Future Work}{chapter.7}
 \BOOKMARK [0][]{chapter*.3}{References}{}
