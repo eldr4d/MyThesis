@@ -37,7 +37,7 @@ The ball observation can be described as a \(two\)-dimensional point without ori
 \label{demo1}
 \vspace*{0.5cm}
 \end{figure}\\
-\textbf{Balancing Using The Center Of Mass}\\
+\textbf{Balancing Using The Center of Mass}\\
 In the second demo we want to make NAO to move one of its legs to the point of the projection of the CoM on the floor, so, we will have a very basic balancing system. First of all, we must calculate the position of the CoM using forward kinematics. Now we have the CoM position relatively to the torso frame. The problem is that the torso frame is never parallel to the floor. Thus, we get from the gyro-meters the angleX and angleY of the torso plain. Now we can take the position of the CoM relatively to the rotated torso:
 \[
 	T_{\text{rotated}} = R_y(\text{angleY})R_x(\text{angleX})A_{\text{CoM}}
@@ -46,7 +46,7 @@ Then we put a custom value to \(p_z\) which represents the desired torso height 
 \[
 	T_{\text{final}} = \left(R_y(\text{angleY})R_x(\text{angleX})\right)^{-1}T_{\text{rotated}'}
 \]
-Finally, we set  \(p_x\), \(p_y\) and \(p_z\) from \(T_{\text{final}}\) as the target point for inverse kinematics and we set \(a_x = -\)anglex, \(a_y = -\)angleY and \(a_z = 0\) as the target rotation, because we don't care about rotation around \(z\)-axis. Now the target point is the projection of the CoM to the floor and the rotation of the end effector is parallel to the frame of the floor.\\
+Finally, we set  \(p_x\), \(p_y\) and \(p_z\) from \(T_{\text{final}}\) as the target point for inverse kinematics and we set \(a_x = -\)angleX, \(a_y = -\)angleY and \(a_z = 0\) as the target rotation, because we don't care about rotation around \(z\)-axis. Now the target point is the projection of the CoM to the floor and the rotation of the end effector is parallel to the frame of the floor.\\
 In the figures below we can see that the foot is always parallel to the floor. It happens some times, that some robots have displaced inertial unit (accelerometers and gyro-meters). On these robots we can see that the foot is not parallel to the floor but this is a hardware problem and not a kinematics problem.
 \begin{figure}[!h]
 \centerline{

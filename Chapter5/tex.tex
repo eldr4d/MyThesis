@@ -183,9 +183,12 @@ This property is very useful, because we can find any end effector relatively to
 \subsection{Calculation of Center Of Mass with Forward Kinematics}
 The calculation of the center of mass (CoM) is very important because NAO consists of a group of moving parts. Every moving part has a mass and with forward kinematics we can calculate the position of the CoM relatively to a given frame. Aldebaran provides us with the whole information that is needed to do the calculation. Aldebaran gives us the mass of the whole robot and the mass for every moving part of NAO. The separate masses are given according to every joint of the robot. Thus, every joint of the robot has a mass and the position of the CoM for this joint relatively to the joint frame.\\
 The CoM is calculated relatively to the torso frame and the calculation order is simple. We construct smaller kinematic chains that stop to an earlier joint, and then we set as the end effector the position of CoM for the frame of the joint where we stop. Then we get the translation part and we multiply it by the mass of the certain part. At the end, we will have 21 chains plus the torso chain. Then we will add all the individual translation matrices that have been weighted by the mass of each joint and the result will be divided by the total mass. The result will be the position of the CoM relatively to the torso frame.
+
+
+
 \section{Inverse Kinematics for NAO}
-Forward kinematics can find the position of an end effector, relatively to the start frame, given the joints values. Now we have to solve the inverse problem: find the joints values given the desired end effector position relatively to the torso frame. The solutions for the inverse kinematic problem that will be present below is only for the kinematic chains that start from the torso.\\
-The position of the end effector is the \(p_x,p_y\text{ and }p_z\) points along with the \(a_x,a_y\text{ and }a_z\) angles. As we mentioned before, the product of forward kinematics is an affine transformation matrix and it consists of a rotation matrix and a translation matrix. The rotation \(R\) is equal to \(R_zR_yR_x\). Thus, we can construct the transformation table:
+Forward kinematics can find the position of an end effector, relatively to the start frame, given the joints values. Now we have to solve the inverse problem: find the joints values given the desired end effector position relatively to the torso frame. The solutions for the inverse kinematics problem that will be presented below are related to the kinematic chains that start from the torso.\\
+The position of the end effector is the \(p_x,p_y\text{ and }p_z\) points along with the \(a_x,a_y\text{ and }a_z\) angles. As we mentioned before, the product of forward kinematics is an affine transformation matrix and it consists of a rotation and a translation matrix. The rotation \(R\) is equal to \(R_zR_yR_x\). Thus, we can construct the transformation table:
 
 \begin{scriptsize}
 \[
@@ -198,11 +201,11 @@ T =
 \end{bmatrix}
 \]
 \end{scriptsize}\\
-As we mentioned before we can't solve the problem of inverse kinematics without the solution for forward kinematics. That's why the equations that we must solve to find the joints are the matrices from the forward kinematics but with the \(\theta\) DH parameters as the unknown part. So, we can find the symbolic table that is the product of forward kinematics and equate it with the matrix above. Then, we will have twelve equations (we don't have sixteen because the last line of the matrix is always (\(0\) \(0\) \(0\) \(1\))) and \(n\) unknowns, where \(n\) is the number of joints in the chain. In fact, we will have \(2n\) unknowns, because all the \(\theta\) appear inside \(\sin\) or \(\cos\).\\
-As we will see below we, found some of the desired angles with \(\arccos \text{ and }\arcsin\). The problem is that \(\arcsin\) returns a number in \(\left[-\tfrac{\pi}{2},\tfrac{\pi}{2}\right]\) and \(\arccos\) returns a number in \(\left[0,\pi\right]\) but the possible range of the joints is in \(\left[-\pi,\pi\right]\). Thus, we will have two possible solutions for every \(\arcsin\) and \(\arccos\) (because of the complimentary angles). Because of that, we must filter our results and keep only the correct angles. We archive that by doing a forward validation step when we find a complete set of angle values. Then we compare the result of the validation step with the reconstructed table and if they are equal, then we approve the set. Some complimentary angles will be discarded a long time before the validation step due to the range restriction of each joint.
+As we mentioned before we can't solve the problem of inverse kinematics without the solution of forward kinematics. That's why the equations that we must solve to find the values of joints are the matrices from the forward kinematics but with the \(\theta\) from DH parameters as the unknown part. So, we can find the symbolic table that is the product of forward kinematics and equate it with the matrix above. Then, we will have twelve equations (we don't have sixteen because the last line of the matrix is always (\(0\) \(0\) \(0\) \(1\))) and \(n\) unknowns, where \(n\) is the number of joints in the chain. In fact, we will have \(2n\) unknowns, because all the thetas (\(\theta\)) appear inside \(\sin\) or \(\cos\).\\
+As we will see below, we found some of the desired angles with \(\arccos \text{ and }\arcsin\). The problem is that \(\arcsin\) returns a number in \(\left[-\tfrac{\pi}{2},\tfrac{\pi}{2}\right]\) and \(\arccos\) returns a number in \(\left[0,\pi\right]\) but the possible range of the joints is in \(\left[-\pi,\pi\right]\). Thus, we will have two possible solutions for every \(\arcsin\) and \(\arccos\) (because of the complimentary angles). Because of that, we must filter our results and keep only the correct angles. We achieve that by doing a forward validation step when we find a complete set of angle values. Then we compare the result of the validation step with the reconstructed table and if they are equal, then we approve the set. Some complimentary angles will be discarded a long time before the validation step due to the range restriction of each joint.
 
 \subsection{Inverse Kinematics for the Head}
-The head chain, as we said before, consists only of two joints. Thus, we can find both desired angles only by the \(a_z\) and \(a_y\). On the other hand, someone maybe want to find the joints for the desired position only with the use of the target points \(p_x,p_y\text{ and }p_z\), so we implement an other solution that works only with the target points. Below we can see the symbolic result from forward kinematics:
+The head chain, as we said before, consists only of two joints. Thus, we can find both desired angles only by the \(a_z\) and \(a_y\). On the other hand, someone maybe wants to find the joints for the desired position by only using the target points \(p_x,p_y\text{ and }p_z\), so we implement another solution that works only with the target points. Below we can see the symbolic result from forward kinematics:
 \[
 T = 
 \begin{bmatrix}
@@ -213,12 +216,12 @@ T =
 \end{bmatrix}
 \]
 where: \(l_1 = \text{cameraX, }l_2 = \text{cameraZ and }l_3 = \text{NeckOffsetZ}\).\\
-Because we only know the \(p_x,p_y\text{ and }p_z\) and we can't reconstruct the rotation part of the matrix and we will use only the translation part that is reconstructible. Now we can see from the symbolic matrix that \(T_{(3,4)} = l_3 - l_2\sin\theta_2 - l_1\cos\theta_2 = pz\) and we know from trigonometry that: 
+Because we only know the \(p_x,p_y\text{ and }p_z\) and we can't reconstruct the rotation part of the matrix, we will only use the translation part that is reconstructed. Now we can see from the symbolic matrix that \(T_{(3,4)} = l_3 - l_2\sin\theta_2 - l_1\cos\theta_2 = p_z\) and we know from trigonometry that: 
 \[
 a\sin\theta + b\cos\theta = \sqrt{a^2+b^2}\sin\left(\theta + \psi\right)
 \]
 \[
-\psi=\arctan\left(\frac{b}{2}\right) + \left\{ 
+\psi=\arctan\left(\frac{b}{a}\right) + \left\{ 
   \begin{array}{l l}
     0 & \quad \text{if }a\geq0\\
     \pi & \quad \text{if }a<0\\
@@ -226,7 +229,7 @@ a\sin\theta + b\cos\theta = \sqrt{a^2+b^2}\sin\left(\theta + \psi\right)
 \]
 So, we can now calculate \(\theta_2\):
 \[
-\theta_2 = \arcsin\left(\cfrac{-p_z+l_3}{\sqrt{l_1^2+l_2^2}}\right) + \arctan\left(\frac{l_1}{l_2}\right)
+\theta_2 = \arcsin\left(\cfrac{-p_z+l_3}{\sqrt{{l_1}^2+{l_2}^2}}\right) + \arctan\left(\frac{l_1}{l_2}\right)
 \]
 Now the final \(\theta_2\) is: \(\theta_2 = \theta_2 - \frac{\pi}{2}\) because in the DH parameters we had added \(\frac{\pi}{2}\) to the \(\theta\) parameter for the second joint.  From now on, we must substract \(\frac{\pi}{2}\) from \(\theta_2\) if we want to use it to calculate a result from the equations.\\
 Then we can easily extract \(\theta_1\) from \(T_{(1,4)}\):
@@ -278,9 +281,9 @@ r_{34} &= l_2 + l_4\left(\sin\theta_4\left(\cos\theta_1\sin\theta_3 + \cos\theta
 \end{align*}
 \end{small}\\
 where: $l_1 =$ ShoulderOffsetY$+$ElbowOffsetY, $l_2 =$ ShoulderOffsetZ, $l_3 =$ UpperArmLength and $l_4 =$ HandOffsetX$+$LowerArmLength.\\
-As we can see now, the problem of inverse kinematics for the arms is far more complicated than the problem for the head. It is very difficult to extract a joint value from all these equations, so, we can use trigonometry to find the value of one joint. More specifically this joint is the elbow roll joint. We can observe that the upper arm, the lower arm with the hand offset and the distance from the position of the shoulder pitch joint to the end effector is a triangle and we know the size of each side. The position of the shoulder pitch joint relative to the torso frame is known, and the position of the end effector is the target position. So, the distance can be calculated:
+As we can see now, the problem of inverse kinematics for the arms is far more complicated than the problem for the head. It is very difficult to extract a joint value from all these equations, so, we can use trigonometry to find the value of one joint. More specifically this joint is the elbow roll joint. We can observe that the upper arm, the lower arm with the hand offset and the distance from the position of the shoulder pitch joint to the end effector forms a triangle and we know the size of each side. The position of the shoulder pitch joint relative to the torso frame is known, and the position of the end effector is the target position. So, the distance can be calculated:
 \[
-d=\sqrt{\left(s_x+p_x\right)^2 + \left(s_y+p_y\right)^2 + \left(s_z+p_z\right)^2}
+d=\sqrt{\left(s_x-p_x\right)^2 + \left(s_y-p_y\right)^2 + \left(s_z-p_z\right)^2}
 \]
 where: \(s_x = 0, s_y = l_1\) and \(s_z = l_2\).\\
 Now we can use the cosine law and find \(\theta_4\):
@@ -311,7 +314,7 @@ Now the final \(\theta_2\) is: \(\theta_2 = \theta_2 + \frac{\pi}{2}\) because i
 \begin{small}
 \begin{align*}
 &T_{(2,3)} = \sin\left(\theta_2 - \frac{\pi}{2}\right)\sin\theta_3 &\Leftrightarrow \\
-& \theta_3 = \arcsin\left( \cfrac{ T_{(2,3)} }{ \sin\left(\theta_2-\frac{\pi}{2}\right)}\right)  &\text{because }    \theta_2 \neq \left|\frac{\pi}{2}\right|\\
+& \theta_3 = \arcsin\left( \cfrac{ T_{(2,3)} }{ \sin\left(\theta_2-\frac{\pi}{2}\right)}\right)  &\text{because }    \theta_2 \neq \left|\frac{\pi}{2}\right|
 \end{align*}
 \end{small}\\
 Finally, we must extract the value for \(\theta_1\):
@@ -336,11 +339,11 @@ Else if \(\theta_2 \neq \left|\frac{\pi}{2}\right|\), we will find the \(\theta_
 &\theta_1 = \arccos\left(\cfrac{T_{(3,3)} -\cfrac{ T_{(1,3)}\sin\theta_3\cos\left(\theta_2 - \frac{\pi}{2}\right)}{\cos\theta_3}}{\cos\theta_3 + \cfrac{\cos^2\left(\theta_2-\frac{\pi}{2}\right)\sin^2\theta_3}{\cos\theta_3}}\right)
 \end{align*}
 \end{small}\\
-Now we have calculated all the joints for the left arm, but we will have a lot of invalid angle sets. We will find the correct set after the forward kinematics validation step. Below there are all the inverse kinematics joints equations for the left arm:
+Now we have calculated all the joints for the left arm, but we will have a lot of invalid angle sets. We will find the correct set after the forward kinematics validation step. Below there are all the inverse kinematics joint's equations for the left arm:
 
 \begin{small}
 \begin{align*}
-\theta_4 &= \pi - \arccos\left(\cfrac{{l_3}^2 + {l_4}^2 - \left( (s_x-p_x)^2 + (s_y-p_y)^2 + (s_z-p_z)^2 \right)}{2 l_3 l_4}\right)\\
+\theta_4 &= \pi - \arccos\left(\cfrac{{l_3}^2 + {l_4}^2 - \sqrt{(s_x-p_x)^2 + (s_y-p_y)^2 + (s_z-p_z)^2}^2 }{2 l_3 l_4}\right)\\
 \theta_2 &= \pm\arccos\left(\cfrac{p_y - l_1 - \left(\frac{l_4\sin\theta_4 T_{(2,2)}}{\cos\theta_4}\right)}{l_3 +l_4\cos\theta_4 + l_4\frac{\sin^2\theta_4}{\cos\theta_4}}\right)+\cfrac{\pi}{2}\\
 \theta_3 &= \arcsin\left(\cfrac{T_{(2,3)}}{\sin\left(\theta_2-\frac{\pi}{2}\right)}\right)\\
 \theta_3 &= \pi - \arcsin\left(\frac{T_{(2,3)}}{\sin\left(\theta_2-\frac{\pi}{2}\right)}\right)\\
@@ -350,7 +353,7 @@ Now we have calculated all the joints for the left arm, but we will have a lot o
 \end{small}
 
 \subsection{Inverse Kinematics for the Right Hand}
-As we said before, the right and left arm are symmetric, thus, the solution is almost the same. The only differences are in the distances over the \(y\)-axis and for the right hand the \(\theta\) parameter does not subtract $\frac{\pi}{2}$ but it adds $\frac{\pi}{2}$. The kinematic chain for the right arm has an extra rotation matrix after the last translation:
+As we said before, the right and left arm are symmetric, thus, the solution is almost the same. This differs from above only at the distances over the \(y\)-axis and for the right hand the \(\theta\) parameter does not subtract $\frac{\pi}{2}$ but it adds $\frac{\pi}{2}$. The kinematic chain for the right arm has an extra rotation matrix after the last translation:
 \[
 T^\text{End}_\text{Base} = A^0_\text{Base}T^1_0T^2_1T^3_2T^4_3R_z(\tfrac{\pi}{2})A^\text{End}_{4}R_z(-\pi)
 \]
@@ -367,11 +370,11 @@ The only changes on the symbolic table are in the translation part:
 &r_{34} = l_2 - l_4\left(\sin\theta_4\left(\cos\theta_1\sin\theta_3 + \cos\theta_2\cos\theta_3\sin\theta_1\right) + \cos\theta_4\sin\theta_1\sin\theta_2\right) - l_3\sin\theta_1\sin\theta_2
 \end{align*}
 \end{small}\\
-As we can see, the changes doesn't have any impact in our solution for the left arm, e.g. no one denominator becomes zero with this changes. So,as in the previous section, we will get the functions below:
+As we can see, the changes don't have any impact in our solution for the left arm, e.g. no one denominator becomes zero with these changes. So, as in the previous section, we will get the equations below:
 
 \begin{small}
 \begin{align*}
-\theta_4 &= \pi - \arccos\left(\cfrac{{l_3}^2 + {l_4}^2 - \left( (s_x-p_x)^2 + (s_y-p_y)^2 + (s_z-p_z)^2 \right)}{2 l_3 l_4}\right)\\
+\theta_4 &= \pi - \arccos\left(\cfrac{{l_3}^2 + {l_4}^2 - \sqrt{(s_x-p_x)^2 + (s_y-p_y)^2 + (s_z-p_z)^2}^2 }{2 l_3 l_4}\right)\\
 \theta_2 &= \pm\arccos\left(\cfrac{ - p_y - l_1 - \left(\frac{l_4\sin\theta_4T_{(2,2)}}{\cos\theta_4} \right)}{l_3 +l_4\cos\theta_4 + l_4\frac{\sin^2\theta_4}{\cos\theta_4}}\right)-\frac{\pi}{2}\\
 \theta_3 &= \arcsin\left(\cfrac{T_{(2,3)}}{\sin\left(\theta_2 + \frac{\pi}{2}\right)}\right)\displaybreak[0]\\
 \theta_3 &= \pi - \arcsin\left(\cfrac{T_{(2,3)}}{\sin\left(\theta_2 + \frac{\pi}{2}\right)}\right) \\
@@ -391,7 +394,7 @@ T_{\text{lleg}'} = T_\text{lleg}{\left(A^\text{End}_6\right)}^{-1}
 \[
 T_{\text{lleg}''} = {\left(A^0_\text{Base}\right)}^{-1}T_{\text{lleg}'}
 \]
-Now we have the chain from the base frame of the first joint to the frame of the last joint. The first joint, HipYawPitch, is rotated by $ \frac{-3\pi}{4} $ in the $ x $-axis. We will add a rotation a the start of the chain to rotate the $x$-axis by $\frac{\pi}{4}$. Then the first joint will be a yaw joint and then we will have three intersected joints and the problem will be solvable:
+Now we have the chain from the base frame of the first joint to the frame of the last joint. The first joint, HipYawPitch, is rotated by $ \frac{-3\pi}{4} $ in the $ x $-axis. We will add a rotation a the start of the chain to rotate the $x$-axis by $\frac{\pi}{4}$. Then the first joint will be a yaw joint and then we will have three intersected joints and the problem will becomes solvable:
 \[
 T_\text{llegRotated} = R_x(\tfrac{\pi}{4})T_{\text{lleg}''}
 \]
@@ -424,18 +427,18 @@ Next, we will extract the \(\theta_6\) angle. We can extract this angle from the
 \begin{small}
 \begin{align*}
 \frac{r_{24}}{r_{34}} &= \frac{p_y}{p_z} &\Leftrightarrow \\
-\frac{\left(l_2\cos\theta_5 + l_1 \cos\left(\theta_4 + \theta_5\right)\right)\sin\theta_5}{\left(l_2\cos\theta_5 + l_1 \cos\left(\theta_4 + \theta_5\right)\right) \cos\theta_5} &= \frac{p_y}{p_z} &\Leftrightarrow \\
+\frac{\left(l_2\cos\theta_5 + l_1 \cos\left(\theta_4 + \theta_5\right)\right)\sin\theta_6}{\left(l_2\cos\theta_5 + l_1 \cos\left(\theta_4 + \theta_6\right)\right) \cos\theta_5} &= \frac{p_y}{p_z} &\Leftrightarrow \\
 \theta_6 &= \arctan\left(\frac{p_y}{p_z}\right)&\text{if} \left(l_2\cos\theta_5 + l_1 \cos\left(\theta_4 + \theta_5\right)\right) \neq 0
 \end{align*}
 \end{small}\\
-Because we don't know $\theta_5$, we can't find when this equation is zero. So we will have division by zero, but in reality we will not have this problem, because we are using the atan2 function in our program and the result will be just undefined. So, the program will continue to run but the validation step will reject all the solutions. In figure~\ref{fig:unlocus} we can see the locus of the equation, wich gives the undefined points. In Subsection~\ref{undefined} we present the locus along with the values of the ankle pitch ($\theta_5$) and knee pitch ($\theta_4$) for a series of moves of the robot and we discuss what we do when we are in this locus.\\
-\begin{figure}[h]
+Because we don't know $\theta_5$, we can't find when this equation is zero. So we will have division by zero, but in reality we will not have this problem, because we are using the atan2 function in our program and the result will be just undefined. So, the program will continue to run but the validation step will reject all the solutions. In figure~\ref{fig:unlocus} we can see the locus of the equation, which gives the undefined points. In Subsection~\ref{undefined} we present the locus along with the values of the ankle pitch ($\theta_5$) and knee pitch ($\theta_4$) for a series of moves of the robot and we discuss what we do when we are in this locus.\\
+\begin{figure}[!h]
 	\begin{center}
 		\includegraphics[height = 10cm]{Figures/locus.png}
  		\caption{Undefined Locus For Legs}
  		\label{fig:unlocus}
 	\end{center}
-\end{figure}
+\end{figure}\\
 Now we can reconstruct and remove the rotation at the end and the transformation from ankle pitch to ankle roll from the chain to make it simpler:
 \[
 T_{\text{llegRotated}'} = T_\text{llegRotated}\left(T^6_5R_z\left(\pi\right)R_y(-\tfrac{\pi}{2})\right)^{-1}
@@ -468,7 +471,7 @@ The \(l_2+l_1\cos\theta_4\) is zero if and only if \(\cos\theta_4 = 1.029\). So 
 &\theta_5 = \arcsin\left(-\frac{p_y\left(l_2+l_1\cos\theta_4\right) + l_1p_x\sin\theta_4}{{l_1}^2\sin^2\theta_4 + \left(l_2 + l_1\cos\theta_4\right)}\right)
 \end{align*}
 \end{small}\\
-We can do the division because ${l_1}^2\sin^2\theta_4 + \left(l_2 + l_1\cos\theta_4\right)^2$ is obviusly greater than zero. 
+We can do the division because ${l_1}^2\sin^2\theta_4 + \left(l_2 + l_1\cos\theta_4\right)^2$ is obviously greater than zero. 
 Now we can remove the two transformations of $\theta_4$ and $\theta_5$ from the symbolic matrix and then we will have a transformation matrix that is a rotation matrix:
 
 \[
@@ -490,7 +493,7 @@ And the rotation part is:
 &r_{32} = -\cos\theta_1\cos\theta_3 + \cos\theta_2\sin\theta_1\sin\theta_3\\
 &r_{33} = -\sin\theta_1\sin\theta_2
 \end{align*}
-\end{small}
+\end{small}\\
 Finally we can extract, from the transformation matrix, the remaining three angles:
 \begin{small}
 \begin{align*}
@@ -569,8 +572,8 @@ As we mentioned before, we have some target points for which we can't find an in
 \section{Implementation}
 Now that we have all the equations for both problems, we must integrate them in the code of the team. The code of the team is written in \verb!C++! so because \verb!C++! doesn't have any library for fast linear algebra operations, we must develop a minimalistic matrix framework. Then, using this framework, we must write some functions that will implement the equations of forward and inverse kinematics in \verb!C++!.
 \subsection{KMat: Kouretes Math Library}
-KMat is a library developed by Emmanouil Orfanoudakis~\cite{orfanoudakis2011} that supports a strict subset of algebraic operations. The focus of the library is mainly in real numbers operations and the primary goal of KMat is low memory footprint and calculation efficiency. The typical linear algebra libraries do run-time validation for the compatibility of the operands and are optimized for large matrices. On the other hand, KMat is optimized for small matrices (typically \((3\times3)\) or \((4\times4)\) and only a subset of operations (addition, subtraction, multiplication, scalar addition, scalar multiplication, transposition, inversion) have been implemented. KMat supports two type of matrices: Dense matrices and Affine transformation matrices.\\
-For our work we used mainly the affine type of matrices and we expanded the functions of the library with some functions that are extremely useful for the kinematics computations. This functions are some initialization functions that initialize a matrix with the given DH parameters or reconstruct of the matrix given the target points etc.
+KMat is a library developed by Emmanouil Orfanoudakis~\cite{orfanoudakis2011} that supports a strict subset of algebraic operations. The focus of the library is mainly in real numbers operations and the primary goal of KMat is low memory footprint and calculation efficiency. The typical linear algebra libraries do run-time validation for the compatibility of the operands and are optimized for large matrices. On the other hand, KMat is optimized for small matrices (typically \((3\times3)\) or \((4\times4)\)) and only a subset of operations (addition, subtraction, multiplication, scalar addition, scalar multiplication, transposition, inversion) have been implemented. KMat supports two type of matrices: Dense matrices and Affine transformation matrices.\\
+For our work we used mainly the affine type of matrices and we expanded the functions of the library with some functions that are extremely useful for the kinematics computations. These functions are some initialization functions that initialize a matrix with the given DH parameters or reconstruct of the matrix given the target points etc.
 \subsection{Nao Kinematics in C++}
 Along with KMat we created two more libraries ForwardKinematics and InverseKinematics. ForwardKinematics has the functions to calculate the location of an end effector of a kinematic chain, given the joint values for this chain. The union of independent chains with common base frame is possible, so someone can take the position of the top camera relatively to one of the legs. Finally, we have a function to calculate the center of mass of the robot. The input of each function is the values of the joints with the order that they appear in the kinematic chains.\\
 The inverse kinematics library has five functions, each of which solves the problem for a kinematic chain. All functions take, as input, the position and the orientation of the target point and the output is the values of the joints, for all the possible solutions for this point. It is possible to have a solution with two set of values and then the user can decide what output will be used. \\

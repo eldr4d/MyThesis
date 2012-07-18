@@ -1,5 +1,22 @@
 \begin{thebibliography}{1}
 
+\bibitem{naowalk}
+J.~Strom, G.S., Chown, E.:
+\newblock Omnidirectional walking using zmp and preview control for the nao
+  humanoid robot.
+\newblock Robocup Symposium (2009)
+
+\bibitem{bhumanwalk}
+Graf, C., R{\"o}fer, T.:
+\newblock A closed-loop 3d-lipm gait for the robocup standard platform league
+  humanoid.
+\newblock In Pagello, E., Zhou, C., Behnke, S., Menegatti, E., R{\"o}fer, T.,
+  Stone, P., eds.: Proceedings of the Fifth Workshop on Humanoid Soccer Robots
+  in conjunction with the 2010 IEEE-RAS International Conference on Humanoid
+  Robots, Nashville, TN, USA (2010)
+  http://www.informatik.uni-bremen.de/kogrob/papers/Humanoids-Graf-Roefer-10.p%
+df.
+
 \bibitem{robocup}
 Kitano, H., Asada, M., Kuniyoshi, Y., Noda, I., Osawa, E., Matsubara, H.:
 \newblock Robocup: {A} challenge problem for {AI}.

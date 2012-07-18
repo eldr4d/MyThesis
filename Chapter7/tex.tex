@@ -1,5 +1,11 @@
 \chapter{Conclusion}
 \label{conclusion}
+Our approach is not a breakthrough because this is the way to solve kinematics for any chain. Despite this, Kouretes are immediately the only team in RoboCup SPL League that have an analytical solution without approximations for every kinematic chain of the NAO robot. Kinematics is the bases for a lot of applications, as it is described below, and having that implemented, we can expand our code and become more competitive against other teams, because our code lucks a good motion management. Furthermore, it is possible now to extract the accurate position of cammera's horizon being used by the vision module.  
 \section{Future Work}
+Having described the inverse kinematics mechanism, it is now possible for Kouretes team to make their own independent movements (totally separated from Aldebaran's framework). Below, examples for future work follow:\\
 
+\textbf{Omni-Directional Walk}\\
+We want to make NAO walk to any direction, this is called omni-directional walk. The trajectories of walk are being calculated dynamically and for this reason, we need an inverse kinematics mechanism. Also, while the robot is walking, we must keep it in balance, so we need the position of the center of mass for the balancing system.\\
 
+\textbf{Kick Engine}\\
+It is crucial to fix a mechanism for dynamic kick executions. Now, our team, has only static kicks, designed before the game but the problem with those kicks is that there are not designed to be balanced and often some robots fall down when they execute these kicks. With inverse kinematics and balancing, we can make a kick engine, that takes care for the balance of the robot and execute a kick trajectory that is designed in run time.
