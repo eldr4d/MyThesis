@@ -11,7 +11,8 @@ Aldebaran NAO is a humanoid robot. It is 58 cm tall and it has 5kg approximate m
 \item Left Leg chain: LHipYawPitch, LHipRoll, LHipPitch, LKneePitch, LAnklePitch, LAnkleRoll.
 \item Right Leg chain: RHipYawPitch, RHipRoll, RHipPitch, RKneePitch, RAnklePitch, RAnkleRoll.
 \end{itemize}
-The common joint is the HipYawPitch joint, so LHipYawPitch and RHipYawPitch are the same joint.\\
+The common joint is the HipYawPitch joint, so LHipYawPitch and RHipYawPitch are the same joint.
+
 In the figure bellow we are presenting the academic edition of NAO. NAO RoboCup edition misses 4 DOF on the hand (LWristYaw, LHand, RWristYaw and RHand).
 \begin{figure}[h]
 	\begin{center}
@@ -21,8 +22,8 @@ In the figure bellow we are presenting the academic edition of NAO. NAO RoboCup 
 	\end{center}
 \end{figure}
 \subsection{NAO Cartesian Restrictions}
-In the tables bellow we will present the length of all the links of the robot, the range that each joint is working in radians and in degrees and finally the masses of the NAO. Each joint has its own mass and center of mass. The center of mass for each joint is represented by a point in the \(three-dimensional\) space of the joint. The robot theoretically is symmetric but we will see, in the joints ranges, that some left joints have different range than the right ones. The values are extracted from the user manual of the robot that Aldebaran provides.\\
-The user manual has only masses for the right part of the robot but we assume that the robot is fully symmetrical on the masses.\\
+In the tables bellow we will present the length of all the links of the robot, the range that each joint is working in radians and in degrees and finally the masses of the NAO. Each joint has its own mass and center of mass. The center of mass for each joint is represented by a point in the three-dimensional space of the joint. The robot theoretically is symmetric but we will see, in the joints ranges, that some left joints have different range than the right ones. The values are extracted from the user manual of the robot that Aldebaran provides.
+The user manual has only masses for the right part of the robot but we assume that the robot is fully symmetrical on the masses.
 Although some joints appear to be able to go to a position, the hardware controller of the robot will prohibit this movement because of the possible collisions with NAO shell.
 
 \begin{figure}
@@ -152,8 +153,8 @@ Because NAO has a lot of DOF, it can do several complex moves. Some examples of 
 Forward kinematics for NAO can been seen as five individual solutions. NAO has five chains and because we will not manipulate the joints, but we will only take the current state of each joint, we can assume that the five chains are completely independent. Then, we can find five forward kinematics solutions, one for each kinematic chain and we will be able to combine these solutions to find a solution for a bigger kinematic chain (e.g. the kinematic chain from the right foot to the head). The reason for dealing with this problem is twofold:firstly it is of great importance (concerning many applications, such as, finding its horizon, as well as placing it correctly).Besides this, as it will be described below, solution to the inverse kinematics problem would be intractable without solving the forward first.
 
 \subsection{The Inverse Kinematics problem for NAO}
-The inverse kinematics problem is a more complex problem and although we have the common joint between two kinematic chains, we are working with the assumption that we have five completely independent kinematic chains, so we will find five solutions for this problem. The reasons that led us to solve it are many. More specifically, we need to create dynamic kicks and an omni-directional walk. Both problems need a mechanism to move trajectories from the \(three-dimensional\) space to the \(joint\) space and the inverse kinematics can provide this mechanism.\\
-\textbf{Analytic versus Approximate solutions}\\
+The inverse kinematics problem is a more complex problem and although we have the common joint between two kinematic chains, we are working with the assumption that we have five completely independent kinematic chains, so we will find five solutions for this problem. The reasons that led us to solve it are many. More specifically, we need to create dynamic kicks and an omni-directional walk. Both problems need a mechanism to move trajectories from the \(three-dimensional\) space to the \(joint\) space and the inverse kinematics can provide this mechanism.
+\subsubsection*{Analytic versus Approximate solutions}
 Inverse kinematics problem can be solved analytically or approximately. We have chosen to find the analytical solution rather than the approximate solution because the second one has some problems. We need real-time execution to the problem of inverse kinematics. The analytical solution is faster than the fastest approximate solution and for this reason it is a good choice for real-time execution. Second, there are various implementations of approximate solutions for the problem. Some of them are fast but it is very possible to run into a singularity. Other methods have a smaller probability to run into a singularity, but they are slower. On the other hand, the analytical solution doesn't have any singularity. However, inverse kinematics have an analytical solution only if the chain has five or less DOF. If the chain has 6 DOF, it can have analytical solution to the problem of the inverse kinematics only if three sequential joints have intersecting axes.
 % ------------------------------------------------------------------------
 

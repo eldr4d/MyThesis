@@ -52,15 +52,16 @@ A \textit{robot kinematic chain} is an articulated manipulator that interacts wi
 The joint space reveals very little information about the position of the end effector of the kinematic chain. The \textit{forward kinematics} define a mapping from the joint space to the three-dimensional Cartesian space. Given a kinematic chain and a set of joint values, forward kinematics can find the point \(p_x,p_y,p_z\) and the orientation \(a_x,a_y,a_z\) of the end effector of the kinematic chain. Forward kinematics is not an application specific problem and can be addressed to any kinematic chain.
 
 \subsection{Inverse Kinematics}
-Generally, it is easy for humans to give a target point or design a trajectory in \(3-dimensional\) space, but if we want the end effector to follow the trajectory, we must assign the right values to the joints of the kinematic chain. So, we need a way to go from \(3-dimensional\) space back to \(joint\) space. The problem of inverse kinematics is application specific and every kinematic chain has a different solution. The solution of the problem can be analytical or it can be approximate (e.g with Jacobian approximation method). As the DOF increases, each point in the \(3-dimensional\) space may have more than one matching point in the \(joint\) space, so we may have more than one solution in the \(joint\) space for a given point in \(3-dimensional\) space.\\
+Generally, it is easy for humans to give a target point or design a trajectory in three-dimensional space, but if we want the end effector to follow the trajectory, we must assign the right values to the joints of the kinematic chain. So, we need a way to go from three-dimensional space back to joint space. The problem of inverse kinematics is application specific and every kinematic chain has a different solution. The solution of the problem can be analytical or it can be approximate (e.g with Jacobian approximation method). As the DOF increases, each point in the three-dimensional space may have more than one matching point in the joint space, so we may have more than one solution in the joint space for a given point in three-dimensional space.
 
 \section{Affine Transformations}
 An affine transformation is a map transferring points and vectors from one space to another, being able to preserve ratios of distances. The space can be \(n\)-dimensional with \(n\ge2\). The following are affine transformations: Geometric contraction, expansion, dilation, reflection, rotation, shear, similarity transformations, spiral similarities and translation. All the possible combinations of the above produce an affine transformation. Its flexibility concerning object manipulation, makes it a very useful tool in computer graphics.
 
-For the purpose of this thesis we only used rotation and translation, so we will analyze these two types of affine transformation. Also we are working in a \(3-dimensional\) space and all the examples from now on will be in this space.\\ \\
+For the purpose of this thesis we only used rotation and translation, so we will analyze these two types of affine transformation. Also we are working in a three-dimensional space and all the examples from now on will be in this space.
 
-\textbf{Affine Transformation Matrix}\\
-The affine transformation matrix is a (\(n+1\times n+1\)) matrix where \(n\) is the number of dimensions. In the general form the affine transformation matrix consists of 2 parts:
+\subsubsection*{Transformation Matrix}
+The affine transformation matrix is a \(\left(\left(n+1\right)\times \left(n+1\right)\right)\) matrix where \(n\) is the number of dimensions. In the general form the affine transformation matrix consists of 2 parts:
+
 \[
 T = 
 \begin{bmatrix}
@@ -70,7 +71,9 @@ X & Y \\
 \end{bmatrix} & 1
 \end{bmatrix}
 \]
+
 X is a (\(n\times n\)) matrix and Y is a (\(n\times 1\)) vector and the last line has \(n-1\) zeros followed by a \(1\). The matrix is invertible if and only if X is invertible and the representation of the inverse is:
+
 \[
 T = 
 \begin{bmatrix}
@@ -80,7 +83,9 @@ X^{-1} & -X^{-1}Y \\
 \end{bmatrix} & 1
 \end{bmatrix}
 \]
+
 Now if we want to apply the transformation, to a given column vector \(v\), we multiply the affine transformation matrix with the given vector:
+
 \[
 v' = Tv = 
 \begin{bmatrix}
@@ -96,13 +101,16 @@ p_z\\
 1
 \end{bmatrix}
 \]
+
 A matrix that is the result of \(n\) multiplications between affine transformation matrices is still an affine transformation. So in the following example, given that all the matrices in the right part of the equation are affine transformation matrices then the resulting matrix T will be an affine transformation matrix.
+
 \[
 T = T_1T_2T_3 \cdots T_n
 \]
 
-\textbf{Translation Matrix}\\
-Translation, in the Euclidean space, is a function that moves every point by constant distance in a specified direction. We can describe the translation in the \(3-dimensional\) space with a (\(4\times4\)) table that has the following form:
+\subsubsection*{Translation Matrix}
+Translation, in the Cartesian space, is a function that moves every point by constant distance in a specified direction. We can describe the translation in the three-dimensional space with a (\(4\times4\)) table that has the following form:
+
 \[
 A = 
 \begin{bmatrix}
@@ -112,7 +120,9 @@ A =
 0 & 0 & 0 & 1
 \end{bmatrix}
 \]
+
 The \(d_x,d_y,d_z\) defines the distance that we will move all of our points through the \(x,y,z\) dimension. Obviously, this is an affine transformation matrix with \(X = I\). So now if we want to apply the translation on a given column vector \(v\), we apply it in same way as the transformation:
+
 \[
 v' = Tv =
 \begin{bmatrix}
@@ -129,10 +139,13 @@ p_z\\
 \end{bmatrix}
 \]
 
-\textbf{Rotation Matrix}\\
-Rotation matrix is a matrix that is used to perform rotation in Euclidean space. The rotation matrices are always orthogonal matrices with determinant 1.
+\subsubsection*{Rotation Matrix}
+Rotation matrix is a matrix that is used to perform rotation in Cartesian space. The rotation matrices are always orthogonal matrices with determinant 1.
+
 \[R^T = R^{-1},det(R) = 1\]
-In the \(3-dimensional\) Euclidean space there are three rotation matrices, each one of them makes a rotation over the \(x\)  or \(y\)  or \(z\) axis. The size of the rotation matrices, for this space, is (\(3\times3\)) and they have the following form:
+
+In the three-dimensional Cartesian space there are three rotation matrices, each one of them makes a rotation over the \(x\)  or \(y\)  or \(z\) axis. The size of the rotation matrices, for this space, is (\(3\times3\)) and they have the following form:
+
 \[
 R_z = 
 \begin{bmatrix}
@@ -157,7 +170,9 @@ R_x =
 0 & \sin\theta_x & \cos\theta_x
 \end{bmatrix}
 \]
+
 Now if we want to rotate an object point, defined by the (\(3\times1\)) column vector \(v\), by the \(x\) axis and then by the \(y\) axis we will do the following:
+
 \[
 v' = R_xR_yv = 
 \begin{bmatrix}
@@ -176,11 +191,15 @@ p_y\\
 p_z
 \end{bmatrix}
 \]
+
 We can use combinations of those 3 matrices and make other useful rotation matrices. For example we can construct the rotation matrix that rotates all the axes with the following order, first the \(z\) axis then the \(y\) axis and finally the \(x\) axis.
+
 \[
 	R = R_zR_yR_x
 \]
+
 The analytical form of the above rotation matrix:
+
 \[
 R = 
 \begin{bmatrix}
@@ -193,6 +212,7 @@ R =
 \]
 
 Finally we can easily transform a rotation matrix to an affine transformation matrix just by padding with zeros and an one in the corner. So from now on whenever we use a rotation matrix, this matrix will have the following form:
+
 \[
 R' = 
 \begin{bmatrix}
@@ -202,10 +222,11 @@ R &  \begin{bmatrix} 0\\0\\0 \end{bmatrix}\\
 \end{bmatrix} & 1
 \end{bmatrix}
 \]
-\\
 
-\textbf{Affine Transformation Matrix in this Thesis}\\
-In this thesis we are using the rotation and the translation matrix so we can move points in the \(3-dimensional\) space. We can assume that our affine transformation matrix is composed by a rotation and a translation matrix. The affine transformation matrix, that we will work with, has \(X = R\) and \(Y = v\) where \(v\) is the vector with the distance points from the translation matrix.
+
+\subsubsection*{Affine Transformation Matrix in this Thesis}
+In this thesis we are using the rotation and the translation matrix so we can move points in the three-dimensional space. We can assume that our affine transformation matrix is composed by a rotation and a translation matrix. The affine transformation matrix, that we will work with, has \(X = R\) and \(Y = v\) where \(v\) is the vector with the distance points from the translation matrix.
+
 \[
 T = 
 \begin{bmatrix}
@@ -215,7 +236,9 @@ R &  \begin{bmatrix} p_x\\p_y\\p_z \end{bmatrix}\\
 \end{bmatrix} & 1
 \end{bmatrix}
 \] 
+
 Also we can decompose this transformation matrix to a rotation matrix followed by a translation matrix. Given a rotation \(R\) and a translation matrix \(A\):
+
 \[R = 
 \begin{bmatrix}
 R &  \begin{bmatrix} 0\\0\\0 \end{bmatrix}\\
@@ -232,7 +255,9 @@ I &  \begin{bmatrix} p_x\\p_y\\p_z \end{bmatrix}\\
 \end{bmatrix} & 1
 \end{bmatrix}
 \]
+
 The result from the multiplication of \(R\) with \(A\) is:
+
 \[
 T = RA = 
 \begin{bmatrix}
@@ -242,7 +267,9 @@ R &  R\begin{bmatrix} p_x\\p_y\\p_z \end{bmatrix}\\
 \end{bmatrix} & 1
 \end{bmatrix}
 \]
+
 So we can assume that the translation matrix \(A'\) is:
+
 \[
 A' = 
 \begin{bmatrix}
@@ -252,6 +279,7 @@ I &  R\begin{bmatrix} p_x\\p_y\\p_z \end{bmatrix}\\
 \end{bmatrix} & 1
 \end{bmatrix}
 \]
+
 Now if we multiply \(A'\) with the \(R\) we will have the same transformation matrix as before:
  
 \[
@@ -278,28 +306,35 @@ R &  R\begin{bmatrix} p_x\\p_y\\p_z \end{bmatrix}\\
 RA
 \]
 
-
-
 \section{DH (Denavit-Hartenberg) Parameters}
 Denavit and Hartenberg found a way to create a transformation matrix that describes points in one end of the joint to a coordinate system that is fixed to the other end, as a function of the joint state~\cite{dhparam1,dhparam2,introroboticscraigbook}. They found that we can construct this transformation matrix using only 4 parameters, the DH (Denavit-Hartenberg) Parameters. These parameters are: 
+
 \[a,\alpha,d \text{ and } \theta\]
+
 Before we can explain these parameters we must first establish the reference frame of each joint respectively to the previous joint reference frame.
+
 \begin{itemize}
 \item The \(z_n\)-axis is in the direction of the joint axis. 
 \item The \(x_n\)-axis is parallel to the common normal: \(x_n = z_n \times z_{n-1}\). The direction of \(x_n\) is from \(z_{n - 1}\) to \(z_n\).
 \item The \(y_n\)-axis follows from the \(x_n\)  and \(z_n\)-axis by choosing it to be a right-handed coordinate system.
 \end{itemize}
+
 Now we can describe the DH parameters as following:
+
 \begin{itemize}
 \item\(a\): length of the common normal.
 \item\(alpha\): angle about common normal, from \(z_{n-1}\)-axis to \(z_n\)-axis.
 \item\(d\): offset along \(z_{n-1}\) to the common normal.
 \item\(\theta\): angle about \(z_{n-1}\), from \(x_{n-1}\) to \(x_n\).
 \end{itemize}
+
 There is a great site with that explains the way to find those parameters and has some videos to visualize the explanation~\cite{tekkotsu}.
 Now we can go from one reference frame to the other by composing the transformation matrix:
+
 \[DH = R_x(\alpha)T_x(a)R_z(\theta)T_z(d)\]
+
 The analytical form of the resulting matrix from the above composition is:
+
 \[
 DH = 
 \begin{bmatrix}
@@ -309,11 +344,12 @@ DH =
 0 & 0 & 0 & 1
 \end{bmatrix}
 \]
+
 We can notice that the above transformation matrix is an affine transformation matrix because it is the product of the multiplication of affine transformation matrices.
 
-
 \section{Mathematica}
-Mathematica$^{\textrm{\copyright}}$ is a software tool for mathematic computations created by the Wolfram company (\url{http://www.wolfram.com/}). It is very useful, because it can find solution to differential equations and can very easily execute symbolic computations. For the purpose of this thesis, we want a software with the capability to perform fast and large symbolic computations with matrices. Also it has the capability to simplify the symbolic results really fast. \\
+Mathematica$^{\textrm{\copyright}}$ is a software tool for mathematic computations created by the Wolfram company (\url{http://www.wolfram.com/}). It is very useful, because it can find solution to differential equations and can very easily execute symbolic computations. For the purpose of this thesis, we want a software with the capability to perform fast and large symbolic computations with matrices. Also it has the capability to simplify the symbolic results really fast.
+
 The following code is a small example for the symbolic computation. We construct two matrices with cosines and sines and we have two symbols, theta1 and theta2. Next we just do the multiplication between those to matrices and we simplify the result:
 
 \begin{scriptsize}
@@ -346,4 +382,5 @@ The symbolic computations are the following:
 \end{bmatrix}
 \end{align*}\\
 \end{small}
+
 The example above is very simple, but illustrates the Mathematica simplification step, which is very importand for our work, where he have to deal with much larger and more complex matrices.
