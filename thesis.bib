@@ -9,23 +9,23 @@
   number = {1}
 }
 	
-@OTHER{SPLrules2012,
-  author = {{RoboCup Technical Committee}},
+@Misc{SPLrules2012,
+  author = {{RoboCup SPL Technical Committee}},
   title = {{Standard Platform League} Rule Book},
-  year = {2012}
-  note = {Only available online: \url{http://www.b-human.de/downloads/bhuman11_coderelease.pdf}}
+  year = {2012},
+  note = {Only available online: \url{www.tzi.de/spl/pub/Website/Downloads/Rules2012.pdf}}
 }
 
 @Misc{bhuman,
   author = {Thomas R{\"o}fer and Tim Laue and Judith M{\"u}ller and Alexander Fabisch and Fynn Feldpausch and Katharina Gillmann and Colin Graf and Thijs Jeffry de Haas and Alexander H{\"a}rtl and Arne Humann and Daniel Honsel and Philipp Kastner and Tobias Kastner and Carsten K{\"o}nemann and Benjamin Markowsky and Ole Jan Lars Riemann and Felix Wenk},
-  title = {B-Human Team Report and Code Release 2011},
+  title = {{B-Human} Team Report and Code Release 2011},
   year = {2011},
-  note = {Only available online: \url{http://www.tzi.de/spl/pub/Website/Downloads/Rules2012.pdf}}
+  note = {Only available online: \url{www.b-human.de/downloads/bhuman11_coderelease.pdf}}
 }
 
 @MASTERSTHESIS{orfanoudakis2011,
   AUTHOR =       {Emmanouil Orfanoudakis},
-  TITLE =        {Reliable Object Recognition for the RoboCup Domain},
+  TITLE =        {Reliable Object Recognition for the {RoboCup} Domain},
   SCHOOL =       {Technical University of Crete},
   YEAR =         {2011},
   type =         {Diploma Thesis},
@@ -33,44 +33,57 @@
 }
   
 @article{dhparam1,
-  author = {J. Denavit and R.S. Hartenberg},
-  title = {A kinematic notation for lower-pair mechanisms based on matrices},
-  journal = {Trans ASME J. Appl. Mech},
-  YEAR =         {1955},
+  author = {Jacques Denavit and Richard Scheunemann Hartenberg},
+  title = {A Kinematic Notation for Lower-Pair Mechanisms based on Matrices},
+  journal = {ASME Journal of Applied Mechanics},
+  year =  {1955},
+  volume = {77},
+  pages = {215--221}
  }
 
-@article{dhparam2,
-  author = {Hartenberg, R. S., and J. Denavit},
+@book{dhparam2,
+  author = {Richard Scheunemann Hartenberg and Jacques Denavit},
   title = {Kinematic Synthesis of Linkages},
-  journal = { New York: McGraw-Hill},
-  YEAR =         {1964},
+  Publisher = {New York: McGraw-Hill},
+  year =  {1964}
 }
-@article{naowalk,
-  author = {J. Strom, G. Slavov and E. Chown},
-  title = {Omnidirectional Walking using ZMP and Preview Control for the NAO Humanoid Robot},
-  journal = {Robocup Symposium},
-  YEAR =         {2009},
+
+@InProceedings{naowalk,
+  author = {Johannes Strom and George Slavov and Eric Chown},
+  title = {Omnidirectional Walking using {ZMP} and Preview Control for the {NAO} Humanoid Robot},
+  booktitle = {Proceedings of the 13th RoboCup International Symposium},
+  year =  {2009},
+  pages = {378--389}
 }
-@unpublished{iran,
-  author = {Maani Ghaffari Jadidi, Ehsan Hashemi, Mohammad Ali Zakeri Harandi, Houman Sadjadian},
-  title = {Kinematic Modeling Improvement and Trajectory Planning of the NAO Biped Robot},
-  note = {Published in \url{htt[://www.academia.edu}}
+
+@InProceedings{iran,
+author = {Maani Ghaffari Jadidi and Ehsan Hashemi and Mohammad Ali Zakeri Harandi and Houman Sadjadian},
+title = {Kinematic Modeling Improvement and Trajectory Planning of the {NAO} Biped Robot},
+booktitle = {Proceedings of the 1st Joint International Conference on Multibody System Dynamics},
+OPTpages = {},
+year = {2010}
 }
+
+
 @InProceedings{bhumanwalk,
   author = {Colin Graf and Thomas R{\"o}fer},
-  title = {A Closed-loop 3D-LIPM Gait for the RoboCup Standard Platform League Humanoid},
+  title = {A Closed-loop {3D-LIPM} Gait for the {RoboCup} {Standard Platform League} Humanoid},
   year = {2010},
-  editor = {Enrico Pagello and Changjiu Zhou and Sven Behnke and Emanuele Menegatti and Thomas R{\"o}fer and Peter Stone},
-  booktitle = {Proceedings of the Fifth Workshop on Humanoid Soccer Robots in conjunction with the 2010 IEEE-RAS International Conference on Humanoid Robots},
-  address = {Nashville, TN, USA},
-  note = {http://www.informatik.uni-bremen.de/kogrob/papers/Humanoids-Graf-Roefer-10.pdf},
-  abstract = {The generation of a robust and fast gait for the humanoid robot Nao is still one of the major research topics of the Standard Platform League. In this paper, we present a closed-loop gait, as it was used at the RoboCup competition 2010. We will explain how the inverted pendulum model is used to create trajectories for the center of mass of an omnidirectional gait and how it allows to eliminate the need of the so-called double-support phase by dynamically adjusting the point in time at which the support foot alternates. Furthermore, we will briefly describe our approach for integrating sensor feedback to this model and how to transform the target trajectory of the center of mass into positions for the foot placement.},
-  status = {Reviewed}
+  booktitle = {Proceedings of the 5th Workshop on Humanoid Soccer Robots}
 }
-@book {introroboticscraigbook,
+
+@book{introroboticscraigbook,
 	Author = "John J. Craig",
 	Title = "Introduction to Robotics: Mechanics and Control",
-	Edition = "Third",
-	Publisher = " Pearson Hall ",
+	Edition = "3rd",
+	Publisher = "Pearson Hall",
 	year = "2004"
+}
+
+@Misc{tekkotsu,
+author = {Ethan Tira-Thompson and David S. Touretzky},
+title = {Tekkotsu Kinematics},
+OPThowpublished = {online},
+year = {2010},
+note = {Only available online: \url{www.tekkotsu.org/Kinematics.html}},
 }
