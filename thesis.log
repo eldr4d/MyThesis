@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.6.30)  19 JUL 2012 02:32
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.6.19)  19 JUL 2012 10:41
 entering extended mode
  %&-line parsing enabled.
 **thesis.tex
@@ -560,61 +560,41 @@ File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/sc' in size <14.4> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 92.
-LaTeX Font Info:    Font shape `OMS/cmr/bx/n' in size <20.74> not available
-(Font)              Font shape `OMS/cmsy/b/n' tried instead on input line 96.
-
-Overfull \hbox (129.13411pt too wide) in paragraph at lines 96--96
- \LGR/cmr/bx/n/20.74 'W\OMS/cmsy/b/n/20.74 ^^O\LGR/cmr/bx/n/20.74 o'W\OMS/cmsy/
-b/n/20.74 ^^O\LGR/cmr/bx/n/20.74 o'W\OMS/cmsy/b/n/20.74 ^^O\LGR/cmr/bx/n/20.74 
-o'W\OMS/cmsy/b/n/20.74 ^^O\LGR/cmr/bx/n/20.74 o'W\OMS/cmsy/b/n/20.74 ^^O\LGR/cm
-r/bx/n/20.74 o'W\OMS/cmsy/b/n/20.74 ^^O\LGR/cmr/bx/n/20.74 o'W\OMS/cmsy/b/n/20.
-74 ^^O\LGR/cmr/bx/n/20.74 o'W\OMS/cmsy/b/n/20.74 ^^O\LGR/cmr/bx/n/20.74 o'W\OMS
-/cmsy/b/n/20.74 ^^O\LGR/cmr/bx/n/20.74 o'W\OMS/cmsy/b/n/20.74 ^^O\LGR/cmr/bx/n/
-20.74 o'W\OMS/cmsy/b/n/20.74 ^^O\LGR/cmr/bx/n/20.74 o'W\OMS/cmsy/b/n/20.74 ^^O 
-
- []
-
 File: Figures/TUClogocolor.jpg Graphic file (type jpg)
+
 <use Figures/TUClogocolor.jpg>
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <17.28> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 98.
+ [3] [4
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [3]
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 100.
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <14.4> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 101.
-
-[4]
+]
 \openout2 = `Acknowldegment/Acknowldegment.aux'.
 
- (./Acknowldegment/Acknowldegment.tex) [1
-
+ (./Acknowldegment/Acknowldegment.tex)
+[1
 
 
 ]
 \openout2 = `Abstract/abstract.aux'.
 
- (./Abstract/abstract.tex [2
-
-
-]
-[3] [4]) [5] [6
-
-
-] (./thesis.toc
-LaTeX Font Info:    Try loading font information for U+msa on input line 12.
+ (./Abstract/abstract.tex
+LaTeX Font Info:    Try loading font information for U+msa on input line 5.
 
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2009/06/22 v3.00 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 12.
+LaTeX Font Info:    Try loading font information for U+msb on input line 5.
 
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2009/06/22 v3.00 AMS symbols B
-) [7])
+) [2
+
+
+] [3] [4]) [5] [6
+
+
+]
+(./thesis.toc [7])
 \tf@toc=\write6
 \openout6 = `thesis.toc'.
 
@@ -622,8 +602,7 @@ File: umsb.fd 2009/06/22 v3.00 AMS symbols B
 \tf@lof=\write7
 \openout7 = `thesis.lof'.
 
-
-[9
+ [9
 
 ] [10
 
@@ -650,7 +629,7 @@ l.127  \include{Chapter1/tex}
 
  (./Chapter2/tex.tex
 Chapter 2.
-<Figures/RoboCupSpl.jpg, id=363, 1027.84pt x 766.865pt>
+<Figures/RoboCupSpl.jpg, id=359, 1027.84pt x 766.865pt>
 File: Figures/RoboCupSpl.jpg Graphic file (type jpg)
 
 <use Figures/RoboCupSpl.jpg>pdfTeX warning (ext4): destination with the same id
@@ -663,7 +642,7 @@ l.16 \section
 
 
 ]
-<Figures/robocup2012-team.jpg, id=368, 602.25pt x 370.38374pt>
+<Figures/robocup2012-team.jpg, id=364, 602.25pt x 370.38374pt>
 File: Figures/robocup2012-team.jpg Graphic file (type jpg)
 
 <use Figures/robocup2012-team.jpg>pdfTeX warning (ext4): destination with the s
@@ -672,7 +651,10 @@ ame identifier (name{page.4}) has been already used, duplicate ignored
                    \relax 
 l.25 
       [4 <./Figures/RoboCupSpl.jpg>] [5 <./Figures/robocup2012-team.jpg>]
-[6] [7] [8] [9] [10] [11] [12]) [13]
+[6] [7] [8] [9] [10]
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 263.
+ [11] [12]) [13]
 \openout2 = `Chapter3/tex.aux'.
 
  (./Chapter3/tex.tex [14
@@ -681,21 +663,21 @@ l.25
 
 ]
 Chapter 3.
-<Figures/nao-robot-dof.jpeg, id=430, 451.6875pt x 343.2825pt>
+<Figures/nao-robot-dof.jpeg, id=425, 451.6875pt x 343.2825pt>
 File: Figures/nao-robot-dof.jpeg Graphic file (type jpg)
 
 <use Figures/nao-robot-dof.jpeg>
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[15] <Figures/naolinks_1.png, id=435, 333.49594pt x 474.27188pt>
+[15] <Figures/naolinks_1.png, id=430, 333.49594pt x 474.27188pt>
 File: Figures/naolinks_1.png Graphic file (type png)
 
 <use Figures/naolinks_1.png>
 Overfull \vbox (17.69577pt too high) detected at line 32
  []
 
-<Figures/naolinks_2.png, id=437, 410.2828pt x 279.29344pt>
+<Figures/naolinks_2.png, id=432, 410.2828pt x 279.29344pt>
 File: Figures/naolinks_2.png Graphic file (type png)
 
 <use Figures/naolinks_2.png>
@@ -703,7 +685,7 @@ Overfull \hbox (32.83391pt too wide) in paragraph at lines 29--61
 [][] 
  []
 
-<Figures/headjoints.png, id=438, 393.72093pt x 258.21469pt>
+<Figures/headjoints.png, id=433, 393.72093pt x 258.21469pt>
 File: Figures/headjoints.png Graphic file (type png)
 
 <use Figures/headjoints.png>
@@ -711,7 +693,7 @@ Overfull \hbox (51.82635pt too wide) in paragraph at lines 66--72
 [][] 
  []
 
-<Figures/armsjoints.png, id=439, 1053.9375pt x 702.625pt>
+<Figures/armsjoints.png, id=434, 1053.9375pt x 702.625pt>
 File: Figures/armsjoints.png Graphic file (type png)
 
 <use Figures/armsjoints.png>
@@ -719,7 +701,7 @@ Overfull \hbox (51.82635pt too wide) in paragraph at lines 77--90
 [][] 
  []
 
-<Figures/legsjoints.png, id=440, 1068.99374pt x 622.325pt>
+<Figures/legsjoints.png, id=435, 1068.99374pt x 622.325pt>
 File: Figures/legsjoints.png Graphic file (type png)
 
 <use Figures/legsjoints.png>
@@ -752,7 +734,7 @@ Chapter 5.
 
 
 
-] <Figures/torso_frame.png, id=495, 231.264pt x 354.123pt>
+] <Figures/torso_frame.png, id=490, 231.264pt x 354.123pt>
 File: Figures/torso_frame.png Graphic file (type png)
 
 <use Figures/torso_frame.png> [26 <./Figures/torso_frame.png>]
@@ -804,11 +786,11 @@ Overfull \hbox (21.74792pt too wide) in paragraph at lines 151--164
  []
 
 [30] [31] [32] [33] [34] [35] [36] [37] [38] [39] [40]
-<Figures/locus.png, id=572, 476.13176pt x 357.09882pt>
+<Figures/locus.png, id=567, 476.13176pt x 357.09882pt>
 File: Figures/locus.png Graphic file (type png)
  <use Figures/locus.png>
 [41] [42 <./Figures/locus.png (PNG copy)>] [43] [44] [45]
-<Figures/undefined.png, id=595, 449.68pt x 337.26pt>
+<Figures/undefined.png, id=590, 449.68pt x 337.26pt>
 File: Figures/undefined.png Graphic file (type png)
 
 <use Figures/undefined.png> [46] [47 <./Figures/undefined.png (PNG copy)>]
@@ -821,43 +803,43 @@ File: Figures/undefined.png Graphic file (type png)
 
 ]
 Chapter 6.
-[51] <Figures/Demo1/1.png, id=626, 1027.84pt x 578.16pt>
+[51] <Figures/Demo1/1.png, id=621, 1027.84pt x 578.16pt>
 File: Figures/Demo1/1.png Graphic file (type png)
 
-<use Figures/Demo1/1.png> <Figures/Demo1/2.png, id=627, 1027.84pt x 578.16pt>
+<use Figures/Demo1/1.png> <Figures/Demo1/2.png, id=622, 1027.84pt x 578.16pt>
 File: Figures/Demo1/2.png Graphic file (type png)
 
-<use Figures/Demo1/2.png> <Figures/Demo1/3.png, id=628, 1027.84pt x 578.16pt>
+<use Figures/Demo1/2.png> <Figures/Demo1/3.png, id=623, 1027.84pt x 578.16pt>
 File: Figures/Demo1/3.png Graphic file (type png)
 
-<use Figures/Demo1/3.png> <Figures/Demo1/4.png, id=629, 1027.84pt x 578.16pt>
+<use Figures/Demo1/3.png> <Figures/Demo1/4.png, id=624, 1027.84pt x 578.16pt>
 File: Figures/Demo1/4.png Graphic file (type png)
 
-<use Figures/Demo1/4.png> <Figures/Demo1/5.png, id=630, 1027.84pt x 578.16pt>
+<use Figures/Demo1/4.png> <Figures/Demo1/5.png, id=625, 1027.84pt x 578.16pt>
 File: Figures/Demo1/5.png Graphic file (type png)
 
-<use Figures/Demo1/5.png> <Figures/Demo1/6.png, id=631, 1027.84pt x 578.16pt>
+<use Figures/Demo1/5.png> <Figures/Demo1/6.png, id=626, 1027.84pt x 578.16pt>
 File: Figures/Demo1/6.png Graphic file (type png)
 
 <use Figures/Demo1/6.png> [52] [53 <./Figures/Demo1/1.png (PNG copy)> <./Figure
 s/Demo1/2.png (PNG copy)> <./Figures/Demo1/3.png (PNG copy)> <./Figures/Demo1/4
 .png (PNG copy)> <./Figures/Demo1/5.png (PNG copy)> <./Figures/Demo1/6.png (PNG
- copy)>] <Figures/Demo2/1.png, id=641, 770.88pt x 578.16pt>
+ copy)>] <Figures/Demo2/1.png, id=636, 770.88pt x 578.16pt>
 File: Figures/Demo2/1.png Graphic file (type png)
 
-<use Figures/Demo2/1.png> <Figures/Demo2/2.png, id=642, 770.88pt x 578.16pt>
+<use Figures/Demo2/1.png> <Figures/Demo2/2.png, id=637, 770.88pt x 578.16pt>
 File: Figures/Demo2/2.png Graphic file (type png)
 
-<use Figures/Demo2/2.png> <Figures/Demo2/3.png, id=643, 770.88pt x 578.16pt>
+<use Figures/Demo2/2.png> <Figures/Demo2/3.png, id=638, 770.88pt x 578.16pt>
 File: Figures/Demo2/3.png Graphic file (type png)
 
-<use Figures/Demo2/3.png> <Figures/Demo2/4.png, id=644, 770.88pt x 578.16pt>
+<use Figures/Demo2/3.png> <Figures/Demo2/4.png, id=639, 770.88pt x 578.16pt>
 File: Figures/Demo2/4.png Graphic file (type png)
 
-<use Figures/Demo2/4.png> <Figures/Demo2/5.png, id=645, 770.88pt x 578.16pt>
+<use Figures/Demo2/4.png> <Figures/Demo2/5.png, id=640, 770.88pt x 578.16pt>
 File: Figures/Demo2/5.png Graphic file (type png)
 
-<use Figures/Demo2/5.png> <Figures/Demo2/6.png, id=646, 770.88pt x 578.16pt>
+<use Figures/Demo2/5.png> <Figures/Demo2/6.png, id=641, 770.88pt x 578.16pt>
 File: Figures/Demo2/6.png Graphic file (type png)
 
 <use Figures/Demo2/6.png>) [54 <./Figures/Demo2/1.png (PNG copy)> <./Figures/De
@@ -889,40 +871,39 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 7607 strings out of 494985
- 107610 string characters out of 1181034
+ 7604 strings out of 494985
+ 107558 string characters out of 1181034
  230210 words of memory out of 3000000
- 10375 multiletter control sequences out of 15000+50000
- 22502 words of font info for 72 fonts, out of 3000000 for 9000
+ 10372 multiletter control sequences out of 15000+50000
+ 22247 words of font info for 71 fonts, out of 3000000 for 9000
  73 hyphenation exceptions out of 8191
- 45i,18n,46p,1617b,501s stack positions out of 5000i,500n,10000p,200000b,50000s
-</usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbsy10.pfb></usr/sh
-are/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-t
-exlive/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texmf-texlive/fonts
-/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/texmf-texlive/fonts/type1/pub
-lic/amsfonts/cm/cmex10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfont
-s/cmextra/cmex8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cm
-mi10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi12.pfb></
-usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/te
-xmf-texlive/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-texlive/
-fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/share/texmf-texlive/fonts/type
-1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-texlive/fonts/type1/public/ams
-fonts/cm/cmr12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr
-17.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/
-share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-t
-exlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/font
-s/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texmf-texlive/fonts/type1/publ
-ic/amsfonts/cm/cmsy8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/
-cm/cmtt12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmtt8.pf
-b></usr/share/texmf-texlive/fonts/type1/public/cbfonts/grmc1440.pfb></usr/share
-/texmf-texlive/fonts/type1/public/cbfonts/grmn1200.pfb></usr/share/texmf-texliv
-e/fonts/type1/public/cbfonts/grmn1440.pfb></usr/share/texmf-texlive/fonts/type1
-/public/cbfonts/grmn1728.pfb></usr/share/texmf-texlive/fonts/type1/public/cbfon
-ts/grxn1728.pfb></usr/share/texmf-texlive/fonts/type1/public/cbfonts/grxn2074.p
-fb>
-Output written on thesis.pdf (72 pages, 10212072 bytes).
+ 45i,18n,46p,1617b,455s stack positions out of 5000i,500n,10000p,200000b,50000s
+</usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/sha
+re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texmf-tex
+live/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/texmf-texlive/fonts
+/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-texlive/fonts/type1/publ
+ic/amsfonts/cmextra/cmex8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsf
+onts/cm/cmmi10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmm
+i12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi6.pfb></us
+r/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texm
+f-texlive/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/share/texmf-texlive/
+fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-texlive/fonts/type1/
+public/amsfonts/cm/cmr12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfo
+nts/cm/cmr17.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr6.
+pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/sha
+re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-te
+xlive/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texmf-texlive/fonts/
+type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf-texlive/fonts/type1/public
+/amsfonts/cm/cmtt12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/c
+m/cmtt8.pfb></usr/share/texmf-texlive/fonts/type1/public/cbfonts/grmc1440.pfb><
+/usr/share/texmf-texlive/fonts/type1/public/cbfonts/grmn1200.pfb></usr/share/te
+xmf-texlive/fonts/type1/public/cbfonts/grmn1440.pfb></usr/share/texmf-texlive/f
+onts/type1/public/cbfonts/grmn1728.pfb></usr/share/texmf-texlive/fonts/type1/pu
+blic/cbfonts/grxn1728.pfb></usr/share/texmf-texlive/fonts/type1/public/cbfonts/
+grxn2074.pfb>
+Output written on thesis.pdf (72 pages, 10207094 bytes).
 PDF statistics:
- 797 PDF objects out of 1000 (max. 8388607)
+ 789 PDF objects out of 1000 (max. 8388607)
  146 named destinations out of 1000 (max. 500000)
  497 words of extra memory for PDF output out of 10000 (max. 10000000)
 
