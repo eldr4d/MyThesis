@@ -1,42 +1,62 @@
 \chapter{Background}
 \label{Background}
 \section{RoboCup}
-The RoboCup competition was initially inspired by Hiroaki Kitano~\cite{robocup} in 1993 and then his idea led to the foundation of the RoboCup Federation. The RoboCup competition has a bold vision:``By the year 2050, to develop a team of fully autonomous humanoid robots that can win against the human world soccer champions''. All the teams that participate in RoboCup have to find solutions to some of the most difficult problems, that the robot community has to solve, in real time (perception, cognition, action, co-ordination). All the competitions in RoboCup (soccer, RoboCup@Home, RoboRescue etc.) are testing the solutions that teams find for the problems above. So far, the researchers that participate in RoboCup have made a lot of progress to solve real-world problems that are presented through the RoboCups competitions.
+The RoboCup competition was initially inspired by Hiroaki Kitano~\cite{robocup} in 1993 and his idea eventually led to the establishment of the RoboCup Federation. The RoboCup competition has a bold vision: ``By the year 2050, to develop a team of fully autonomous humanoid robots that can win against the human world soccer champions''. All the teams participating in RoboCup have to find real-time solutions to some of the most difficult problems in robotics (perception, cognition, action, coordination). All the divisions in RoboCup (soccer, RoboCup@Home, RoboRescue, etc.) are designed so as to test the proposed solutions by the various teams to the problems mentioned above. So far, the researchers participating in RoboCup have made a lot of progress in solving real-world problems that show up in the various RoboCup leagues within each division.
 
 \subsection{The Standard Platform League}
-The Standard Platform League (SPL) is one of the soccer leagues of RoboCup. In this league all the teams use the same robot, Aldebaran-NAO, and they focus only in the software. The teams are prohibited to make any changes to the hardware of the robot, so that everyone use the same platform and compete only in software. The robots are complete autonomous and no human interaction, from the team members, is allowed during the games. The only interaction with the outer world, that robots have, is the data that Game Controller sends, which declare the state of the game.
-Current the games are conducted in a field with dimensions \(4m \times 8m\)~\cite{SPLrules2012}. The field is consists from a green carpet with white lines and 2 yellow goals. The appearance of the field is similar with the real soccer field but it is scaled. The ball is a polished orange street hokey ball. Each team consists of four robots and each robot has a band, the color of the band defines the team (blue or pink). The total game time is twenty minutes and it is broken in two half, its of them has a duration of 10 minutes.
-\begin{figure}[h]
+The Standard Platform League (SPL) is one of the many leagues in the soccer division of RoboCup. In this league all the teams use the same robot, the Aldebaran NAO humanoid robot, and they focus only on algorithm design and software development for this robot. For this reason, the teams are prohibited to make any changes to the hardware of the robot. The robots are completely autonomous and no human intervention from team members is allowed during the games. The only interaction of the robots with the ``outer world'' is the reception of data from the Game Controller, a computer that broadcasts information about the state of the game (score, time, penalties, etc.).
+
+Currently, the SPL games are conducted on a field with dimensions \(4m \times 6m\)~\cite{SPLrules2012}. The field consists of a green carpet marked with white lines and two yellow goals (Figure~\ref{fig:RoboCup SPL}). The appearance of the field is similar to a real soccer field, but it is scaled to the size of the robots. The ball is an orange street hockey ball. Each team consists of four robots and each robot carries a colored waist band (blue or pink) that distinguishes the teams. The total game time is 20 minutes and is broken in two halves; each half lasts 10 minutes.
+
+\begin{figure}[t!]
 	\begin{center}
-		\includegraphics[height = 8cm]{Figures/RoboCupSpl.jpg}
- 		\caption{RoboCup Standar Platform League}
+		\includegraphics[width=.9\textwidth]{Figures/spl2012.png}
+ 		\caption{Standard Platform League at RoboCup 2012 (from \url{www.botsport.tv})}
  		\label{fig:RoboCup SPL}
 	\end{center}
 \end{figure}
 
-\section{The Aldebaran NAO robot}
-The NAO robot is the robot that is be used by all the teams in the standard platform league. NAO is complete autonomous, programmable, medium-sized humanoir robot developed by Aldebaran Robotics~\cite{naopaper}. Project NAO started in 2004. On August 2007 NAO officially replaced Sony's quadruped robot AIBO in the RoboCup SPL.\\
-Nao (version V3.3) is a 58 cm and 5 Kg humanoid robot. The Nao robot carries a fully capable computer on board with an x86 AMD Geode processor at 500 MHz, 256 MB SDRAM and 2 GB flash memory running an Embedded Linux distribution. It is powered by a 6-cell Lithium-Ion battery which provides about 30 minutes of continuous operation and communicates with remote computers via an IEEE 802.11g wireless or a wired ethernet link. NAO RoboCup edition has 21 degrees of freedom; 2 in the head, 4 in each arm, 5 in each leg and 1 in the pelvis (there are two pelvis joints which are coupled together on one servo and cannot move independently). Nao, also, features a variety of sensors. Two cameras are mounted on the head in vertical alignment providing non-overlapping views of the lower and distant frontal areas, but only one is active each time and the view can be switched from one to the other almost instantaneously. Each camera is a 640 ? 480 VGA camera at 30 fps. Four sonars (two emitters and two receivers) on the chest allow Nao to sense obstacles in front of it. In addition, the Nao has a rich inertial unit, with two 2-axis gyroscope and one 3-axis accelerometer, in the torso that provide real-time information about its instantaneous body movements. Two bumpers located at the tip of each foot are simple ON/OFF switches and can provide information on collisions of the feet with obstacles. Finally, an array of force sensitive resistors on each foot delivers feedback of the forces applied to the feet, while encoders on all servos record the actual joint position at each time.
-\begin{figure}[h]
+\section{The Aldebaran NAO humanoid robot}
+NAO is an integrated, programmable, medium-sized humanoid robot developed by Aldebaran Robotics in Paris, France~\cite{naopaper}. Project NAO started in 2004. On August 2007 NAO officially replaced Sony's AIBO quadruped robot in the RoboCup SPL.
+
+\begin{figure}[t!]
 	\begin{center}
 		\includegraphics[height = 8cm]{Figures/nao.jpg}
- 		\caption{Sensors of NAO v3.3}
+ 		\caption{Components of NAO v3.3}
  		\label{fig:sensors}
 	\end{center}
 \end{figure}
 
-\section{Kouretes Robocup SPL Team}
-Kouretes is the first RoboCup team founded in Greece at the Tech-nical University of Crete in February 2006. The first participation of the team was in the Technical Challenges of Robocup 2006 in Bremen, Germany, when still the Four-Legged Sony AIBO robots were used. Next year the team participated also in the Four-Legged league of the RoboCup German Open 2007 competition in Hannover, Germany and ranked in the 7th/8th place. Months later the team's participation in the MSRS Simulation Challenge at RoboCup 2007 in Atlanta led to the placement of the team at the 2nd place worldwide. In RoboCup 2008 in Suzhou, China, Kouretes team participated and won two trophies: 1st place in the SPL-MSRS league and 3rd place in the SPL-NAO league. In 2009 the team participated both at the RoboCup German Open 2009 competition in Hannover and in RoboCup 2009 in Graz, Austria, in the SPL. In 2010 the team participated in the 1st ever RoboCup Mediterranean Open competition in Rome and in RoboCup 2010 in Singapore. In 2011, the team participated in the RoboCup German Open 2011 competition in Megdeburg, in Iran Open 2011 in Tehran and in RoboCup 2011 in Istanbul. Team Kouretes joined Team Noxious from UK to form a joint team for RoboCup 2011. The joint team won the 2nd place in the SPL Open Challenge competition with 139 points, only 3 points behind the top team. In 2012 the team Kouretes participated in the RoboCup German Open 2012 competion in Magdebug, in Iran Open 2011 in Tehran and in RoboCup 2012 in Mexico. The team, in Mexico, has succeed to qualify to the top 16 teams.
-\begin{figure}[h]
+NAO (version V3.3) is a 58cm, 5kg humanoid robot (Figure~\ref{fig:sensors}). The NAO robot carries a fully capable computer on-board with an x86 AMD Geode processor at 500 MHz, 256 MB SDRAM, and 2 GB flash memory running an Embedded Linux distribution. It is powered by a 6-cell Lithium-Ion battery which provides about 30 minutes of continuous operation and communicates with remote computers via an IEEE 802.11g wireless or a wired ethernet link. NAO RoboCup edition has 21 degrees of freedom; 2 in the head, 4 in each arm, 5 in each leg and 1 in the pelvis (there are two pelvis joints which are coupled together on one servo and cannot move independently). NAO, also, features a variety of sensors. Two cameras are mounted on the head in vertical alignment providing non-overlapping views of the lower and distant frontal areas, but only one is active each time and the view can be switched from one to the other almost instantaneously. Each camera is a $640 \times 480$ VGA devise operating at 30fps. Four sonars (two emitters and two receivers) on the chest allow NAO to sense obstacles in front of it. In addition, the NAO has a rich inertial unit, with one 2-axis gyroscope and one 3-axis accelerometer, in the torso that provides real-time information about its instantaneous body movements. Two bumpers located at the tip of each foot are simple ON/OFF switches and can provide information on collisions of the feet with obstacles. Finally, an array of force sensitive resistors on each foot delivers feedback of the forces applied to the feet, while encoders on all servos record the actual positions of all joints at each time.
+
+\begin{figure}[t!]
 	\begin{center}
-		\includegraphics[height = 8cm]{Figures/robocup2012-team.jpg}
- 		\caption{Kouretes team in RoboCup 2012 at Mexico City}
+		\includegraphics[width=.9\textwidth]{Figures/robocup2012-team.jpg}
+ 		\caption{Team Kouretes at RoboCup 2012 in Mexico City}
  		\label{fig:RoboCup2012}
 	\end{center}
 \end{figure}
 
+\section{Kouretes Robocup SPL Team}
+
+Team Kouretes was founded in 2006 and participates in the main RoboCup competition ever since in various leagues (Four-Legged, Standard Platform, MSRS, Webots), as well as in various local RoboCup events (German Open, Mediterranean Open, Iran Open, RC4EW, RomeCup) and RoboCup exhibitions (Athens Digital Week, Micropolis, Schoolfest). In May 2010, the team hosted the 1st official SPL tournament in Greece (with three invited teams) within the Hellenic Conference on Artificial Intelligence (SETN). The team has been developing its own (publicly-available) software for the Nao robots since 2008. Distinctions of the team include: {\bf 2nd} place in MSRS at RoboCup 2007; {\bf 3rd} place in SPL-Nao, {\bf 1st} place in SPL-MSRS, among the {\bf top 8} teams in SPL-Webots at RoboCup 2008; {\bf 1st} place in RomeCup 2009; {\bf 6th} place in SPL-Webots at RoboCup 2009; {\bf 2nd} place in SPL at RC4EW 2010; and {\bf 2nd} place in SPL Open Challenge Competition at RoboCup 2011 (joint team Noxious-Kouretes). Recently, the team participated in the RoboCup German Open 2012 competition in Magdeburg, in RoboCup Iran Open 2012 in Tehran, and in RoboCup 2012 in Mexico City (Figure~\ref{fig:RoboCup2012}). In the most recent RoboCup competition, the team succeeded to proceed to the second round-robin round and rank among the top-16 SPL teams in the world.
+
+
+
+\section{Robot Kinematics}
+A \textit{robot kinematic chain} is an articulated manipulator that interacts with the environment and is typically described as an assembly of robotic links connected by (rotary) joints. The joints control the relative positioning of the links of the manipulator. Not all the combinations of joints' positions in the chain are valid, because some combinations lead to collisions between the links of the chain or with some fixed item of the environment, such as the floor or a wall. All the valid combinations of joint positions form the \textit{joint space}. The term \textit{degrees of freedom} (DOF) refers to the number of joints in a kinematic chain. \textit{Robot kinematics} is the application of geometry to the study of  kinematic chains with multiple degrees of freedom. In particular, robot kinematics provide the transformation from the joint space, where the kinematic chains are defined, to the Cartesian space, where the robot manipulator moves, and vice versa. Robot kinematics are quite useful, because they can be used for planning and executing movements, as well as calculating actuator forces and torques.
+
+
+
+\subsection{Forward Kinematics}
+The joint space reveals very little information about the position of the end effector of the kinematic chain. The \textit{forward kinematics} define a mapping from the joint space to the three-dimensional Cartesian space. Given a kinematic chain and a set of joint values, forward kinematics can find the point \(p_x,p_y,p_z\) and the orientation \(a_x,a_y,a_z\) of the end effector of the kinematic chain. Forward kinematics is not an application specific problem and can be addressed to any kinematic chain.
+
+\subsection{Inverse Kinematics}
+Generally, it is easy for humans to give a target point or design a trajectory in \(3-dimensional\) space, but if we want the end effector to follow the trajectory, we must assign the right values to the joints of the kinematic chain. So, we need a way to go from \(3-dimensional\) space back to \(joint\) space. The problem of inverse kinematics is application specific and every kinematic chain has a different solution. The solution of the problem can be analytical or it can be approximate (e.g with Jacobian approximation method). As the DOF increases, each point in the \(3-dimensional\) space may have more than one matching point in the \(joint\) space, so we may have more than one solution in the \(joint\) space for a given point in \(3-dimensional\) space.\\
+
 \section{Affine Transformations}
-An affine transformation is a map transferring points and vectors from one space to another, being able to preserve ratios of distances. The space can be \(n\)-dimensional with \(n\ge2\). The following are affine transformations: Geometric contraction, expansion, dilation, reflection, rotation, shear, similarity transformations, spiral similarities and translation. All the possible combinations of the above produce an affine transformation. Its flexibility concerning object manipulation, makes it a very useful tool in computer graphics.\\
+An affine transformation is a map transferring points and vectors from one space to another, being able to preserve ratios of distances. The space can be \(n\)-dimensional with \(n\ge2\). The following are affine transformations: Geometric contraction, expansion, dilation, reflection, rotation, shear, similarity transformations, spiral similarities and translation. All the possible combinations of the above produce an affine transformation. Its flexibility concerning object manipulation, makes it a very useful tool in computer graphics.
+
 For the purpose of this thesis we only used rotation and translation, so we will analyze these two types of affine transformation. Also we are working in a \(3-dimensional\) space and all the examples from now on will be in this space.\\ \\
 
 \textbf{Affine Transformation Matrix}\\
@@ -258,17 +278,10 @@ R &  R\begin{bmatrix} p_x\\p_y\\p_z \end{bmatrix}\\
 RA
 \]
 
-\section{Robot Kinematics}
-Robot kinematics is the way to apply the geometry to the study of the multi-degree of freedom kinematic chains. Kinematic chain is the assembly of links connected by joints. The degree of freedom (DOF) refers to the number of joints in the kinematic chain. Robot kinematics is the way to go from the \(joint\) space, where the kinematic chains are defined, to the Euclidean space and vice versa. They are, also, very useful because we can plan and control movement and calculate actuator forces and torques.\\
-\textbf{Joint Space}\\
-Kinematic chain typically is a manipulator that interacts with the environment. The joints are controlling the manipulator. Not all the combinations of all joints positions in the chain are valid, because some combinations lead to collisions between the links of the chain or with some item of the environment. All the valid combinations create the \(joint\) space.
-\subsection{Forward Kinematics}
-The \(joint\) space reveals very little information about the position of the end effector of the kinematic chain. With the forward kinematics we can move from the \(joint\) space to the \(3-dimensional\) space. Given a kinematic chain and all the current joint values, forward kinematics can find the point \(p_x,p_y,p_z\) and the orientation \(a_x,a_y,a_z\) of the end effector of the kinematic chain. Forward kinematics is not an application specific problem and can be addressed to any kinematic chain.
-\subsection{Inverse Kinematics}
-Generally it is very easy for humans to give a target point or design a trajectory in \(3-dimensional\) space, but if we want the end effector to follow the trajectory, we must assign the right values to the joints of the kinematic chain. So, we need a way to go from \(3-dimensional\) space back to \(joint\) space. The problem of inverse kinematics is application specific and every kinematic chain has a different solution. The solution of the problem can be analytical or it can be approximate (e.g with Jacobian approximation method). As the DOF increases, each point in the \(3-dimensional\) space may have more than one matching point in the \(joint\) space, so we may have more than one solution in the \(joint\) space for a given point in \(3-dimensional\) space.\\
 
-\section{DH (Denavit \- Hartenberg) Parameters}
-Denavit and Hartenberg found a way to create a transformation matrix that describes points in one end of the joint to a coordinate system that is fixed to the other end, as a function of the joint state~\cite{dhparam1}~\cite{dhparam2}~\cite{introroboticscraigbook}. They found that we can construct this transformation matrix using only 4 parameters, the DH (Denavit \- Hartenberg) Parameters. These parameters are: 
+
+\section{DH (Denavit-Hartenberg) Parameters}
+Denavit and Hartenberg found a way to create a transformation matrix that describes points in one end of the joint to a coordinate system that is fixed to the other end, as a function of the joint state~\cite{dhparam1,dhparam2,introroboticscraigbook}. They found that we can construct this transformation matrix using only 4 parameters, the DH (Denavit-Hartenberg) Parameters. These parameters are: 
 \[a,\alpha,d \text{ and } \theta\]
 Before we can explain these parameters we must first establish the reference frame of each joint respectively to the previous joint reference frame.
 \begin{itemize}
