@@ -18,7 +18,7 @@ We must define the base frame of the NAO and the zero position before we continu
 
 
 \subsubsection*{Symbols}
-We are going to give a simple explanation to the symbols that we are using for our math calculations. First of all, all the matrices that we are using are affine transformation matrices. Second, we have three types of matrices: \(T,R,A\). \(T\) is the transformation matrix, \(R_x, R_y, R_z\) are the basic rotations matrices and \(A\) is the translation matrix. The subscript of the symbol refers to the start frame and the superscript refers to the destination frame. The torso is the point that all the kinematic chains start and it is located on the center of the body of NAO. 'Base' will be the start frame and so will be the torso, and 'End' will be the end effector. The numbers will refer to one of the joints of the kinematic chain, as we see in the tables in Chapter~\ref{problem}. Also, we define the initialization of the translation matrix as: \(A(d_x,d_y,d_z)\) and for the rotation matrices as: \(R_x(\theta_x) \text{ or } R_y(\theta_y) \text{ or } R_z(\theta_z)\).
+We are going to give a simple explanation to the symbols that we are using for our math calculations. First of all, all the matrices that we are using are affine transformation matrices. Second, we have three types of matrices: \(T,R,A\). \(T\) is the transformation matrix, \(R_x, R_y, R_z\) are the basic rotations matrices and \(A\) is the translation matrix. The subscript of the symbol refers to the start frame and the superscript refers to the destination frame. The torso is the point that all the kinematic chains start and it is located on the center of the body of NAO. ``Base'' will be the start frame and so will be the torso, and ``End'' will be the end effector. The numbers will refer to one of the joints of the kinematic chain, as we see in the tables in Chapter~\ref{problem}. Also, we define the initialization of the translation matrix as: \(A(d_x,d_y,d_z)\) and for the rotation matrices as: \(R_x(\theta_x) \text{ or } R_y(\theta_y) \text{ or } R_z(\theta_z)\).
 
 We will present the DH parameters in tables and except from the DH parameters, in the tables we will have the translations from the base to the first joint and from the last joint to the end effector. Also, we will have some necessary rotations to adjust the frame of the last joint to the frame of the end effector.
 
@@ -48,10 +48,11 @@ a_z &= \arctan2\left(T_{(2,1)},T_{(1,1)}\right)
 \end{small}
 
 \subsection{Forward Kinematics for the Head}
-The head of NAO is the simplest kinematic chain but, it has two possible end effectors, the top and the bottom camera position on the head. As we will see in our solution, it is easy to change the end effector by just changing the last translation matrix. Below, there is the table with all the DH parameters for this chain and the two possible end effectors. 
+The head of NAO is the simplest kinematic chain but, it has two possible end effectors, the top and the bottom camera position on the head. As we will see in our solution, it is easy to change the end effector by just changing the last translation matrix. In table~\ref{tab:DHhead} we present all the DH parameters for this chain and the two possible end effectors. 
 
 \begin{table}[h]
 \centering
+\caption{DH parameters for Head chain}
 \begin{tabular}{|l|>{\centering\arraybackslash}m{2.55cm}|>{\centering\arraybackslash}m{2.55cm}|>{\centering\arraybackslash}m{2.55cm}|>{\centering\arraybackslash}m{2.55cm}|}
 \hline
 \textbf{Frame (Joint)} & \(\mathbf{a}\) & \(\boldsymbol{\alpha}\) & \(\mathbf{d}\) & \(\boldsymbol{\theta}\)\\ \hline
@@ -62,8 +63,7 @@ Rotation & \multicolumn{4}{c|}{\(R_x(\frac{\pi}{2})R_y(\frac{\pi}{2})\)} \\ \hli
 Top Camera & \multicolumn{4}{c|}{\(A(\text{\footnotesize{topCameraX}},0,\text{\footnotesize{topCameraZ}})\)} \\ \hline
 Bottom Camera & \multicolumn{4}{c|}{\(A(\text{\footnotesize{bottomCameraX}},0,\text{\footnotesize{bottomCameraZ}})\)} \\ \hline
 \end{tabular}
-\caption{DH parameters for Head chain}
-\label{tab:DH parameters for Head chain}
+\label{tab:DHhead}
 \end{table}
 
 Now we can combine the tables and find the point of the end effector in the frame space of the torso:
@@ -79,10 +79,11 @@ Aldebaran's give a set of DH parameters for the arms, but after the implementati
 
 The kinematic chain for the left arm consists of four joints. So we need to find four sets of DH parameters, one set for every joint. First we must move from the torso to the base of the joint and we can do that with a simple translation. After that we must align the coordinate frame rotation axis of the joint. So we are rotate the \(x\)-axis (the $\alpha$ parameter) of the system by \(-\frac{\pi}{2}\). Now we must rotate again the coordinate frame to become aligned with the rotation axis of the second joint. So, now we rotate the \(x\)-axis by \(\frac{\pi}{2}\). Next, we will need to align the coordinate system with the rotation axis of the third joint. Now, to align the coordinate system we must rotate the \(y\)-axis. The DH parameters doesn't implement a rotation by the \(y\)-axis, so, we must first rotate the \(z\)-axis and then the \(x\)-axis. These two rotations can simulation a \(y\)-axis rotation. Thus, we must subtract \(-\frac{\pi}{2}\) from the \(\theta\) of the previous joint and rotate the \(x\)-axis by \(-\frac{\pi}{2}\). Then, we must move toward \(z\)-axis to reach the position of the joint, so, \(d\) parameter equals UpperArmLength. Finally, for the last joint we rotate the \(x\)-axis by \(\frac{\pi}{2}\). Now, we need only a rotation to fix the orientation of our coordinate system and a translation to reach the end effector.
 
-Below we can see the table with the DH parameters for all joints and with the necessary translations and rotations.
+Below we can see the the DH parameters, in the table~\ref{tab:DHlarm}, for all the joints of the left leg and with the necessary translations and rotations.
 
 \begin{table}[!h]
 \centering
+\caption{DH parameters for Left Arm chain}
 \begin{tabular}{|l|>{\centering\arraybackslash}m{2.55cm}|>{\centering\arraybackslash}m{2.55cm}|>{\centering\arraybackslash}m{2.55cm}|>{\centering\arraybackslash}m{2.55cm}|}
 \hline
 \textbf{Frame (Joint)} & \(\mathbf{a}\) & \(\boldsymbol{\alpha}\) & \(\mathbf{d}\) & \(\boldsymbol{\theta}\)\\ \hline
@@ -94,8 +95,7 @@ LElbowRoll & \(0\) & \(\frac{\pi}{2}\) & \(0\) & \(\theta_4\) \\ \hline
 Rotation & \multicolumn{4}{c|}{\(R_z(\frac{\pi}{2})\)} \\ \hline
 End effector & \multicolumn{4}{c|}{\(A(\text{\footnotesize{HandOffsetX+LowerArmLength}},0,0)\)} \\ \hline
 \end{tabular}
-\caption{DH parameters for Left Arm chain}
-\label{tab:DH parameters for Left Arm chain}
+\label{tab:DHlarm}
 \end{table}
 
 Now we can easily calculate the final transformation table:
@@ -107,10 +107,11 @@ T^\text{End}_\text{Base} = A^0_\text{Base}T^1_0T^2_1T^3_2T^4_3R_z(\tfrac{\pi}{2}
 The DH transformation matrices are the \(T^1_0,T^2_1,T^3_2\text{ and }T^4_3\). Now we have the transformation table for the position of the end effector of the left arm relatively to the frame of the torso.
 
 \subsection{Forward Kinematics for the Right Arm}
-The kinematic chain of the right arm is symmetric with the chain of the left arm relatively to the plain defined by \(x\) and \(z\)-axis. So, the differences with the left arm will be only in the distances along \(y\)-axis and in the joints that move the \(y\)-axis (angle roll joints). Also, in this chain we must add one extra rotation matrix after the final translation, because the \(z\)-axis is inverted.
+The kinematic chain of the right arm is symmetric with the chain of the left arm relatively to the plain defined by \(x\) and \(z\)-axis. So, the differences with the left arm will be only in the distances along \(y\)-axis and in the joints that move the \(y\)-axis (angle roll joints). Also, in this chain we must add one extra rotation matrix after the final translation, because the \(z\)-axis is inverted. All the DH parameters for this chain can be seen in the table~\ref{tab:DHrarm}. 
 
 \begin{table}[!h]
 \centering
+\caption{DH parameters for Right Arm chain}
 \begin{tabular}{|l|>{\centering\arraybackslash}m{2.55cm}|>{\centering\arraybackslash}m{2.55cm}|>{\centering\arraybackslash}m{2.55cm}|>{\centering\arraybackslash}m{2.55cm}|}
 \hline
 \textbf{Frame (Joint)} & \(\mathbf{a}\) & \(\boldsymbol{\alpha}\) & \(\mathbf{d}\) & \(\boldsymbol{\theta}\)\\ \hline
@@ -123,8 +124,7 @@ Rotation & \multicolumn{4}{c|}{\(R_z(\frac{\pi}{2})\)} \\ \hline
 End effector & \multicolumn{4}{c|}{\(A(\text{\footnotesize{-HandOffsetX-LowerArmLength}},0,0)\)} \\ \hline
 Rotation$^{'}$ & \multicolumn{4}{c|}{\(R_z(-\pi)\)} \\ \hline
 \end{tabular}
-\caption{DH parameters for Right Arm chain}
-\label{tab:DH parameters for Right Arm chain}
+\label{tab:DHrarm}
 \end{table}
 
 \[
@@ -134,10 +134,11 @@ T^\text{End}_\text{Base} = A^0_\text{Base}T^1_0T^2_1T^3_2T^4_3R_z(\tfrac{\pi}{2}
 The DH transformation matrices are the \(T^1_0,T^2_1,T^3_2\text{ and }T^4_3\). Now we have the transformation table for the position of the end effector of the right arm relatively to the frame of the torso.
 
 \subsection{Forward Kinematics for the Left Leg}
-The kinematic chain for the left leg has six joints and it is the biggest chain on the NAO. The DH parameters of these joints are slightly different because of the YawPitch joint.
+The kinematic chain for the left leg has six joints and it is the biggest chain on the NAO. The DH parameters of these joints are slightly different because of the YawPitch joint. In table~\ref{tab:DHlleg} are all the DH parameters for the kinematic chain of the left leg.
 
 \begin{table}[!h]
 \centering
+\caption{DH parameters for Left Leg chain}
 \begin{tabular}{|l|>{\centering\arraybackslash}m{2.55cm}|>{\centering\arraybackslash}m{2.55cm}|>{\centering\arraybackslash}m{2.55cm}|>{\centering\arraybackslash}m{2.55cm}|}
 \hline
 \textbf{Frame (Joint)} & \(\mathbf{a}\) & \(\boldsymbol{\alpha}\) & \(\mathbf{d}\) & \(\boldsymbol{\theta}\)\\ \hline
@@ -151,8 +152,7 @@ LAnkleRoll & \(0\) & \(-\frac{\pi}{2}\) & \(0\) & \(\theta_6\) \\ \hline
 Rotation & \multicolumn{4}{c|}{\(R_z(\pi)R_y(-\tfrac{\pi}{2})\)} \\ \hline
 End effector & \multicolumn{4}{c|}{\(A(0,0,\text{\footnotesize{-FootHeight}})\)} \\ \hline
 \end{tabular}
-\caption{DH parameters for Left Leg chain}
-\label{tab:DH parameters for Left Leg chain}
+\label{tab:DHlleg}
 \end{table}
 
 \[
@@ -162,10 +162,11 @@ T^\text{End}_\text{Base} = A^0_\text{Base}T^1_0T^2_1T^3_2T^4_3T^5_4T^6_5R_z(\pi)
 The DH transformation matrices are the \(T^1_0,T^2_1,T^3_2,T^4_3,T^5_4\text{ and }T^6_5\). Now we have the transformation table for the position of the end effector of the left leg relatively to the frame of the torso.
 
 \subsection{Forward Kinematics for the Right Leg}
-As for the hands, the kinematic chains for the legs are symmetric relatively to the plain defined by \(x\) and \(z\)-axis. So, the differences of the chain for the right leg will be only in the distances along \(y\)-axis and in the joints that move the \(y\)-axis.
+As for the hands, the kinematic chains for the legs are symmetric relatively to the plain defined by \(x\) and \(z\)-axis. So, the differences of the chain for the right leg will be only in the distances along \(y\)-axis and in the joints that move the \(y\)-axis. Table~\ref{tab:DHrleg} presents all the DH parameters for this chain.
 
 \begin{table}[!h]
 \centering
+\caption{DH parameters for Right Leg chain}
 \begin{tabular}{|l|>{\centering\arraybackslash}m{2.55cm}|>{\centering\arraybackslash}m{2.55cm}|>{\centering\arraybackslash}m{2.55cm}|>{\centering\arraybackslash}m{2.55cm}|}
 \hline
 \textbf{Frame (Joint)} & \(\mathbf{a}\) & \(\boldsymbol{\alpha}\) & \(\mathbf{d}\) & \(\boldsymbol{\theta}\)\\ \hline
@@ -179,8 +180,7 @@ RAnkleRoll & \(0\) & \(-\frac{\pi}{2}\) & \(0\) & \(\theta_6\) \\ \hline
 Rotation & \multicolumn{4}{c|}{\(R_z(\pi)R_y(-\tfrac{\pi}{2})\)} \\ \hline
 End effector & \multicolumn{4}{c|}{\(A(0,0,\text{\footnotesize{-FootHeight}})\)} \\ \hline
 \end{tabular}
-\caption{DH parameters for Right Leg chain}
-\label{tab:DH parameters for Right Leg chain}
+\label{tab:DHrleg}
 \end{table}
 
 \[
