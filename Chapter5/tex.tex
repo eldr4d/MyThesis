@@ -6,7 +6,7 @@ Aldebaran provides us with the DH parameters for each kinematic chain of the rob
 \\
 
 \textbf{NAO Zero Position}\\
-We must define the base frame of the NAO and the zero position before we continue to the solution. First, the base frame is the torso frame and in the figure~\ref{fig:torso} we can see the axis of this frame. In this figure we can also see the Aldebaran's zero position, that is different than the zero position that we are using. Our zero position is with the arms down and not extended.
+We must define the base frame of the NAO and the zero position before we continue to the solution. First, the base frame is the torso frame and in the figure~\ref{fig:torso} we can see the axis of this frame. In this figure we can also see the zero position of the robot. As we can see, in this position the shoulder roll is not a roll joint but is a yaw joint, so we can understand that the names of the motors doesn't describe the correct movement of the joint.
 
 \begin{figure}[h]
 	\begin{center}
@@ -69,7 +69,9 @@ T^\text{End}_\text{Base} = A^0_\text{Base}T^1_0T^2_1R_x(\tfrac{\pi}{2})R_y(\tfra
 The DH transformation matrices are \(T^1_0\text{ and }T^2_1\). The translation of the end effector can be replaced by one of the two possible translation matrices. Now we have the position of the end effector in the \(three-dimensional\) space of the torso.
 
 \subsection{Forward Kinematics for the Left Arm}
-The kinematic chain for the left arm consists of four joints. Below we can see the table with the DH parameters for all joints and with the necessary translations and rotations.
+Aldebaran's give a set of DH parameters for the arms, but after the implementation of forward kinematics with these parameters we observed that the output was incorrect. So we find our own set of DH parameters for the arms of the robot.\\
+The kinematic chain for the left arm consists of four joints. So we need to find four sets of DH parameters, one set for every joint. First we must move from the torso to the base of the joint and we can do that with a simple translation. After that we must align the coordinate frame rotation axis of the joint. So we are rotate the \(x\)-axis (the $\alpha$ parameter) of the system by \(-\frac{\pi}{2}}. Now we must rotate again the coordinate frame to become aligned with the rotation axis of the second joint. So, now we rotate the \(x\)-axis by \(\frac{\pi}{2}}. Next, we will need to align the coordinate system with the rotation axis of the third joint. Now, to align the coordinate system we must rotate the \(y\)-axis. The DH parameters doesn't implement a rotation by the \(y\)-axis, so, we must first rotate the \(z\)-axis and then the \(x\)-axis. These two rotations can simulation a \(y\)-axis rotation. Thus, we must subtract \(-\frac{\pi}{2}} from the \(\theta\) of the previous joint and rotate the \(x\)-axis by \(-\frac{\pi}{2}}. Then, we must move toward \(z\)-axis to reach the position of the joint, so, \(d\) parameter equals UpperArmLength. Finally, for the last joint we rotate the \(x\)-axis by \(\frac{\pi}{2}}. Now, we need only a rotation to fix the orientation of our coordinate system and a translation to reach the end effector.\\
+Below we can see the table with the DH parameters for all joints and with the necessary translations and rotations.
 \begin{table}[!h]
 \centering
 \begin{tabular}{|l|>{\centering\arraybackslash}m{2.55cm}|>{\centering\arraybackslash}m{2.55cm}|>{\centering\arraybackslash}m{2.55cm}|>{\centering\arraybackslash}m{2.55cm}|}
