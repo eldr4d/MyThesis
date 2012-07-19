@@ -23,12 +23,14 @@
   note = {Only available online: \url{http://www.tzi.de/spl/pub/Website/Downloads/Rules2012.pdf}}
 }
 
-@Misc{kmat,
-  author = {Emmanouel Orfanoudakis},
-  title = {Reliable Object Recognition for the RoboCup Domain},
-  INSTITUTION =  {Technical University of Crete},
+@MASTERSTHESIS{orfanoudakis2011,
+  AUTHOR =       {Emmanouil Orfanoudakis},
+  TITLE =        {Reliable Object Recognition for the RoboCup Domain},
+  SCHOOL =       {Technical University of Crete},
   YEAR =         {2011},
-  }
+  type =         {Diploma Thesis},
+  address =      {Greece}
+}
   
 @article{dhparam1,
   author = {J. Denavit and R.S. Hartenberg},
@@ -46,5 +48,13 @@
   @unpublished{iran,
   author = {Maani Ghaffari Jadidi, Ehsan Hashemi, Mohammad Ali Zakeri Harandi, Houman Sadjadian},
   title = {Kinematic Modeling Improvement and Trajectory Planning of the NAO Biped Robot},
-   note = {Published in academia.edu}
+   note = {Published in \url{htt[://www.academia.edu}}
   }
+  
+@book {introroboticscraigbook,
+	Author = "John J. Craig",
+	Title = "Introduction to Robotics: Mechanics and Control",
+	Edition = "Third",
+	Publisher = " Pearson Hall ",
+	year = "2004"
+}

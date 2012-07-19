@@ -294,6 +294,10 @@ Because \(\theta_4\) represents an interior angle and the elbow roll joint is be
 \[
 \theta_4 = \pi - \theta_4
 \]
+Because the \(\theta_4\) for the left arm take only negative values, we will take the \(-\theta_4\) so:
+\[
+\theta_4 = - \theta_4
+\]
 The next angle that we can find is the \(\theta_2\), so we can look for equations from the table symbolic matrix, where we only have \(\theta_2\) and one more unknown \(\theta\). Using $r_{22}$ we have:
 \begin{small}
 \begin{align*}
@@ -343,7 +347,7 @@ Now we have calculated all the joints for the left arm, but we will have a lot o
 
 \begin{small}
 \begin{align*}
-\theta_4 &= \pi - \arccos\left(\cfrac{{l_3}^2 + {l_4}^2 - \sqrt{(s_x-p_x)^2 + (s_y-p_y)^2 + (s_z-p_z)^2}^2 }{2 l_3 l_4}\right)\\
+\theta_4 &= -\left(\pi - \arccos\left(\cfrac{{l_3}^2 + {l_4}^2 - \sqrt{(s_x-p_x)^2 + (s_y-p_y)^2 + (s_z-p_z)^2}^2 }{2 l_3 l_4}\right)\right)\\
 \theta_2 &= \pm\arccos\left(\cfrac{p_y - l_1 - \left(\frac{l_4\sin\theta_4 T_{(2,2)}}{\cos\theta_4}\right)}{l_3 +l_4\cos\theta_4 + l_4\frac{\sin^2\theta_4}{\cos\theta_4}}\right)+\cfrac{\pi}{2}\\
 \theta_3 &= \arcsin\left(\cfrac{T_{(2,3)}}{\sin\left(\theta_2-\frac{\pi}{2}\right)}\right)\\
 \theta_3 &= \pi - \arcsin\left(\frac{T_{(2,3)}}{\sin\left(\theta_2-\frac{\pi}{2}\right)}\right)\\

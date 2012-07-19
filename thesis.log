@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.6.30)  18 JUL 2012 21:53
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.6.30)  19 JUL 2012 02:32
 entering extended mode
  %&-line parsing enabled.
 **thesis.tex
@@ -803,15 +803,12 @@ Overfull \hbox (21.74792pt too wide) in paragraph at lines 151--164
  [][] 
  []
 
-[30] [31] [32] [33] [34] [35] [36] [37]
-Underfull \vbox (badness 2050) has occurred while \output is active []
-
- [38]
-[39] [40] <Figures/locus.png, id=572, 476.13176pt x 357.09882pt>
+[30] [31] [32] [33] [34] [35] [36] [37] [38] [39] [40]
+<Figures/locus.png, id=572, 476.13176pt x 357.09882pt>
 File: Figures/locus.png Graphic file (type png)
-
-<use Figures/locus.png> [41] [42 <./Figures/locus.png (PNG copy)>] [43]
-[44] [45] <Figures/undefined.png, id=595, 449.68pt x 337.26pt>
+ <use Figures/locus.png>
+[41] [42 <./Figures/locus.png (PNG copy)>] [43] [44] [45]
+<Figures/undefined.png, id=595, 449.68pt x 337.26pt>
 File: Figures/undefined.png Graphic file (type png)
 
 <use Figures/undefined.png> [46] [47 <./Figures/undefined.png (PNG copy)>]
@@ -842,31 +839,31 @@ File: Figures/Demo1/5.png Graphic file (type png)
 <use Figures/Demo1/5.png> <Figures/Demo1/6.png, id=631, 1027.84pt x 578.16pt>
 File: Figures/Demo1/6.png Graphic file (type png)
 
-<use Figures/Demo1/6.png> [52]
-<Figures/Demo2/1.png, id=636, 770.88pt x 578.16pt>
+<use Figures/Demo1/6.png> [52] [53 <./Figures/Demo1/1.png (PNG copy)> <./Figure
+s/Demo1/2.png (PNG copy)> <./Figures/Demo1/3.png (PNG copy)> <./Figures/Demo1/4
+.png (PNG copy)> <./Figures/Demo1/5.png (PNG copy)> <./Figures/Demo1/6.png (PNG
+ copy)>] <Figures/Demo2/1.png, id=641, 770.88pt x 578.16pt>
 File: Figures/Demo2/1.png Graphic file (type png)
- <use Figures/Demo2/1.png>
-<Figures/Demo2/2.png, id=637, 770.88pt x 578.16pt>
+
+<use Figures/Demo2/1.png> <Figures/Demo2/2.png, id=642, 770.88pt x 578.16pt>
 File: Figures/Demo2/2.png Graphic file (type png)
- <use Figures/Demo2/2.png>
-<Figures/Demo2/3.png, id=638, 770.88pt x 578.16pt>
+
+<use Figures/Demo2/2.png> <Figures/Demo2/3.png, id=643, 770.88pt x 578.16pt>
 File: Figures/Demo2/3.png Graphic file (type png)
- <use Figures/Demo2/3.png>
-<Figures/Demo2/4.png, id=639, 770.88pt x 578.16pt>
+
+<use Figures/Demo2/3.png> <Figures/Demo2/4.png, id=644, 770.88pt x 578.16pt>
 File: Figures/Demo2/4.png Graphic file (type png)
- <use Figures/Demo2/4.png>
-<Figures/Demo2/5.png, id=640, 770.88pt x 578.16pt>
+
+<use Figures/Demo2/4.png> <Figures/Demo2/5.png, id=645, 770.88pt x 578.16pt>
 File: Figures/Demo2/5.png Graphic file (type png)
- <use Figures/Demo2/5.png>
-<Figures/Demo2/6.png, id=641, 770.88pt x 578.16pt>
+
+<use Figures/Demo2/5.png> <Figures/Demo2/6.png, id=646, 770.88pt x 578.16pt>
 File: Figures/Demo2/6.png Graphic file (type png)
- <use Figures/Demo2/6.png>
-[53 <./Figures/Demo1/1.png (PNG copy)> <./Figures/Demo1/2.png (PNG copy)> <./Fi
-gures/Demo1/3.png (PNG copy)> <./Figures/Demo1/4.png (PNG copy)> <./Figures/Dem
-o1/5.png (PNG copy)> <./Figures/Demo1/6.png (PNG copy)>]) [54 <./Figures/Demo2/
-1.png (PNG copy)> <./Figures/Demo2/2.png (PNG copy)> <./Figures/Demo2/3.png (PN
-G copy)> <./Figures/Demo2/4.png (PNG copy)> <./Figures/Demo2/5.png (PNG copy)> 
-<./Figures/Demo2/6.png (PNG copy)>]
+
+<use Figures/Demo2/6.png>) [54 <./Figures/Demo2/1.png (PNG copy)> <./Figures/De
+mo2/2.png (PNG copy)> <./Figures/Demo2/3.png (PNG copy)> <./Figures/Demo2/4.png
+ (PNG copy)> <./Figures/Demo2/5.png (PNG copy)> <./Figures/Demo2/6.png (PNG cop
+y)>]
 \openout2 = `Chapter7/tex.aux'.
 
  (./Chapter7/tex.tex
@@ -923,7 +920,7 @@ e/fonts/type1/public/cbfonts/grmn1440.pfb></usr/share/texmf-texlive/fonts/type1
 /public/cbfonts/grmn1728.pfb></usr/share/texmf-texlive/fonts/type1/public/cbfon
 ts/grxn1728.pfb></usr/share/texmf-texlive/fonts/type1/public/cbfonts/grxn2074.p
 fb>
-Output written on thesis.pdf (72 pages, 10211393 bytes).
+Output written on thesis.pdf (72 pages, 10212072 bytes).
 PDF statistics:
  797 PDF objects out of 1000 (max. 8388607)
  146 named destinations out of 1000 (max. 500000)
