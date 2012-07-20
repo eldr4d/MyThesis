@@ -14,7 +14,7 @@ The Standard Platform League (SPL) is one of the many leagues in the soccer divi
 	\end{center}
 \end{figure}
 
-Currently, the SPL games are conducted on a field with dimensions \(4m \times 6m\)~\cite{SPLrules2012}. The field consists of a green carpet marked with white lines and two yellow goals (Figure~\ref{fig:RoboCup SPL}). The appearance of the field is similar to a real soccer field, but it is scaled to the size of the robots. The ball is an orange street hockey ball. Each team consists of four robots and each robot carries a colored waist band (blue or pink) that distinguishes the teams. The total game time is 20 minutes and is broken in two halves; each half lasts 10 minutes.
+Currently, the SPL games are conducted on a field with dimensions $4m \times 6m$~\cite{SPLrules2012}. The field consists of a green carpet marked with white lines and two yellow goals (Figure~\ref{fig:RoboCup SPL}). The appearance of the field is similar to a real soccer field, but it is scaled to the size of the robots. The ball is an orange street hockey ball. Each team consists of four robots and each robot carries a colored waist band (blue or pink) that distinguishes the teams. The total game time is 20 minutes and is broken in two halves; each half lasts 10 minutes.
 
 
 
@@ -51,27 +51,28 @@ NAO RoboCup edition has 21 degrees of freedom; 2 in the head, 4 in each arm, 5 i
 
 
 \section{Robot Kinematics}
-A \textit{robot kinematic chain} is an articulated manipulator that interacts with the environment and is typically described as an assembly of robotic links connected by (rotary) joints. The joints rotate and control the relative angular positioning of the links of the manipulator. Not all combinations of joints' positions in the chain are valid, because some combinations lead to collisions between the links of the chain or with some fixed item of the environment, such as the floor or a wall. All the valid combinations of joint positions form the \textit{joint space}. The term \textit{degrees of freedom} (DOF) refers to the number of joints in a kinematic chain; clearly, more DOFs imply more flexibility in the motion of the chain. \textit{Robot kinematics} is the application of geometry to the study of  kinematic chains with multiple degrees of freedom. More specifically, robot kinematics provide the transformation from the joint space, where the kinematic chains are defined, to the Cartesian space, where the robot manipulator moves, and vice versa. Robot kinematics are quite useful, because they can be used for planning and executing movements, as well as calculating actuator forces and torques.
+A \textit{robot kinematic chain} is an articulated manipulator that interacts with the environment and is typically described as an assembly of robotic links connected by (rotary) joints. The joints rotate and control the relative angular positioning of the links of the manipulator. Not all combinations of joints' positions in the chain are valid, because some combinations lead to collisions between the links of the chain or with some fixed item of the environment, such as the floor or a wall. All the valid combinations of joint positions form the \textit{joint space}. The term \textit{degrees of freedom} (DOF) refers to the number of joints in a kinematic chain; clearly, more DOFs imply more flexibility in the motion of the chain. 
+
+\textit{Robot kinematics} is the application of geometry to the study of  kinematic chains with multiple degrees of freedom. More specifically, robot kinematics provide the transformation from the joint space, where the kinematic chains are defined, to the Cartesian space, where the robot manipulator moves, and vice versa. Robot kinematics are quite useful, because they can be used for planning and executing movements, as well as calculating actuator forces and torques.
 
 
 
 \subsection{Forward Kinematics}
-The joint space reveals very little information about the position of the end effector of the kinematic chain. The \textit{forward kinematics} define a mapping from the joint space to the three-dimensional Cartesian space. Given a kinematic chain and a set of joint values, forward kinematics can find the point \((p_x,p_y,p_z)\) and the orientation \((a_x,a_y,a_z)\) of the end effector of the kinematic chain in the three-dimensional $x-y-z$ space. Forward kinematics is a domain-independent problem and can be solved for any simple or complex kinematic chain.
+The joint space reveals very little information about the position of the end effector of the kinematic chain. The \textit{forward kinematics} define a mapping from the joint space to the three-dimensional Cartesian space. Given a kinematic chain with $m$ joints and a set of joint values $(\theta_1, \theta_2,\ldots,\theta_m)$, the forward kinematics can find the point $(p_x,p_y,p_z)$ and the orientation $(a_x,a_y,a_z)$ of the end effector of the kinematic chain in the three-dimensional $x$-$y$-$z$ space. Forward kinematics is a domain-independent problem and can be solved for any simple or complex kinematic chain yielding a closed-form, analytical solution. 
 
 \subsection{Inverse Kinematics}
-Robot manipulators typically need to reach target points or follow trajectories in the three-dimensional space. To make the end effector reach a point or follow a trajectory, one has to specify appropriate values for the joints of the kinematic chain. Therefore, it is imperative to find ways to go from the three-dimensional space back to the joint space. The \textit{inverse kinematics} define a relation between positions in the three-dimensional space (point \((p_x,p_y,p_z)\) and orientation \((a_x,a_y,a_z)\)) and joint values/angles in the joint space. The problem of inverse kinematics is domain-dependent and every kinematic chain has a different solution. The solution to the inverse kinematics problem can lead to an analytical, closed-form equation or to a numerical, iterative approximation (e.g. with the Jacobian approximation method). As the DOFs increase, each point in the three-dimensional space may have more than one matching point in the joint space. This multiplicity of solutions makes the inverse kinematics a relation, but not a mapping.
+Robot manipulators typically need to reach target points or follow trajectories in the three-dimensional space. To make the end effector reach a point or follow a trajectory, one has to specify appropriate values for the joints of the kinematic chain. The \textit{inverse kinematics} define ways to go from the three-dimensional space to the joint space. In particular, the inverse kinematics define a relation between positions in the three-dimensional space (point $(p_x,p_y,p_z)$ and orientation $(a_x,a_y,a_z)$) and joint values/angles $(\theta_1, \theta_2,\ldots,\theta_m)$ in the joint space of a kinematic chain with $m$ joints. The problem of inverse kinematics is domain-dependent and every kinematic chain has a different solution. The solution to the inverse kinematics problem can lead to an analytical, closed-form equation or to a numerical, iterative approximation (e.g. with the Jacobian approximation method). As the DOFs increase, a point in the three-dimensional space may have more than one matching point in the joint space. This multiplicity of solutions makes the inverse kinematics a relation, not a mapping.
 
 
 
 
 \section{Affine Transformations}
-An affine transformation is a map transferring points and vectors from one space to another, being able to preserve ratios of distances. The space can be \(n\)-dimensional with \(n\ge2\). The following are affine transformations: Geometric contraction, expansion, dilation, reflection, rotation, shear, similarity transformations, spiral similarities and translation. All the possible combinations of the above produce an affine transformation. Its flexibility concerning object manipulation, makes it a very useful tool in computer graphics.
+An affine transformation is a mapping that transforms points and vectors from one space to another, in a way that preserves the ratios of distances. The source and target spaces can be $n$-dimensional with $n\ge2$. The following are affine transformations: geometric contraction, expansion, dilation, reflection, rotation, shear, similarity transformations, spiral similarities, and translation. All the possible combinations of the above produce an affine transformation as well. The flexibility of affine transformations with respect to object representation in different spaces, makes it a very useful tool in computer graphics.
 
-For the purpose of this thesis we only used rotation and translation, so we will analyze these two types of affine transformation. Also we are working in a three-dimensional space and all the examples from now on will be in this space.
+For the purposes of this thesis we only use rotation and translation, so we will focus only on these two types of affine transformation. Additionally, we are working in a three-dimensional Cartesian work space and therefore all the definitions and examples from now on will focus on this space.
 
-\subsubsection*{Transformation Matrix}
-The affine transformation matrix is a \(\left(\left(n+1\right)\times \left(n+1\right)\right)\) matrix where \(n\) is the number of dimensions. In the general form the affine transformation matrix consists of 2 parts:
-
+\subsubsection*{Affine Transformation Matrix}
+An affine transformation matrix is a $\big(\left(n+1\right)\times \left(n+1\right)\big)$ matrix, where $n$ is the number of dimensions in the space the transformation is defined on. In general, an affine transformation matrix is a block matrix of the form:
 \[
 T = 
 \begin{bmatrix}
@@ -81,11 +82,90 @@ X & Y \\
 \end{bmatrix} & 1
 \end{bmatrix}
 \]
-
-X is a (\(n\times n\)) matrix and Y is a (\(n\times 1\)) vector and the last line has \(n-1\) zeros followed by a \(1\). The matrix is invertible if and only if X is invertible and the representation of the inverse is:
-
+where $X$ is a ($n\times n$) matrix, $Y$ is a ($n\times 1$) vector and the last line of $T$ contains $n-1$ zeros followed by a $1$. If we want to apply the transformation, to a given point  $p=(p_1,p_2,\ldots,p_n)$ in the $n$-dimensional space, we simply multiply the affine transformation matrix with the column vector $v=(p_1,p_2,\ldots,p_n,1)^\top$:
 \[
-T = 
+v' = 
+\begin{bmatrix}
+p'_1\\
+\vdots\\
+p'_n\\
+1
+\end{bmatrix}
+=
+Tv = 
+\begin{bmatrix}
+X & Y \\
+\begin{bmatrix}
+0 & \cdots & 0
+\end{bmatrix} & 1
+\end{bmatrix}
+\begin{bmatrix}
+p_1\\
+\vdots\\
+p_n\\
+1
+\end{bmatrix}
+\]
+For a point  $p=(p_x,p_y,p_z)$ in the three-dimensional space, the transformation will be:
+\[
+v' = 
+\begin{bmatrix}
+p'_x\\
+p'_y\\
+p'_z\\
+1
+\end{bmatrix}
+=
+Tv = 
+\begin{bmatrix}
+X_{xx} & X_{xy} & X_{xz} & Y_x\\
+X_{yx} & X_{yy} & X_{yz} & Y_y\\
+X_{zx} & X_{zy} & X_{zz} & Y_z \\
+0 & 0 & 0 & 1
+\end{bmatrix} 
+\begin{bmatrix}
+p_x\\
+p_y\\
+p_z\\
+1
+\end{bmatrix}
+\]
+The matrix that results from the multiplication of two affine transformation matrices $T_1$ and $T_2$ is still an affine transformation:
+\[
+T = T_1 T_2 =
+\begin{bmatrix}
+X_1 & Y_1 \\
+\begin{bmatrix}
+0 & \cdots & 0
+\end{bmatrix} & 1
+\end{bmatrix}
+\begin{bmatrix}
+X_2 & Y_2 \\
+\begin{bmatrix}
+0 & \cdots & 0
+\end{bmatrix} & 1
+\end{bmatrix}
+=
+\begin{bmatrix}
+X_1 X_2 & X_1Y_2+Y_1 \\
+\begin{bmatrix}
+0 & \cdots & 0
+\end{bmatrix} & 1
+\end{bmatrix}
+\]
+This property generalizes to the product of any number of affine transformation matrices:
+\[
+\widehat{T} = T_1 T_2 T_3 \cdots T_k = 
+\begin{bmatrix}
+\widehat{X} & \widehat{Y} \\
+\begin{bmatrix}
+0 & \cdots & 0
+\end{bmatrix} & 1
+\end{bmatrix}
+\]
+An affine transformation matrix is invertible, if and only if X is invertible, and takes the form:
+\[
+T^{-1} = 
 \begin{bmatrix}
 X^{-1} & -X^{-1}Y \\
 \begin{bmatrix}
@@ -94,33 +174,9 @@ X^{-1} & -X^{-1}Y \\
 \end{bmatrix}
 \]
 
-Now if we want to apply the transformation, to a given column vector \(v\), we multiply the affine transformation matrix with the given vector:
-
-\[
-v' = Tv = 
-\begin{bmatrix}
-X & Y \\
-\begin{bmatrix}
-0 & 0 & 0
-\end{bmatrix} & 1
-\end{bmatrix}
-\begin{bmatrix}
-p_x\\
-p_y\\
-p_z\\
-1
-\end{bmatrix}
-\]
-
-A matrix that is the result of \(n\) multiplications between affine transformation matrices is still an affine transformation. So in the following example, given that all the matrices in the right part of the equation are affine transformation matrices then the resulting matrix T will be an affine transformation matrix.
-
-\[
-T = T_1T_2T_3 \cdots T_n
-\]
-
 \subsubsection*{Translation Matrix}
-Translation, in the Cartesian space, is a function that moves every point by constant distance in a specified direction. We can describe the translation in the three-dimensional space with a (\(4\times4\)) table that has the following form:
 
+Translation in a Cartesian space is a function that moves (translates) every point by a fixed distance in a specified direction. We can describe a translation in the three-dimensional space with a ($4\times4$) matrix of the following form:
 \[
 A = 
 \begin{bmatrix}
@@ -130,11 +186,17 @@ A =
 0 & 0 & 0 & 1
 \end{bmatrix}
 \]
-
-The \(d_x,d_y,d_z\) defines the distance that we will move all of our points through the \(x,y,z\) dimension. Obviously, this is an affine transformation matrix with \(X = I\). So now if we want to apply the translation on a given column vector \(v\), we apply it in same way as the transformation:
-
+where $d_x$, $d_y$, and $d_z$ define the distance of translation along the $x$, $y$, and $z$ axis respectively. Apparently, the translation matrix is an affine transformation matrix with $X = I$. Therefore, to move a point $p=(p_x,p_y,p_z)$ in the three-dimensional space by distances $(d_x,d_y,d_z)$, we simply apply the transformation:
 \[
-v' = Tv =
+v' = 
+\begin{bmatrix}
+p'_x\\
+p'_y\\
+p'_z\\
+1
+\end{bmatrix}
+=
+Av = 
 \begin{bmatrix}
 1 & 0 & 0 & d_x\\
 0 & 1 & 0 & d_y\\
@@ -150,28 +212,13 @@ p_z\\
 \]
 
 \subsubsection*{Rotation Matrix}
-Rotation matrix is a matrix that is used to perform rotation in Cartesian space. The rotation matrices are always orthogonal matrices with determinant 1.
-
-\[R^T = R^{-1},det(R) = 1\]
-
-In the three-dimensional Cartesian space there are three rotation matrices, each one of them makes a rotation over the \(x\)  or \(y\)  or \(z\) axis. The size of the rotation matrices, for this space, is (\(3\times3\)) and they have the following form:
-
+Rotation in a Cartesian space is a function that rotates vectors by a fixed angle about a specified direction. A rotation in the $n$-dimensional space is described as an $(n\times n)$ orthogonal matrix $R$ with determinant 1:
 \[
-R_z = 
-\begin{bmatrix}
-\cos\theta_z & -\sin\theta_z & 0 \\
-\sin\theta_z & \cos\theta_z & 0 \\
-0 & 0 & 1 
-\end{bmatrix}
+R^\top = R^{-1} \quad \quad  \quad
+RR^\top = R^\top R = I \quad \quad  \quad
+\det(R) = 1
 \]
-\[
-R_y = 
-\begin{bmatrix}
-\cos\theta_y & 0 & \sin\theta_y \\
-0 & 1 & 0\\
--\sin\theta_y & 0 & \cos\theta_y
-\end{bmatrix}
-\]
+In the three-dimensional Cartesian space there are three distinct rotation matrices, each one of them performing a rotation of $\theta_x$, $\theta_y$, $\theta_z$ about the $x$, $y$, $z$ axis respectively, assuming a right-handed coordinate system:
 \[
 R_x = 
 \begin{bmatrix}
@@ -179,21 +226,40 @@ R_x =
 0 & \cos\theta_x & -\sin\theta_x \\
 0 & \sin\theta_x & \cos\theta_x
 \end{bmatrix}
-\]
-
-Now if we want to rotate an object point, defined by the (\(3\times1\)) column vector \(v\), by the \(x\) axis and then by the \(y\) axis we will do the following:
-
-\[
-v' = R_xR_yv = 
-\begin{bmatrix}
-1 & 0 & 0 \\
-0 & \cos\theta_x & -\sin\theta_x \\
-0 & \sin\theta_x & \cos\theta_x
-\end{bmatrix}
+\quad
+R_y = 
 \begin{bmatrix}
 \cos\theta_y & 0 & \sin\theta_y \\
 0 & 1 & 0\\
 -\sin\theta_y & 0 & \cos\theta_y
+\end{bmatrix}
+\quad
+R_z = 
+\begin{bmatrix}
+\cos\theta_z & -\sin\theta_z & 0 \\
+\sin\theta_z & \cos\theta_z & 0 \\
+0 & 0 & 1 
+\end{bmatrix}
+\]
+To rotate a vector defined by the end point $p=(p_x,p_y,p_z)$ about a specific axis, one can simply multiply with the corresponding rotation matrix. To rotate the vector first about the $x$ axis and then about the $y$ axis, one has to multiply with the corresponding rotation matrices in the following order:
+\[
+p' = 
+\begin{bmatrix}
+p'_x\\
+p'_y\\
+p'_z
+\end{bmatrix}
+=
+R_yR_xp = 
+\begin{bmatrix}
+\cos\theta_y & 0 & \sin\theta_y \\
+0 & 1 & 0\\
+-\sin\theta_y & 0 & \cos\theta_y
+\end{bmatrix}
+\begin{bmatrix}
+1 & 0 & 0 \\
+0 & \cos\theta_x & -\sin\theta_x \\
+0 & \sin\theta_x & \cos\theta_x
 \end{bmatrix}
 \begin{bmatrix}
 p_x\\
@@ -201,17 +267,13 @@ p_y\\
 p_z
 \end{bmatrix}
 \]
-
-We can use combinations of those 3 matrices and make other useful rotation matrices. For example we can construct the rotation matrix that rotates all the axes with the following order, first the \(z\) axis then the \(y\) axis and finally the \(x\) axis.
-
+Apparently, all three rotation matrices can be combined to form new rotation matrices to perform complex rotations about all dimensions. For example, the rotation matrix that rotates vectors first about the $x$ axis, then about the $y$ axis, and finally about the $z$ axis is the following:
 \[
-	R = R_zR_yR_x
+	R' = R_zR_yR_x
 \]
-
-The analytical form of the above rotation matrix:
-
+The analytical form of the above rotation matrix is the following: 
 \[
-R = 
+R' = 
 \begin{bmatrix}
 \cos\theta_y\cos\theta_z & -\cos\theta_x\sin\theta_z + \sin\theta_x\sin\theta_y\cos\theta_z & \sin\theta_x\sin\theta_z + \cos\theta_x\sin\theta_y\cos\theta_z\\
 
@@ -220,133 +282,129 @@ R =
 -\sin\theta_y & \sin\theta_x\cos\theta_y & \cos\theta_x\cos\theta_y
 \end{bmatrix}
 \]
-
-Finally we can easily transform a rotation matrix to an affine transformation matrix just by padding with zeros and an one in the corner. So from now on whenever we use a rotation matrix, this matrix will have the following form:
-
+We can easily transform any rotation matrix $\widehat{R}$ to an affine transformation matrix $R$ just by padding the last line and the last column with $(0,\ldots,0,1)$: 
 \[
-R' = 
+R = 
 \begin{bmatrix}
-R &  \begin{bmatrix} 0\\0\\0 \end{bmatrix}\\
+\widehat{R} &  \begin{bmatrix} 0\\\vdots\\0 \end{bmatrix}\\
 \begin{bmatrix}
-0 & 0 & 0
+0 & \cdots & 0
 \end{bmatrix} & 1
 \end{bmatrix}
 \]
+From now on, any rotation matrix will be an affine transformation matrix.
 
 
-\subsubsection*{Affine Transformation Matrix in this Thesis}
-In this thesis we are using the rotation and the translation matrix so we can move points in the three-dimensional space. We can assume that our affine transformation matrix is composed by a rotation and a translation matrix. The affine transformation matrix, that we will work with, has \(X = R\) and \(Y = v\) where \(v\) is the vector with the distance points from the translation matrix.
-
+\subsubsection*{Affine Transformation Matrices and Kinematics}
+For the purposes of kinematics, we are using rotation and translation matrices, so that we can transform points in the three-dimensional space. We consider affine transformation matrices that combine rotation and translation; the $X$ block of the matrix defines the rotation, while the $Y$ block of the matrix defines the translation: 
 \[
 T = 
 \begin{bmatrix}
-R &  \begin{bmatrix} p_x\\p_y\\p_z \end{bmatrix}\\
+\widehat{R} &  \begin{bmatrix} d_x\\d_y\\d_z \end{bmatrix}\\
 \begin{bmatrix}
 0 & 0 & 0
 \end{bmatrix} & 1
 \end{bmatrix}
 \] 
+%
+%Also we can decompose this transformation matrix to a rotation matrix followed by a translation matrix. Given a rotation $R$ and a translation matrix $A$:
+%
+%\[R = 
+%\begin{bmatrix}
+%R &  \begin{bmatrix} 0\\0\\0 \end{bmatrix}\\
+%\begin{bmatrix}
+%0 & 0 & 0
+%\end{bmatrix} & 1
+%\end{bmatrix}
+%\]
+%\[A = 
+%\begin{bmatrix}
+%I &  \begin{bmatrix} p_x\\p_y\\p_z \end{bmatrix}\\
+%\begin{bmatrix}
+%0 & 0 & 0
+%\end{bmatrix} & 1
+%\end{bmatrix}
+%\]
+%
+%The result from the multiplication of $R$ with $A$ is:
+%
+%\[
+%T = RA = 
+%\begin{bmatrix}
+%R &  R\begin{bmatrix} p_x\\p_y\\p_z \end{bmatrix}\\
+%\begin{bmatrix}
+%0 & 0 & 0
+%\end{bmatrix} & 1
+%\end{bmatrix}
+%\]
+%
+%So we can assume that the translation matrix $A'$ is:
+%
+%\[
+%A' = 
+%\begin{bmatrix}
+%I &  R\begin{bmatrix} p_x\\p_y\\p_z \end{bmatrix}\\
+%\begin{bmatrix}
+%0 & 0 & 0
+%\end{bmatrix} & 1
+%\end{bmatrix}
+%\]
+%
+%Now if we multiply $A'$ with the $R$ we will have the same transformation matrix as before:
+% 
+%\[
+%A'R = 
+%\begin{bmatrix}
+%I &  R\begin{bmatrix} p_x\\p_y\\p_z \end{bmatrix}\\
+%\begin{bmatrix}
+%0 & 0 & 0
+%\end{bmatrix} & 1
+%\end{bmatrix}
+%\begin{bmatrix}
+%R &  \begin{bmatrix} 0\\0\\0 \end{bmatrix}\\
+%\begin{bmatrix}
+%0 & 0 & 0
+%\end{bmatrix} & 1
+%\end{bmatrix}
+%= 
+%\begin{bmatrix}
+%R &  R\begin{bmatrix} p_x\\p_y\\p_z \end{bmatrix}\\
+%\begin{bmatrix}
+%0 & 0 & 0
+%\end{bmatrix} & 1
+%\end{bmatrix} =
+%RA
+%\]
 
-Also we can decompose this transformation matrix to a rotation matrix followed by a translation matrix. Given a rotation \(R\) and a translation matrix \(A\):
-
-\[R = 
-\begin{bmatrix}
-R &  \begin{bmatrix} 0\\0\\0 \end{bmatrix}\\
-\begin{bmatrix}
-0 & 0 & 0
-\end{bmatrix} & 1
-\end{bmatrix}
-\]
-\[A = 
-\begin{bmatrix}
-I &  \begin{bmatrix} p_x\\p_y\\p_z \end{bmatrix}\\
-\begin{bmatrix}
-0 & 0 & 0
-\end{bmatrix} & 1
-\end{bmatrix}
-\]
-
-The result from the multiplication of \(R\) with \(A\) is:
-
-\[
-T = RA = 
-\begin{bmatrix}
-R &  R\begin{bmatrix} p_x\\p_y\\p_z \end{bmatrix}\\
-\begin{bmatrix}
-0 & 0 & 0
-\end{bmatrix} & 1
-\end{bmatrix}
-\]
-
-So we can assume that the translation matrix \(A'\) is:
-
-\[
-A' = 
-\begin{bmatrix}
-I &  R\begin{bmatrix} p_x\\p_y\\p_z \end{bmatrix}\\
-\begin{bmatrix}
-0 & 0 & 0
-\end{bmatrix} & 1
-\end{bmatrix}
-\]
-
-Now if we multiply \(A'\) with the \(R\) we will have the same transformation matrix as before:
- 
-\[
-A'R = 
-\begin{bmatrix}
-I &  R\begin{bmatrix} p_x\\p_y\\p_z \end{bmatrix}\\
-\begin{bmatrix}
-0 & 0 & 0
-\end{bmatrix} & 1
-\end{bmatrix}
-\begin{bmatrix}
-R &  \begin{bmatrix} 0\\0\\0 \end{bmatrix}\\
-\begin{bmatrix}
-0 & 0 & 0
-\end{bmatrix} & 1
-\end{bmatrix}
-= 
-\begin{bmatrix}
-R &  R\begin{bmatrix} p_x\\p_y\\p_z \end{bmatrix}\\
-\begin{bmatrix}
-0 & 0 & 0
-\end{bmatrix} & 1
-\end{bmatrix} =
-RA
-\]
-
-\section{DH (Denavit-Hartenberg) Parameters}
-Denavit and Hartenberg found a way to create a transformation matrix that describes points in one end of the joint to a coordinate system that is fixed to the other end, as a function of the joint state~\cite{dhparam1,dhparam2,introroboticscraigbook}. They found that we can construct this transformation matrix using only 4 parameters, the DH (Denavit-Hartenberg) Parameters. These parameters are: 
-
-\[a,\alpha,d \text{ and } \theta\]
-
-Before we can explain these parameters we must first establish the reference frame of each joint respectively to the previous joint reference frame.
-
+\section{Denavit-Hartenberg (DH) Parameters}
+Denavit and Hartenberg~\cite{dhparam1,dhparam2} have devised a way of creating a transformation matrix that describes points in one end of a joint to a coordinate system that is fixed to the other end of the joint, as a function of the joint state. They concluded that we can fully describe this transformation matrix using only four parameters, known as Denavit-Hartenberg (DH) parameters: $a$, $\alpha$, $d$, and $\theta$. Before we can explain these parameters we must first establish the reference frame of each joint $i$ with respect to the reference frame of its previous joint:
 \begin{itemize}
-\item The \(z_n\)-axis is in the direction of the joint axis. 
-\item The \(x_n\)-axis is parallel to the common normal: \(x_n = z_n \times z_{n-1}\). The direction of \(x_n\) is from \(z_{n - 1}\) to \(z_n\).
-\item The \(y_n\)-axis follows from the \(x_n\)  and \(z_n\)-axis by choosing it to be a right-handed coordinate system.
+\item The $z_i$-axis is set to the direction of the joint axis (the rotation direction). 
+\item The $x_i$-axis is parallel to the common normal between $z_i$ and $z_{i-1}$ (exterior product). The direction of $x_i$ is derived using the right-hand rule from $z_{i-1}$ to $z_i$.
+\item The $y_i$-axis follows from the $x_i$ and $z_i$ axes to form a right-handed coordinate system.
 \end{itemize}
-
-Now we can describe the DH parameters as following:
-
+Now, we can describe the DH parameters~\cite{introroboticscraigbook} (cf. Figure~\ref{fig:DH}):
 \begin{itemize}
-\item\(a\): length of the common normal.
-\item\(alpha\): angle about common normal, from \(z_{n-1}\)-axis to \(z_n\)-axis.
-\item\(d\): offset along \(z_{n-1}\) to the common normal.
-\item\(\theta\): angle about \(z_{n-1}\), from \(x_{n-1}\) to \(x_n\).
+\item$a$: length of the common normal
+\item$\alpha$: angle about the common normal, from $z_{i-1}$-axis to $z_i$-axis
+\item$d$: offset along the $z_{i-1}$-axis to the common normal
+\item$\theta$: angle about the $z_{i-1}$-axis, from $x_{i-1}$-axis to $x_i$-axis
 \end{itemize}
+The Kinematics section in the documentation of the Tekkotsu framework~\cite{tekkotsu} is a great resource with text, figures, and videos for understanding the role of these parameters and how they are found.
 
-There is a great site with that explains the way to find those parameters and has some videos to visualize the explanation~\cite{tekkotsu}.
-Now we can go from one reference frame to the other by composing the transformation matrix:
+\begin{figure}[t!]
+	\begin{center}
+		\includegraphics[height=.4\textheight]{Figures/Sample_Denavit-Hartenberg_Diagram.pdf}
+ 		\caption{Denavit-Hartenberg (DH) parameters: $a$, $\alpha$, $d$, and $\theta$~\cite{tekkotsu}}
+ 		\label{fig:DH}
+	\end{center}
+\end{figure}
 
-\[DH = R_x(\alpha)T_x(a)R_z(\theta)T_z(d)\]
-
-The analytical form of the resulting matrix from the above composition is:
-
+Now, we can move from the base reference frame of some joint to the transformed reference frame of this joint using the transformation matrix $T_{DH}$, which consists of two translations and two rotations parametrized by the DH parameters of the joint:
+\[T_{DH} = R_x(\alpha)T_x(a)R_z(\theta)T_z(d)\]
+The analytical form of the resulting matrix from the above composition is the following:
 \[
-DH = 
+T_{DH} = 
 \begin{bmatrix}
 \cos\theta & -\sin\theta & 0 & a\\
 \sin\theta\cos\alpha & \cos\theta\cos\alpha & -\sin\alpha & -d\sin\alpha\\
@@ -354,15 +412,14 @@ DH =
 0 & 0 & 0 & 1
 \end{bmatrix}
 \]
-
-We can notice that the above transformation matrix is an affine transformation matrix because it is the product of the multiplication of affine transformation matrices.
+It is easy to see that the matrix above is an affine transformation matrix, because it is the product of affine transformation matrices.
 
 \section{Mathematica}
-Mathematica$^{\textrm{\copyright}}$ is a software tool for mathematic computations created by the Wolfram company (\url{http://www.wolfram.com/}). It is very useful, because it can find solution to differential equations and can very easily execute symbolic computations. For the purpose of this thesis, we want a software with the capability to perform fast and large symbolic computations with matrices. Also it has the capability to simplify the symbolic results really fast.
+Mathematica$^{\textrm{\copyright}}$ is a software tool for mathematical computations created by the Wolfram company (\url{www.wolfram.com}). This tool is widely-used, because, among other things, it can easily find solutions to differential equations and can perform symbolic computations. For the purposes of this thesis, we exploited its capability to perform large-scale symbolic computations with matrices and simplify symbolic expressions in reasonable time.
 
-The following code is a small example for the symbolic computation. We construct two matrices with cosines and sines and we have two symbols, theta1 and theta2. Next we just do the multiplication between those to matrices and we simplify the result:
+The following code excerpt is a small example of symbolic computation with Mathematica. We construct two matrices with cosines and sines containing two symbols, {\tt theta1} and {\tt theta2}. Next, we multiply those two matrices symbolically and finally we simplify the result:
 
-\begin{scriptsize}
+\begin{small}
 \begin{verbatim}
 Matrix1 = {{Cos[theta1], -Sin[theta1]}, {Cos[theta1], -Cos[theta1]}};
 Matrix2 = {{Cos[theta2], -Sin[theta2]}, {Cos[theta2], -Cos[theta2]}};
@@ -370,9 +427,10 @@ T = Matrix1.Matrix2;
 Simplify[T];
 MatrixForm[%]
 \end{verbatim}
-\end{scriptsize}
-The symbolic computations are the following:
-\begin{small}
+\end{small}
+
+\noindent
+The result of these symbolic computations is the following:
 \begin{align*}
 \text{Matrix1} &= \begin{bmatrix}
 \cos\theta_1 & -\sin\theta_1\\
@@ -390,7 +448,5 @@ The symbolic computations are the following:
 \cos\theta_2\left(\cos\theta_1 - \sin\theta_1\right) & \sin\left(\theta_1 - \theta_2\right)\\
  0 & \cos\theta_1 \left(\cos\theta_2 - \sin\theta_2\right)
 \end{bmatrix}
-\end{align*}\\
-\end{small}
-
-The example above is very simple, but illustrates the Mathematica simplification step, which is very importand for our work, where he have to deal with much larger and more complex matrices.
+\end{align*}
+The example above is quite simple, but fully illustrates the symbolic capabilities of Mathematica and particularly the simplification step, which is very important for our work, given that we have to deal with much larger and more complex matrices.
