@@ -1,17 +1,17 @@
 
-\chapter{Problem Statement}
+\chapter{NAO Kinematics: The Problem}
 \label{problem}
 
 \section{NAO Robot Specifications}
 Aldebaran NAO is a humanoid robot with five kinematic chains (head, two arms, two legs). It is 58cm tall and it has about 5kg of mass. The version we are working on is the RoboCup edition v3.3 with 21 DOF. NAO has two DOF on the head, four DOF on each arm, five DOF on each leg, and one DOF in the pelvis, which is shared between the two legs. The five kinematic chains and their joints are the following:
 \begin{description}
-\item[Head] HeadYaw, HeadPitch
-\item[Left Arm] LShoulderPitch, LShoulderRoll, LElbowYaw, LElbowRoll
-\item[Right Arm] RShoulderPitch, RShoulderRoll, RElbowYaw, RElbowRoll
-\item[Left Leg] LHipYawPitch, LHipRoll, LHipPitch, LKneePitch, LAnklePitch, LAnkleRoll
-\item[Right Leg] RHipYawPitch, RHipRoll, RHipPitch, RKneePitch, RAnklePitch, RAnkleRoll
+\item[Head:] HeadYaw, HeadPitch
+\item[Left Arm:] LShoulderPitch, LShoulderRoll, LElbowYaw, LElbowRoll
+\item[Right Arm:] RShoulderPitch, RShoulderRoll, RElbowYaw, RElbowRoll
+\item[Left Leg:] LHipYawPitch, LHipRoll, LHipPitch, LKneePitch, LAnklePitch, LAnkleRoll
+\item[Right Leg:]\hspace*{-0.3cm} RHipYawPitch, RHipRoll, RHipPitch, RKneePitch, RAnklePitch, RAnkleRoll
 \end{description}
-The joints LHipYawPitch and RHipYawPitch are just different names for the shared (common) joint (HipYawPitch) between the two legs. Figure~\ref{fig:NAO} shows the physical arrangement of the five chains and their joints on the NAO robot (Academic edition). Note that the RoboCup edition of the NAO robot is missing four DOF from the two hands (LWristYaw, LHand, RWristYaw and RHand).
+The joints LHipYawPitch and RHipYawPitch are just different names for the shared (common) joint (HipYawPitch) between the two legs. Figure~\ref{fig:NAO} shows the physical arrangement of the five chains and their joints on the NAO robot (Academic edition). Note that the RoboCup edition of the NAO robot is missing four DOF from the two hands (LWristYaw, LHand, RWristYaw, and RHand).
 
 \begin{figure}[t!]
 \begin{center}
@@ -21,15 +21,11 @@ The joints LHipYawPitch and RHipYawPitch are just different names for the shared
 \end{center}
 \end{figure}
 
-%\subsection{NAO Cartesian Constraints}
 
 
-
-\begin{figure}[t!]
-\begin{tabularx}{\textwidth}{cc}
-\multirow{2}{*}{
-\includegraphics[height = 12cm]{Figures/naolinks_1.png}
-}
+\begin{figure}
+\begin{tabular}{cc}
+\includegraphics[height=12cm]{Figures/naolinks_1.png}
 & 
 \begin{tabular}{|l|l|}
 \hline
@@ -49,11 +45,11 @@ The joints LHipYawPitch and RHipYawPitch are just different names for the shared
 {HandOffsetZ} & 12.31 \\ \hline
 \end{tabular}
 \\
-&
 \includegraphics[height = 5cm]{Figures/naolinks_2.png}
+&
 \\
-\end{tabularx}
-\caption{NAO links sizes}
+\end{tabular}
+\caption{NAO links and their sizes}
 \label{fig:NAOlinks}
 \end{figure}
 
@@ -61,7 +57,7 @@ The joints LHipYawPitch and RHipYawPitch are just different names for the shared
 %\begin{figure}
 %\begin{tabular}{p{9cm}l|l|}
 %\multirow{14}{*}{
-%\includegraphics[height = 9cm]{Figures/naolinks_1.png}
+%\includegraphics[height = 11cm]{Figures/naolinks_1.png}
 %}
 %& \multicolumn{2}{c}{} \\
 %& \multicolumn{2}{c}{} \\
@@ -78,7 +74,7 @@ The joints LHipYawPitch and RHipYawPitch are just different names for the shared
 %& \multicolumn{1}{|l|}{HandOffsetX} & 57.75 \\ \cline{2-3}
 % & \multicolumn{1}{|l|}{HipOffsetZ} & 85.00 \\ \cline{2-3}
 %\multirow{10}{*}{
-%\includegraphics[height = 5cm]{Figures/naolinks_2.png}
+%\includegraphics[height = 6cm]{Figures/naolinks_2.png}
 %}& \multicolumn{1}{|l|}{HipOffsetY} & 50.00 \\ \cline{2-3}
 %& \multicolumn{1}{|l|}{ThighLength} & 100.00 \\ \cline{2-3}
 %& \multicolumn{1}{|l|}{TibiaLength} & 102.90 \\ \cline{2-3}
@@ -104,7 +100,7 @@ The joints LHipYawPitch and RHipYawPitch are just different names for the shared
 HeadYaw & -119.5$^{\circ}$ to 119.5$^{\circ}$ & -2.0857 to 2.0857 \\ \hline
 HeadPitch & -38.5$^{\circ}$ to 29.5$^{\circ}$ & -0.6720 to 0.5149 \\ \hline
 \end{tabular}
-\caption{Head joints range}
+\caption{NAO head joints and their operational range}
 \label{fig:hjoints}
 \end{figure}
 
@@ -122,11 +118,11 @@ RElbowYaw & -119.5$^{\circ}$ to 119.5$^{\circ}$ & -2.0857 to 2.0857 \\ \hline
 RElbowRoll & -38.5$^{\circ}$ to 29.5$^{\circ}$ & 0.0349 to 1.5446 \\ \hline
 LWristYaw and RWristYaw & disabled & disabled \\ \hline
 \end{tabular}
-\caption{Arms joints range}
+\caption{NAO arms joints and their operational range}
 \label{fig:ajoints}
 \end{figure}
 
-\begin{figure}[t!]
+\begin{figure}
 \begin{tabular}{|p{5cm}|p{5cm}|p{5cm}|}
 \multicolumn{3}{p{15cm}}{\centering \includegraphics[width = 15cm]{Figures/legsjoints.png}} \\ \hline
 \textbf{Joint Name} & \textbf{Range in Degrees$^{\circ}$} & \textbf{Range in Radians} \\ \hline
@@ -142,16 +138,16 @@ RKneePitch & -5.90$^{\circ}$ to 121.47$^{\circ}$ & -0.103083 to 2.120198 \\ \hli
 RAnklePitch & -67.97$^{\circ}$ to 53.40$^{\circ}$ & -1.186448 to 0.932056 \\ \hline
 RAnkleRoll & -45.03$^{\circ}$ to 22.27$^{\circ}$ & -0.785875 to 0.388676 \\ \hline
 \end{tabular}
-\caption{Legs joints range}
+\caption{NAO legs joints and their operational range}
 \label{fig:ljoints}
 \end{figure}
 
 \begin{table}[t!]
-\caption{Masses of NAO}
+\caption{Masses of links/joints (frames) of the NAO robot}
+\label{tab:Masses of NAO}
 \begin{tabular}{|l|r|r|r|r|}
 \hline
-\multicolumn{5}{|c|}{\textbf{Masses for NAO v3.3 robocup edition (H21)}} \\ \hline
-\multicolumn{3}{|l|}{Total Mass For NAO H21} & \multicolumn{2}{|r|}{4.879 kg}\\ \hline
+\multicolumn{5}{|c|}{\textbf{Masses for NAO v3.3 RoboCup edition}} \\ \hline
 \textbf{Frame Name} & \textbf{Mass (Kg)} & \textbf{CoM$_{\text{x}}$ (mm)} & \textbf{CoM$_{\text{y}}$ (mm)} & \textbf{CoM$_{\text{z}}$ (mm)}\\ \hline
 Torso & 1.03948 & -4.15 & 0.07 & 42.58 \\ \hline
 HeadYaw & 0.05930 & -0.02 & 0.17 & 25.56 \\ \hline
@@ -176,23 +172,34 @@ LHipPitch & 0.39421 & 1.32 & 2.35 & -53.52 \\ \hline
 LKneePitch & 0.29159 & 4.22 & 2.52 & -48.68 \\ \hline
 LAnklePitch & 0.13892 & 1.42 & 0.28 & 6.38 \\ \hline
 LAnkleRoll & 0.16175 & 25.4 & 3.32 & -32.41 \\ \hline
+\bf Total Mass & \bf 4.88083 % original: 4.879 
+& \multicolumn{3}{c|}{} \\  \hline
+%\multicolumn{3}{|l|}{\bf Total Mass For NAO H21} & \multicolumn{2}{|r|}{\bf 4.879 kg}\\ \hline
 \end{tabular}
-\label{tab:Masses of NAO}
 \end{table}
 
-To fully specify the joints of the NAO robot, we give the length of all the links of the robot (Table~\ref{fig:NAOlinks}), the operational range in radians and degrees of the head joints (Figures~\ref{fig:hjoints}), the arm joints (Figure~\ref{fig:ajoints}), and the leg joints (Figure~\ref{fig:ljoints}), as well as the mass of each joint/link (Table~\ref{tab:Masses of NAO}). These values have been extracted from the documentation~\cite{AldebaranNaoDoc} provided by the manufacturer of the robot, Aldebaran Robotics. The center of mass for each link/joint is represented by a point in the three-dimensional space assuming a zero posture of the robot (all joints set to $0$). The documentation gives mass values only for the right part of the robot; we assume that the robot is fully symmetric with respect to the sagittal plane to obtain the masses for the left part. In general, the robot is supposed to be fully symmetric, but interestingly, according to the manufacturer, some left joints have a different range than the right ones. Additionally, although some joints appear to be able to move within a large range, the hardware controller of the robot prohibits access to the extremes of these ranges, because of possible collisions with the NAO shell.
+To fully specify the joints of the NAO robot, we give the length of all the links of the robot (Table~\ref{fig:NAOlinks}), the operational range in radians and degrees of the head joints (Figures~\ref{fig:hjoints}), the arm joints (Figure~\ref{fig:ajoints}), and the leg joints (Figure~\ref{fig:ljoints}), as well as the mass of each joint/link (Table~\ref{tab:Masses of NAO}). These values have been extracted from the documentation~\cite{AldebaranNaoDoc} provided by the manufacturer of the robot, Aldebaran Robotics. The center of mass for each link/joint is represented by a point in the three-dimensional space of that joint assuming a zero posture of that joint. The documentation gives mass values only for the right part of the robot; we assume that the robot is fully symmetric with respect to the sagittal plane to obtain the masses for the left part. In general, the robot is supposed to be fully symmetric, but interestingly, according to the manufacturer, some joints on the left side have a different range than the corresponding joints on the right side. Additionally, although some joints appear to be able to move within a large range, the hardware controller of the robot prohibits access to the extremes of these ranges, because of possible collisions with the NAO shell.
 
-\newpage
 \section{Kinematics for NAO}
-Because NAO has a lot of DOF, it can do several complex moves. Some examples of those complex moves are walking, kicking a ball, standing up etc. NAO has five kinematic chains, three of them completely independent and two of them with one common joint. Kinematics is very useful for the programmers of NAO because they can create dynamic movements with the use of inverse kinematics or they can find the horizon of the camera on the head of the robot using forward kinematics.
+The NAO robot has a large number of DOF, therefore it can perform several complex moves. Some examples of such moves are walking, kicking a ball, standing up, etc.  Kinematics are quite useful for NAO software developers, because they can be used for planning and executing such complex movements. For example, using forward kinematics and the current joint values, one can easily find the exact position and orientation of the camera with respect to the floor the robot is standing on and therefore determine the horizon in the camera view. Likewise, using inverse kinematics, one can easily follow planned trajectories with one foot, while standing on the other, to perform dynamic kick motions. 
+
+
 
 \subsection{The Forward Kinematics problem for NAO}
-Forward kinematics for NAO can been seen as five individual solutions. NAO has five chains and because we will not manipulate the joints, but we will only take the current state of each joint, we can assume that the five chains are completely independent. Then, we can find five forward kinematics solutions, one for each kinematic chain and we will be able to combine these solutions to find a solution for a bigger kinematic chain (e.g. the kinematic chain from the right foot to the head). The reason for dealing with this problem is twofold:firstly it is of great importance (concerning many applications, such as, finding its horizon, as well as placing it correctly).Besides this, as it will be described below, solution to the inverse kinematics problem would be intractable without solving the forward first.
+The forward kinematics problem is to define a mapping from the joint space of the robot to the three-dimensional space with respect to any base coordinate frame.
+All joints of the NAO robot are equipped with 12-bit encoders, which are updated at a frequency of 100Hz, and therefore the current joint values are readily available at any time. Despite the 21 DOF, the forward kinematics problem can be easily decomposed because three of the five kinematic chains (the head and the two arms) are completely independent and two of them (the two legs) only have one common joint. Given that in forward kinematics we do not affect the values of the joints, but only read the current state of each joint, we can assume that even the two legs chains are completely independent. Therefore, forward kinematics for NAO can been seen as five independent problems with corresponding solutions, one for each kinematic chain. Each of these solutions provides the exact point (position and orientation) in the three-dimensional space with respect to any base coordinate frame of any end effector along the corresponding kinematic joint. These solutions can be combined to obtain a solution for a bigger kinematic chain formed by any combination of the five independent chains (e.g. the kinematic chain from the right foot to the head or the kinematic chain from the left foot to the right hand). 
+
+The importance of solving the forward kinematics problem for NAO is twofold: apart from the ability to locate the exact position and orientation of any end effector of the robot, it provides the means to calculate the center of mass of the robot for the current configuration, which is most-needed for balancing. In addition, as we shall see later, solution to the inverse kinematics problem would be intractable without solving the forward kinematics problem first.
 
 \subsection{The Inverse Kinematics problem for NAO}
-The inverse kinematics problem is a more complex problem and although we have the common joint between two kinematic chains, we are working with the assumption that we have five completely independent kinematic chains, so we will find five solutions for this problem. The reasons that led us to solve it are many. More specifically, we need to create dynamic kicks and an omni-directional walk. Both problems need a mechanism to move trajectories from the three-dimensional space to the joint space and the inverse kinematics can provide this mechanism.
-\subsubsection*{Analytic versus Approximate solutions}
-Inverse kinematics problem can be solved analytically or approximately. We have chosen to find the analytical solution rather than the approximate solution because the second one has some problems. We need real-time execution to the problem of inverse kinematics. The analytical solution is faster than the fastest approximate solution and for this reason it is a good choice for real-time execution. Second, there are various implementations of approximate solutions for the problem. Some of them are fast but it is very possible to run into a singularity. Other methods have a smaller probability to run into a singularity, but they are slower. On the other hand, the analytical solution doesn't have any singularity. However, inverse kinematics have an analytical solution only if the chain has five or less DOF. If the chain has 6 DOF, it can have analytical solution to the problem of the inverse kinematics only if three sequential joints have intersecting axes.
+The inverse kinematics problem is to define ways to go from the three-dimensional space of the robot to the joint space. In particular, it defines a relation between points in the three-dimensional space (position and orientation) and joint values in the joint space of a kinematic chain. For the reasons stated above, the inverse kinematics problem can be decomposed again into five independent problems. The coupling between the two legs due to the common joint is initially ignored. This is a required assumption to make the problem solvable; the obtained solutions can be combined in different ways to form a unique solution. A solution to each of these independent problems can provide the joint values which place the end effector of the corresponding kinematic chain to a specific point in the three-dimensional space of the robot torso. 
+
+Inverse kinematics represents a much more difficult problem compared to forward kinematics for at least two reasons. First, it leads to a system of non-linear equations, which may, or may not, have an analytical solution. Second, as the number of DOF increases and the kinematic chain becomes more flexible, a point in the three-dimensional space may have more than one matching points in the joint space of the chain. This multiplicity of solutions defines a complex relation, but not a mapping, between the two spaces.
+
+The importance of solving the inverse kinematics problem for NAO lies in the ability to follow any (predefined or dynamically-generated) trajectory in the three-dimensional space with any of the five end effectors. Inverse kinematics essentially provide the mechanism to transform such a trajectory into another trajectory in the joint space of the robot. 
+
+The inverse kinematics problem can be solved analytically with closed-form equations or numerically with an iterative approximation method. The analytical solution is in general faster than the fastest numerical solution and therefore is more appropriate for real-time execution. Numerical solutions are also subject to singularities, which result in a failure to obtain a solution, even if one exists. Additionally, numerical solutions are iterative; for real-time execution the number of iterations is limited and therefore they may fail to converge. For these reasons, we aim to find an analytical solution to the inverse kinematics problem for the NAO robot. It is well-known that inverse kinematics can be obtained analytically, if the chain has five or less DOF. If the chain has six DOF, an analytical solution can be obtained, only if three sequential joints have intersecting axes. Three of the kinematics chains of the NAO robot have less than five DOF. The legs have six DOF, however the meet the condition given above because the three hip joints have intersecting axes. Therefore, it is possible to obtain a fully analytical solution for the inverse kinematics of the NAO. 
+
 % ------------------------------------------------------------------------
 
 %%% Local Variables:
