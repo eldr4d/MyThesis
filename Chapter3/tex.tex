@@ -1,67 +1,101 @@
 
-\chapter{Problem statement}
+\chapter{Problem Statement}
 \label{problem}
 
-\section{The NAO Robot}
-Aldebaran NAO is a humanoid robot. It is 58 cm tall and it has 5kg approximate mass. The version we are working on is the RoboCup version 3.3 with 21 DOF. It has 2 DOF on the head, 4 on each arm and 5 on each leg and 1 DOF that is common between the two legs. NAO has five kinematic chains and they are the following:
-\begin{itemize}
-\item Head chain: HeadYaw, HeadPitch.
-\item Left Arm chain: LShoulderPitch, LShoulderRoll, LElbowYaw, LElbowRoll.
-\item Right Hand chain: RShoulderPitch, RShoulderRoll, RElbowYaw, RElbowRoll.
-\item Left Leg chain: LHipYawPitch, LHipRoll, LHipPitch, LKneePitch, LAnklePitch, LAnkleRoll.
-\item Right Leg chain: RHipYawPitch, RHipRoll, RHipPitch, RKneePitch, RAnklePitch, RAnkleRoll.
-\end{itemize}
-The common joint is the HipYawPitch joint, so LHipYawPitch and RHipYawPitch are the same joint.
+\section{NAO Robot Specifications}
+Aldebaran NAO is a humanoid robot with five kinematic chains (head, two arms, two legs). It is 58cm tall and it has about 5kg of mass. The version we are working on is the RoboCup edition v3.3 with 21 DOF. NAO has two DOF on the head, four DOF on each arm, five DOF on each leg, and one DOF in the pelvis, which is shared between the two legs. The five kinematic chains and their joints are the following:
+\begin{description}
+\item[Head] HeadYaw, HeadPitch
+\item[Left Arm] LShoulderPitch, LShoulderRoll, LElbowYaw, LElbowRoll
+\item[Right Arm] RShoulderPitch, RShoulderRoll, RElbowYaw, RElbowRoll
+\item[Left Leg] LHipYawPitch, LHipRoll, LHipPitch, LKneePitch, LAnklePitch, LAnkleRoll
+\item[Right Leg] RHipYawPitch, RHipRoll, RHipPitch, RKneePitch, RAnklePitch, RAnkleRoll
+\end{description}
+The joints LHipYawPitch and RHipYawPitch are just different names for the shared (common) joint (HipYawPitch) between the two legs. Figure~\ref{fig:NAO} shows the physical arrangement of the five chains and their joints on the NAO robot (Academic edition). Note that the RoboCup edition of the NAO robot is missing four DOF from the two hands (LWristYaw, LHand, RWristYaw and RHand).
 
-In the figure bellow we are presenting the academic edition of NAO. NAO RoboCup edition misses 4 DOF on the hand (LWristYaw, LHand, RWristYaw and RHand).
-\begin{figure}[h]
-	\begin{center}
-		\includegraphics[height = 10cm]{Figures/nao-robot-dof.jpeg}
- 		\caption{Aldebaran NAO V3.3 DOF of Academic Edition}
- 		\label{fig:NAO}
-	\end{center}
+\begin{figure}[t!]
+\begin{center}
+\includegraphics[width=\textwidth]{Figures/nao-robot-dof.jpeg}
+\caption{Aldebaran NAO v3.3 (Academic edition) kinematic chains and joints}
+\label{fig:NAO}
+\end{center}
 \end{figure}
-\subsection{NAO Cartesian Restrictions}
-In the figures and the tables bellow we will present the length of all the links of the robot (Table~\ref{fig:NAOlinks}) , the range that each joint is working in radians and in degrees (Figures~\ref{fig:hjoints},~\ref{fig:ajoints},~and~\ref{fig:ljoints}) and finally the masses of the NAO (Table~\ref{tab:Masses of NAO}). Each joint has its own mass and center of mass. The center of mass for each joint is represented by a point in the three-dimensional space of the joint. The robot theoretically is symmetric but we will see, in the joints ranges, that some left joints have different range than the right ones. The values are extracted from the user manual of the robot that Aldebaran provides.
-The user manual has only masses for the right part of the robot but we assume that the robot is fully symmetrical on the masses.
-Although some joints appear to be able to go to a position, the hardware controller of the robot will prohibit this movement because of the possible collisions with NAO shell.
 
-\begin{figure}
-\begin{tabular}{p{9cm}l|l|}
-\multirow{14}{*}{
-\includegraphics[height = 9cm]{Figures/naolinks_1.png}
-}& \multicolumn{2}{c}{} \\
-& \multicolumn{2}{c}{} \\
-& \multicolumn{2}{c}{} \\
-& \multicolumn{2}{c}{} \\
-& \multicolumn{2}{c}{} \\
-\cline{2-3}
-& \multicolumn{1}{|l|}{\textbf{Name}} & \textbf{Size (mm)} \\ \cline{2-3}
-& \multicolumn{1}{|l|}{NeckOffsetZ} & 126.50 \\ \cline{2-3}
-& \multicolumn{1}{|l|}{ShoulderOffsetY} & 98.00 \\ \cline{2-3}
-& \multicolumn{1}{|l|}{ElbowOffsetY} & 15.00 \\ \cline{2-3}
-& \multicolumn{1}{|l|}{UpperArmLength} & 105.00 \\ \cline{2-3}
-& \multicolumn{1}{|l|}{LowerArmLength} & 55.95 \\ \cline{2-3}
-& \multicolumn{1}{|l|}{ShoulderOffsetZ} & 100.00 \\ \cline{2-3}
-& \multicolumn{1}{|l|}{HandOffsetX} & 57.75 \\ \cline{2-3}
- & \multicolumn{1}{|l|}{HipOffsetZ} & 85.00 \\ \cline{2-3}
-\multirow{10}{*}{
-\includegraphics[height = 5cm]{Figures/naolinks_2.png}
-}& \multicolumn{1}{|l|}{HipOffsetY} & 50.00 \\ \cline{2-3}
-& \multicolumn{1}{|l|}{ThighLength} & 100.00 \\ \cline{2-3}
-& \multicolumn{1}{|l|}{TibiaLength} & 102.90 \\ \cline{2-3}
-& \multicolumn{1}{|l|}{FootHeight} & 45.19 \\ \cline{2-3}
-& \multicolumn{1}{|l|}{HandOffsetZ} & 12.31 \\\cline{2-3}
-& \multicolumn{2}{c}{} \\
-& \multicolumn{2}{c}{} \\
-& \multicolumn{2}{c}{} \\
-& \multicolumn{2}{c}{} \\
-& \multicolumn{2}{c}{} \\
+%\subsection{NAO Cartesian Constraints}
 
+
+
+\begin{figure}[t!]
+\begin{tabularx}{\textwidth}{cc}
+\multirow{2}{*}{
+\includegraphics[height = 12cm]{Figures/naolinks_1.png}
+}
+& 
+\begin{tabular}{|l|l|}
+\hline
+{\textbf{Name}} & \textbf{Size (mm)} \\ \hline
+{NeckOffsetZ} & 126.50 \\ \hline
+{ShoulderOffsetY} & 98.00 \\  \hline
+{ElbowOffsetY} & 15.00 \\  \hline
+{UpperArmLength} & 105.00 \\  \hline
+{LowerArmLength} & 55.95 \\  \hline
+{ShoulderOffsetZ} & 100.00 \\  \hline
+{HandOffsetX} & 57.75 \\  \hline
+{HipOffsetZ} & 85.00 \\  \hline
+{HipOffsetY} & 50.00 \\  \hline
+{ThighLength} & 100.00 \\  \hline
+{TibiaLength} & 102.90 \\  \hline
+{FootHeight} & 45.19 \\  \hline
+{HandOffsetZ} & 12.31 \\ \hline
 \end{tabular}
+\\
+&
+\includegraphics[height = 5cm]{Figures/naolinks_2.png}
+\\
+\end{tabularx}
 \caption{NAO links sizes}
 \label{fig:NAOlinks}
 \end{figure}
+
+
+%\begin{figure}
+%\begin{tabular}{p{9cm}l|l|}
+%\multirow{14}{*}{
+%\includegraphics[height = 9cm]{Figures/naolinks_1.png}
+%}
+%& \multicolumn{2}{c}{} \\
+%& \multicolumn{2}{c}{} \\
+%& \multicolumn{2}{c}{} \\
+%& \multicolumn{2}{c}{} \\
+%& \multicolumn{2}{c}{} \\ \cline{2-3}
+%& \multicolumn{1}{|l|}{\textbf{Name}} & \textbf{Size (mm)} \\ \cline{2-3}
+%& \multicolumn{1}{|l|}{NeckOffsetZ} & 126.50 \\ \cline{2-3}
+%& \multicolumn{1}{|l|}{ShoulderOffsetY} & 98.00 \\ \cline{2-3}
+%& \multicolumn{1}{|l|}{ElbowOffsetY} & 15.00 \\ \cline{2-3}
+%& \multicolumn{1}{|l|}{UpperArmLength} & 105.00 \\ \cline{2-3}
+%& \multicolumn{1}{|l|}{LowerArmLength} & 55.95 \\ \cline{2-3}
+%& \multicolumn{1}{|l|}{ShoulderOffsetZ} & 100.00 \\ \cline{2-3}
+%& \multicolumn{1}{|l|}{HandOffsetX} & 57.75 \\ \cline{2-3}
+% & \multicolumn{1}{|l|}{HipOffsetZ} & 85.00 \\ \cline{2-3}
+%\multirow{10}{*}{
+%\includegraphics[height = 5cm]{Figures/naolinks_2.png}
+%}& \multicolumn{1}{|l|}{HipOffsetY} & 50.00 \\ \cline{2-3}
+%& \multicolumn{1}{|l|}{ThighLength} & 100.00 \\ \cline{2-3}
+%& \multicolumn{1}{|l|}{TibiaLength} & 102.90 \\ \cline{2-3}
+%& \multicolumn{1}{|l|}{FootHeight} & 45.19 \\ \cline{2-3}
+%& \multicolumn{1}{|l|}{HandOffsetZ} & 12.31 \\\cline{2-3}
+%& \multicolumn{2}{c}{} \\
+%& \multicolumn{2}{c}{} \\
+%& \multicolumn{2}{c}{} \\
+%& \multicolumn{2}{c}{} \\
+%& \multicolumn{2}{c}{} \\
+%
+%\end{tabular}
+%\caption{NAO links sizes}
+%\label{fig:NAOlinks}
+%\end{figure}
+
+
 
 \begin{figure}
 \begin{tabular}{|p{5cm}|p{5cm}|p{5cm}|}
@@ -76,7 +110,7 @@ HeadPitch & -38.5$^{\circ}$ to 29.5$^{\circ}$ & -0.6720 to 0.5149 \\ \hline
 
 \begin{figure}
 \begin{tabular}{|p{5cm}|p{5cm}|p{5cm}|}
-\multicolumn{3}{p{15cm}}{\centering \includegraphics[height = 6.5cm]{Figures/armsjoints.png}} \\ \hline
+\multicolumn{3}{p{15cm}}{\centering \includegraphics[height = 6.0cm]{Figures/armsjoints.png}} \\ \hline
 \textbf{Joint Name} & \textbf{Range in Degrees$^{\circ}$} & \textbf{Range in Radians} \\ \hline
 LShoulderPitch & -119.5$^{\circ}$ to 119.5$^{\circ}$ & -2.0857 to 2.0857 \\ \hline
 LShoulderRoll & -18$^{\circ}$ to 76$^{\circ}$ & -0.3142 to 1.3265 \\ \hline
@@ -92,7 +126,7 @@ LWristYaw and RWristYaw & disabled & disabled \\ \hline
 \label{fig:ajoints}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[t!]
 \begin{tabular}{|p{5cm}|p{5cm}|p{5cm}|}
 \multicolumn{3}{p{15cm}}{\centering \includegraphics[width = 15cm]{Figures/legsjoints.png}} \\ \hline
 \textbf{Joint Name} & \textbf{Range in Degrees$^{\circ}$} & \textbf{Range in Radians} \\ \hline
@@ -112,7 +146,7 @@ RAnkleRoll & -45.03$^{\circ}$ to 22.27$^{\circ}$ & -0.785875 to 0.388676 \\ \hli
 \label{fig:ljoints}
 \end{figure}
 
-\begin{table}[position specifier]
+\begin{table}[t!]
 \caption{Masses of NAO}
 \begin{tabular}{|l|r|r|r|r|}
 \hline
@@ -146,9 +180,12 @@ LAnkleRoll & 0.16175 & 25.4 & 3.32 & -32.41 \\ \hline
 \label{tab:Masses of NAO}
 \end{table}
 
+To fully specify the joints of the NAO robot, we give the length of all the links of the robot (Table~\ref{fig:NAOlinks}), the operational range in radians and degrees of the head joints (Figures~\ref{fig:hjoints}), the arm joints (Figure~\ref{fig:ajoints}), and the leg joints (Figure~\ref{fig:ljoints}), as well as the mass of each joint/link (Table~\ref{tab:Masses of NAO}). These values have been extracted from the documentation~\cite{AldebaranNaoDoc} provided by the manufacturer of the robot, Aldebaran Robotics. The center of mass for each link/joint is represented by a point in the three-dimensional space assuming a zero posture of the robot (all joints set to $0$). The documentation gives mass values only for the right part of the robot; we assume that the robot is fully symmetric with respect to the sagittal plane to obtain the masses for the left part. In general, the robot is supposed to be fully symmetric, but interestingly, according to the manufacturer, some left joints have a different range than the right ones. Additionally, although some joints appear to be able to move within a large range, the hardware controller of the robot prohibits access to the extremes of these ranges, because of possible collisions with the NAO shell.
+
 \newpage
 \section{Kinematics for NAO}
 Because NAO has a lot of DOF, it can do several complex moves. Some examples of those complex moves are walking, kicking a ball, standing up etc. NAO has five kinematic chains, three of them completely independent and two of them with one common joint. Kinematics is very useful for the programmers of NAO because they can create dynamic movements with the use of inverse kinematics or they can find the horizon of the camera on the head of the robot using forward kinematics.
+
 \subsection{The Forward Kinematics problem for NAO}
 Forward kinematics for NAO can been seen as five individual solutions. NAO has five chains and because we will not manipulate the joints, but we will only take the current state of each joint, we can assume that the five chains are completely independent. Then, we can find five forward kinematics solutions, one for each kinematic chain and we will be able to combine these solutions to find a solution for a bigger kinematic chain (e.g. the kinematic chain from the right foot to the head). The reason for dealing with this problem is twofold:firstly it is of great importance (concerning many applications, such as, finding its horizon, as well as placing it correctly).Besides this, as it will be described below, solution to the inverse kinematics problem would be intractable without solving the forward first.
 
