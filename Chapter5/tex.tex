@@ -27,7 +27,7 @@ We will present the DH parameters in tables and except from the DH parameters, i
 Forward kinematics for each chain of the NAO robot is an equation that transforms a point from the frame of the last joint to the base frame. In our case we will have an end effector that will be the point of interest. So, we can construct these equations with the use of transformation, rotation and translation matrices.
 
 \subsubsection*{Extracting the position}
-As we will see, the result of forward kinematics is an affine transformation matrix with $X$ sub-matrix to be a rotation matrix and $Y$ a translation vector. We need to extract the $p_x,p_y$ and $p_z$ points and the $a_x,a_y$ and $a_z$ angles of the final position. So, we can extract $p_x,p_y$ and $p_z$ from the translation part of the matrix:
+As we will see, the result of forward kinematics is an affine transformation matrix with $X$ sub-matrix to be a rotation matrix and $Y$ a translation vector. We need to extract the $p_x,p_y$ and $p_z$ position and the $a_x,a_y$ and $a_z$ orientations of the final position. So, we can extract $p_x,p_y$ and $p_z$ from the translation part of the matrix:
 \begin{small}
 \begin{align*}
 p_x &= T_{(1,4)}\\
@@ -35,7 +35,7 @@ p_y &= T_{(2,4)}\\
 p_z &= T_{(3,4)}
 \end{align*}
 \end{small}
-Now we must extract the $a_x,a_y$ and $a_z$ from the rotation table. The rotation of the final transformation table is a $R_zR_yR_z$ rotation table. In chapter '2' we present the analytical form of this table. Now it's easy to extract the angles:
+Now we must extract the $a_x,a_y$ and $a_z$ from the rotation table. The rotation of the final transformation table is a $R_zR_yR_z$ rotation table. In chapter '2' we present the analytical form of this table. Now it's easy to extract the orientation:
 \begin{small}
 \begin{align*}
 a_x &= \arctan2\left(T_{(3,2)},T_{(3,3)}\right)\\
@@ -190,7 +190,7 @@ The CoM is calculated relatively to the torso frame and the calculation order is
 \section{Inverse Kinematics for NAO}
 Forward kinematics can find the position of an end effector, relatively to the start frame, given the joints values. Now we have to solve the inverse problem: find the joints values given the desired end effector position relatively to the torso frame. The solutions for the inverse kinematics problem that will be presented below are related to the kinematic chains that start from the torso.
 
-The position of the end effector is the $p_x,p_y\text{ and }p_z$ points along with the $a_x,a_y\text{ and }a_z$ angles. As we mentioned before, the product of forward kinematics is an affine transformation matrix and it consists of a rotation and a translation matrix. The rotation $R$ is equal to $R_zR_yR_x$. Thus, we can construct the transformation table:
+The position of the end effector is the $p_x,p_y\text{ and }p_z$ position along with the $a_x,a_y\text{ and }a_z$ orientations. As we mentioned before, the product of forward kinematics is an affine transformation matrix and it consists of a rotation and a translation matrix. The rotation $R$ is equal to $R_zR_yR_x$. Thus, we can construct the transformation table:
 
 \begin{scriptsize}
 \[
@@ -208,7 +208,7 @@ As we mentioned before we can't solve the problem of inverse kinematics without 
 As we will see below, we found some of the desired angles with $\arccos \text{ and }\arcsin$. The problem is that $\arcsin$ returns a number in $\left[-\tfrac{\pi}{2},\tfrac{\pi}{2}\right]$ and $\arccos$ returns a number in $\left[0,\pi\right]$ but the possible range of the joints is in $\left[-\pi,\pi\right]$. Thus, we will have two possible solutions for every $\arcsin$ and $\arccos$ (because of the complimentary angles). Because of that, we must filter our results and keep only the correct angles. We achieve that by doing a forward validation step when we find a complete set of angle values. Then we compare the result of the validation step with the reconstructed table and if they are equal, then we approve the set. Some complimentary angles will be discarded a long time before the validation step due to the range restriction of each joint.
 
 \subsection{Inverse Kinematics for the Head}
-The head chain, as we said before, consists only of two joints. Thus, we can find both desired angles only by the $a_z$ and $a_y$. On the other hand, someone maybe wants to find the joints for the desired position by only using the target points $p_x,p_y\text{ and }p_z$, so we implement another solution that works only with the target points. Below we can see the symbolic result from forward kinematics:
+The head chain, as we said before, consists only of two joints. Thus, we can find both desired orientation only by the $a_z$ and $a_y$. On the other hand, someone maybe wants to find the joints for the desired position by only using the target position $p_x,p_y\text{ and }p_z$, so we implement another solution that works only with the target position. Below we can see the symbolic result from forward kinematics:
 \[
 T = 
 \begin{bmatrix}
@@ -250,7 +250,7 @@ So, the final inverse kinematics equations for the head are the following:
 \theta_1 &= \arccos\left(\cfrac{p_x}{l_2\cos\left(\theta_2 - \frac{\pi}{2}\right) - l_1\sin\left(\theta_2 - \frac{\pi}{2}\right) } \right)
 \end{align*}
 \end{small}
-or only with angles
+or only with orientation
 \begin{small}
 \begin{align*}
 \theta_1 &= a_z\\
