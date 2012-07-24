@@ -375,9 +375,9 @@ T_\text{rhandUnrotated} = T_\text{rhand}{\left(R_z(-\pi)\right)}^{-1}
 \]
 The only changes on the symbolic table are in the translation part:
 \begin{align*}
-&r_{14} = l_4\left(\sin\theta_4\left(\sin\theta_1\sin\theta_3 - \cos\theta_1\cos\theta_2\cos\theta_3\right) - \cos\theta_1\cos\theta_4\sin\theta_2\right) + l_3\cos\theta_1\sin\theta_2\\
-&r_{24} = -l_1 - l_3\cos\theta_2 - l_4\left(\cos\theta_2\cos\theta_4 - \cos\theta_3\sin\theta_2\sin\theta_4\right)\\
-&r_{34} = l_2 - l_4\left(\sin\theta_4\left(\cos\theta_1\sin\theta_3 + \cos\theta_2\cos\theta_3\sin\theta_1\right) + \cos\theta_4\sin\theta_1\sin\theta_2\right) - l_3\sin\theta_1\sin\theta_2
+&r_{14} = l_4\left(\sin\theta_4\left(\sin\theta_1\sin\theta_3 - \cos\theta_1\cos\widehat{\theta}_2\cos\theta_3\right) - \cos\theta_1\cos\theta_4\sin\widehat{\theta}_2\right) + l_3\cos\theta_1\sin\widehat{\theta}_2\\
+&r_{24} = -l_1 - l_3\cos\widehat{\theta}_2 - l_4\left(\cos\widehat{\theta}_2\cos\theta_4 - \cos\theta_3\sin\widehat{\theta}_2\sin\theta_4\right)\\
+&r_{34} = l_2 - l_4\left(\sin\theta_4\left(\cos\theta_1\sin\theta_3 + \cos\widehat{\theta}_2\cos\theta_3\sin\theta_1\right) + \cos\theta_4\sin\theta_1\sin\widehat{\theta}_2\right) - l_3\sin\theta_1\sin\widehat{\theta}_2
 \end{align*}
 As we can see, the changes don't have any impact in our solution for the left arm, e.g. no one denominator becomes zero with these changes. So, as in the previous section, we will get the equations below:
 \begin{align*}
@@ -400,7 +400,7 @@ T_{\text{lleg}'} = T_\text{lleg}{\left(A^\text{End}_6\right)}^{-1}
 \[
 T_{\text{lleg}''} = {\left(A^0_\text{Base}\right)}^{-1}T_{\text{lleg}'}
 \]
-Now we have the chain from the base frame of the first joint to the frame of the last joint. The first joint, HipYawPitch, is rotated by $ \frac{-3\pi}{4} $ in the $ x $-axis. We will add a rotation a the start of the chain to rotate the $x$-axis by $\frac{\pi}{4}$. Then the first joint will be a yaw joint and then we will have three intersected joints and the problem will becomes solvable:
+Now we have the chain from the base frame of the first joint to the frame of the last joint. The first joint, HipYawPitch, is rotated by $-\frac{3\pi}{4} $ in the $ x $-axis. We will add a rotation a the start of the chain to rotate the $x$-axis by $\frac{\pi}{4}$. Then the first joint will be a yaw joint and then we will have three intersected joints and the problem will becomes solvable:
 \[
 T_\text{llegRotated} = R_x(\tfrac{\pi}{4})T_{\text{lleg}''}
 \]
@@ -480,23 +480,23 @@ T_{\text{llegInv}''} = \left(T_{\text{llegRotated}''}\right)^{-1}
 \]
 And the rotation part is:
 \begin{align*}
-&r_{11} = \cos\theta_1\cos\theta_2\cos\theta_4 - \sin\theta_1\sin\theta_3\\
-&r_{12} = -\cos\theta_3\sin\theta_1 - \cos\theta_1\cos\theta_2\sin\theta_3\\
-&r_{13} = \cos\theta_1\sin\theta_2 \\
-&r_{21} = -\cos\theta_3\sin\theta_2\\
-&r_{22} = \sin\theta_2\sin\theta_3\\
-&r_{23} = \cos\theta_2\\
-&r_{31} = -\cos\theta_2\cos\theta_3\sin\theta_1 - \cos\theta_1\sin\theta_3\\
-&r_{32} = -\cos\theta_1\cos\theta_3 + \cos\theta_2\sin\theta_1\sin\theta_3\\
-&r_{33} = -\sin\theta_1\sin\theta_2
+&r_{11} = \cos\widehat{\theta}_1\cos\widehat{\theta}_2\cos\theta_4 - \sin\widehat{\theta}_1\sin\theta_3\\
+&r_{12} = -\cos\theta_3\sin\widehat{\theta}_1 - \cos\widehat{\theta}_1\cos\widehat{\theta}_2\sin\theta_3\\
+&r_{13} = \cos\widehat{\theta}_1\sin\widehat{\theta}_2 \\
+&r_{21} = -\cos\theta_3\sin\widehat{\theta}_2\\
+&r_{22} = \sin\widehat{\theta}_2\sin\theta_3\\
+&r_{23} = \cos\widehat{\theta}_2\\
+&r_{31} = -\cos\widehat{\theta}_2\cos\theta_3\sin\widehat{\theta}_1 - \cos\widehat{\theta}_1\sin\theta_3\\
+&r_{32} = -\cos\widehat{\theta}_1\cos\theta_3 + \cos\widehat{\theta}_2\sin\widehat{\theta}_1\sin\theta_3\\
+&r_{33} = -\sin\widehat{\theta}_1\sin\widehat{\theta}_2
 \end{align*}
 Finally we can extract, from the transformation matrix, the remaining three angles:
 \begin{align*}
-\theta_2 &= \arccos T_{\text{llegInv}''(2,3)}\\
-\theta_2 &= \theta_2 - \cfrac{\pi}{4}\\
+\widehat{\theta}_2 &= \arccos T_{\text{llegInv}''(2,3)}\\
+\theta_2 &= \widehat{\theta}_2 - \cfrac{\pi}{4}\\
 \theta_3 &= \arcsin\left(\cfrac{T_{\text{llegInv}''(2,2)}}{\sin\left(\theta_2+\frac{\pi}{4}\right)}\right)\\
-\theta_1 &= \arccos\left(\cfrac{T_{\text{llegInv}''(3,3)}}{\sin\left(\theta_2+\frac{\pi}{4}\right)}\right)\\
-\theta_1 &= \theta_1 + \cfrac{\pi}{2}
+\widehat{\theta}_1 &= \arccos\left(\cfrac{T_{\text{llegInv}''(3,3)}}{\sin\left(\theta_2+\frac{\pi}{4}\right)}\right)\\
+\theta_1 &= \widehat{\theta}_1 + \cfrac{\pi}{2}
 \end{align*}
 The equations above don't have any problem with division by zero because of the restriction of NAO. The HipRoll joint $(\theta_2)$ doesn't reach $-\frac{\pi}{4}$ or $\frac{3\pi}{4}$ so the denominator never becomes zero. Finally, we will do a forward validation step for all possible set of angles.
 Below there are all the equations of inverse kinematics for the left leg:
