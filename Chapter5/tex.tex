@@ -5,6 +5,8 @@ As mentioned in Chapter~\ref{related}, the existing approaches to kinematics for
 
 
 \section{Forward Kinematics for the NAO Robot}
+
+
 Aldebaran Robotics provides the DH parameters for each kinematic chain of the robot in the documentation~\cite{AldebaranNaoDoc}. However, our experimentation with the provided values revealed that the given parameters for the arm chains are incorrect. Therefore, we found our own parameters for the arms and we used the provided parameters for the legs and the head.
 
 
@@ -212,12 +214,11 @@ The CoM of the entire robot is calculated relatively to the torso frame and the 
 \section{Inverse Kinematics for NAO}
 
 
-Forward kinematics can find the position of an end effector, relatively to the start frame, given the joints values. Now we have to solve the inverse problem: find the joints values given the desired end effector position relatively to the torso frame. The solutions for the inverse kinematics problem that will be presented below are related to the kinematic chains that start from the torso.
+Forward kinematics can find the point of an end effector, relatively to the start frame, given the values of the joints. Now, we turn our attention to the inverse problem: find a set of values for the joints that drive a given end effector to a desired point relatively to the torso frame. The inverse kinematics presented below solve the problem for the five kinematic chains that start at the robot torso.
 
-The position of the end effector is the $p_x,p_y\text{ and }p_z$ position along with the $a_x,a_y\text{ and }a_z$ orientations. As we mentioned before, the product of forward kinematics is an affine transformation matrix and it consists of a rotation and a translation matrix. The rotation $R$ is equal to $R_zR_yR_x$. Thus, we can construct the transformation table:
-
-\begin{small}
+A point of the end effector in the three-dimensional space consists of a position $(p_x,p_y,p_z)$ and an orientation $(a_x,a_y,a_z)$. As mentioned above, the outcome of forward kinematics is an affine transformation matrix, which includes a rotation block and a translation block. The rotation block $R$ takes the form $R_zR_yR_x$. Thus, we can construct the complete transformation matrix $T$ from the base frame to the point of the end effector mentioned above:
 \[
+\begin{small}
 T = 
 \begin{bmatrix}
 \cos a_y\cos a_z & -\cos a_x\sin a_z + \sin a_x\sin a_y\cos a_z & \sin a_x\sin a_z + \cos a_x\sin a_y\cos a_z & p_x\\
@@ -225,25 +226,30 @@ T =
 -\sin a_y & \sin a_x\cos a_y & \cos a_x\cos a_y & p_z\\
 0 & 0 & 0 & 1
 \end{bmatrix}
-\]
 \end{small}
-As we mentioned before we can't solve the problem of inverse kinematics without the solution of forward kinematics. That's why the equations that we must solve to find the values of joints are the matrices from the forward kinematics but with the $\theta$ from DH parameters as the unknown part. So, we can find the symbolic table that is the product of forward kinematics and equate it with the matrix above. Then, we will have twelve equations (we don't have sixteen because the last line of the matrix is always ($0$ $0$ $0$ $1$)) and $n$ unknowns, where $n$ is the number of joints in the chain. In fact, we will have $2n$ unknowns, because all the thetas ($\theta$) appear inside $\sin$ or $\cos$.
+\]
+Given $T$, our goal now is to find a set of joint values that leads to the same transformation through the kinematic chain. As mentioned before, the problem of inverse kinematics cannot be solved without the solution of forward kinematics. This is true, because the equations we must solve to find the values of the joints are formed by writing down the forward kinematics transformation matrix symbolically with the $\theta_i$'s of the DH parameters appearing as symbols in the matrix. This symbolic matrix is set to be equal to $T$ to yield twelve non-linear equations with the values $\theta_i$ of the $n$ joints of the chain as unknowns. In fact, we will have a total of $2n$ unknowns, because all the $\theta_i$'s appear inside a sine or a cosine, therefore for each joint $i$ there are two dependent unknowns in the system, $\sin\theta_i$ and $\cos\theta_i$.
 
-As we will see below, we found some of the desired angles with $\arccos \text{ and }\arcsin$. The problem is that $\arcsin$ returns a number in $\left[-\tfrac{\pi}{2},\tfrac{\pi}{2}\right]$ and $\arccos$ returns a number in $\left[0,\pi\right]$ but the possible range of the joints is in $\left[-\pi,\pi\right]$. Thus, we will have two possible solutions for every $\arcsin$ and $\arccos$ (because of the complimentary angles). Because of that, we must filter our results and keep only the correct angles. We achieve that by doing a forward validation step when we find a complete set of angle values. Then we compare the result of the validation step with the reconstructed table and if they are equal, then we approve the set. Some complimentary angles will be discarded a long time before the validation step due to the range restriction of each joint.
+As we shall see below, we obtain some of the solutions using $\arccos$ and $\arcsin$. The problem is that $\arcsin$ returns an angle in $\left[-\tfrac{\pi}{2},+\tfrac{\pi}{2}\right]$ and $\arccos$ returns an angle in $\left[0,\pi\right]$, even though the possible values of a joint can be in the range $\left[-\pi,+\pi\right]$. Thus, if $\theta^*_i$ is a value returned by $\arcsin$ or $\arccos$ as a solution, there is one additional symmetric solution, $\pi - \theta^*_i$ for $\arcsin$ and $-\theta^*_i$ for $\arccos$. Due to these symmetries, the equations lead to a small number of distinct candidate solutions, some of which may be infeasible or invalid because of the constrained range of each joint. To determine a valid and correct solution, we simply run each one of these solutions through the forward kinematics to verify that indeed the end effector of the chain reaches the desired position and orientation. Invalid solutions are discarded and only correct ones are kept. 
+
 
 \subsection{Inverse Kinematics for the Head}
-The head chain, as we said before, consists only of two joints. Thus, we can find both desired orientation only by the $a_z$ and $a_y$. On the other hand, someone maybe wants to find the joints for the desired position by only using the target position $p_x,p_y\text{ and }p_z$, so we implement another solution that works only with the target position. Below we can see the symbolic result from forward kinematics:
+The head chain consists of only two joints, therefore we can work either with the position $(p_x,p_y,p_z)$ or with the orientation $(a_x,a_y,a_z)$ of the target point to obtain a solution. In the latter case, we can achieve the desired target orientation simply by setting the HeadYaw and HeadPitch joints to $a_z$ and $a_y$ respectively. In the former case, we first construct the symbolic matrix from forward kinematics along the head chain:
 \[
 T = 
 \begin{bmatrix}
--\cos\theta_1\sin\theta_2 & -\sin\theta_1 & \cos\theta_1\cos\theta_2 &  l_2\cos\theta_1\cos\theta_2 - l_1\cos\theta_1\sin\theta_2\\
--\sin\theta_1\sin\theta_2 & \cos\theta_1 & \cos\theta_2\sin\theta_1 & l_2\cos\theta_2\sin\theta_1 - l_1\sin\theta_1\sin\theta_2\\
--\cos\theta_2 & 0 & -\sin\theta_2 & l_3 - l_2\sin\theta_2 - l_1\cos\theta_2\\
+-\cos\theta_1\sin\widehat{\theta}_2 & -\sin\theta_1 & \cos\theta_1\cos\widehat{\theta}_2 &  l_2\cos\theta_1\cos\widehat{\theta}_2 - l_1\cos\theta_1\sin\widehat{\theta}_2\\
+-\sin\theta_1\sin\widehat{\theta}_2 & \cos\theta_1 & \cos\widehat{\theta}_2\sin\theta_1 & l_2\cos\widehat{\theta}_2\sin\theta_1 - l_1\sin\theta_1\sin\widehat{\theta}_2\\
+-\cos\widehat{\theta}_2 & 0 & -\sin\widehat{\theta}_2 & l_3 - l_2\sin\widehat{\theta}_2 - l_1\cos\widehat{\theta}_2\\
 0 & 0 & 0 & 1
 \end{bmatrix}
 \]
-where: $l_1 = \text{cameraX, }l_2 = \text{cameraZ and }l_3 = \text{NeckOffsetZ}$.
-Because we only know the $p_x,p_y\text{ and }p_z$ and we can't reconstruct the rotation part of the matrix, we will only use the translation part that is reconstructed. Now we can see from the symbolic matrix that $T_{(3,4)} = l_3 - l_2\sin\theta_2 - l_1\cos\theta_2 = p_z$ and we know from trigonometry that: 
+where $\widehat{\theta}_2$ is the DH parameter $\theta$ for the second joint, $l_1 =$ cameraX, $l_2 =$ cameraZ, and $l_3 =$ NeckOffsetZ.
+Since we only know the position $(p_x,p_y,p_z)$, we cannot reconstruct the rotation block of the matrix, so we focus on the translation block. From the symbolic matrix, we have: 
+\[
+T_{(3,4)} = l_3 - l_2\sin\widehat{\theta}_2 - l_1\cos\widehat{\theta}_2 = p_z
+\]
+We know from trigonometry that: 
 \[
 a\sin\theta + b\cos\theta = \sqrt{a^2+b^2}\sin\left(\theta + \psi\right)
 \]
@@ -254,32 +260,29 @@ a\sin\theta + b\cos\theta = \sqrt{a^2+b^2}\sin\left(\theta + \psi\right)
     \pi & \quad \text{if }a<0\\
   \end{array} \right.
 \]
-So, we can now calculate $\theta_2$:
+Given that $l_2>0$, we can now calculate $\widehat{\theta}_2$ as follows:
 \[
-\theta_2 = \arcsin\left(\cfrac{-p_z+l_3}{\sqrt{{l_1}^2+{l_2}^2}}\right) + \arctan\left(\frac{l_1}{l_2}\right)
+\widehat{\theta}_2 = \arcsin\left(\cfrac{-p_z+l_3}{\sqrt{{l_1}^2+{l_2}^2}}\right) - \arctan\left(\frac{l_1}{l_2}\right)
 \]
-Now the final $\theta_2$ is: $\theta_2 = \theta_2 - \frac{\pi}{2}$ because in the DH parameters we had added $\frac{\pi}{2}$ to the $\theta$ parameter for the second joint.  From now on, we must substract $\frac{\pi}{2}$ from $\theta_2$ if we want to use it to calculate a result from the equations.\\
-Then we can easily extract $\theta_1$ from $T_{(1,4)}$:
+Now the final joint value $\theta_2$ is $\theta_2 = \widehat{\theta}_2 + \frac{\pi}{2}$.  From now on, we substitute $\theta_2 - \frac{\pi}{2}$ in $\widehat{\theta}_2$. Now, we can easily extract $\theta_1$ from $T_{(1,4)}$:
 \[
-\theta_1 = \arccos\left(\cfrac{p_x}{l_1\left(\theta_2 + \frac{\pi}{2}\right) - l_2\cos\left(\theta_2 + \frac{\pi}{2}\right)}\right)
+\theta_1 = \arccos\left(\cfrac{p_x}{l_2\cos\left(\theta_2 - \frac{\pi}{2}\right) - l_1\sin\left(\theta_2 - \frac{\pi}{2}\right) } \right)
 \]
-Finally, we must filter our results because of $\arccos\text{ and }\arcsin$. So, we will do a forward kinematics validation set and we will discard any set of values that doesn't move the end effector to the correct position.
-So, the final inverse kinematics equations for the head are the following:
+So, the final inverse kinematics equations for the head chain are:
 \begin{align*}
-%l_3 = neckoffset z
-%l_1 = camera X
-%l_2 = camera Z
-\theta_2 &= \arcsin\left(\cfrac{- p_z + l_3}{ \sqrt{l^2_1 + l^2_2} }\right) + \frac{\pi}{2}\\
-\theta_1 &= \arccos\left(\cfrac{p_x}{l_2\cos\left(\theta_2 - \frac{\pi}{2}\right) - l_1\sin\left(\theta_2 - \frac{\pi}{2}\right) } \right)
+\theta_2 &= \arcsin\left(\cfrac{- p_z + l_3}{ \sqrt{{l_1}^2+{l_2}^2} }\right) - \arctan\left(\frac{l_1}{l_2}\right) + \frac{\pi}{2}\\
+\theta_2 &= \pi - \arcsin\left(\cfrac{- p_z + l_3}{ \sqrt{{l_1}^2+{l_2}^2} }\right) - \arctan\left(\frac{l_1}{l_2}\right) + \frac{\pi}{2}\\
+\theta_1 &= \pm\arccos\left(\cfrac{p_x}{l_2\cos\left(\theta_2 - \frac{\pi}{2}\right) - l_1\sin\left(\theta_2 - \frac{\pi}{2}\right) } \right)
 \end{align*}
-or only with orientation
+provided a target position $(p_x,p_y,p_z)$ or 
 \begin{align*}
 \theta_1 &= a_z\\
 \theta_2 &= a_y
 \end{align*}
+provided a target orientation $(a_x,a_y,a_z)$.
 
-\subsection{Inverse Kinematics for the Left Hand}
-The left arm chain is far more complicated than the head chain. First, we must construct the symbolic matrix:
+\subsection{Inverse Kinematics for the Left Arm}
+The left arm chain is far more complicated than the head chain. First, we construct the symbolic transformation matrix for the left arm chain:
 \begin{align*}
 T &= \begin{bmatrix}
 r_{11} & r_{12} & r_{13} & r_{14}\\
@@ -287,60 +290,60 @@ r_{21} & r_{22} & r_{23} & r_{24}\\
 r_{31} & r_{32} & r_{33} & r_{34}\\
 0 & 0 & 0 & 1
 \end{bmatrix}\\
-r_{11} &= \sin\theta_4\left(\sin\theta_1\sin\theta_3 - \cos\theta_1\cos\theta_2\cos\theta_3\right) - \cos\theta_1\cos\theta_4\sin\theta_2\\
-r_{12} &= \cos\theta_4\left(\sin\theta_1\sin\theta_3 - \cos\theta_1\cos\theta_2\cos\theta_3\right) + \cos\theta_1\sin\theta_2\sin\theta_4\\
-r_{13} &= \cos\theta_3\sin\theta_1 + \cos\theta_1\cos\theta_2\sin\theta_3\\
-r_{14} &= l_4\left(\sin\theta_4\left(\sin\theta_1\sin\theta_3 - \cos\theta_1\cos\theta_2\cos\theta_3\right) - \cos\theta_1\cos\theta_4\sin\theta_2\right) - l_3\cos\theta_1\sin\theta_2\\
-r_{21} &= \cos\theta_2\cos\theta_4 - \cos\theta_3\sin\theta_2\sin\theta_4\\
-r_{22} &= \cos\theta_2\sin\theta_4 - \cos\theta_3\cos\theta_4\sin\theta_2\\
-r_{23} &= \sin\theta_2\sin\theta_3\\
-r_{24} &= l_1 + l_3\cos\theta_2 + l_4\left(\cos\theta_2\cos\theta_4 - \cos\theta_3\sin\theta_2\sin\theta_4\right)\\
-r_{31} &= \sin\theta_4\left(\cos\theta_1\sin\theta_3 + \cos\theta_2\cos\theta_3\sin\theta_1\right) + \cos\theta_4\sin\theta_1\sin\theta_2\\
-r_{32} &= \cos\theta_4\left(\cos\theta_1\sin\theta_3 + \cos\theta_2\cos\theta_3\sin\theta_1\right) - \sin\theta_1\sin\theta_2\sin\theta_4\\
-r_{33} &= \cos\theta_1\cos\theta_3 - \cos\theta_2\sin\theta_1\sin\theta_3\\
-r_{34} &= l_2 + l_4\left(\sin\theta_4\left(\cos\theta_1\sin\theta_3 + \cos\theta_2\cos\theta_3\sin\theta_1\right) + \cos\theta_4\sin\theta_1\sin\theta_2\right) + l_3\sin\theta_1\sin\theta_2
+r_{11} &= \sin\theta_4\left(\sin\theta_1\sin\theta_3 - \cos\theta_1\cos\widehat{\theta}_2\cos\theta_3\right) - \cos\theta_1\cos\theta_4\sin\widehat{\theta}_2\\
+r_{12} &= \cos\theta_4\left(\sin\theta_1\sin\theta_3 - \cos\theta_1\cos\widehat{\theta}_2\cos\theta_3\right) + \cos\theta_1\sin\widehat{\theta}_2\sin\theta_4\\
+r_{13} &= \cos\theta_3\sin\theta_1 + \cos\theta_1\cos\widehat{\theta}_2\sin\theta_3\\
+r_{14} &= l_4\left(\sin\theta_4\left(\sin\theta_1\sin\theta_3 - \cos\theta_1\cos\widehat{\theta}_2\cos\theta_3\right) - \cos\theta_1\cos\theta_4\sin\widehat{\theta}_2\right) - l_3\cos\theta_1\sin\widehat{\theta}_2\\
+r_{21} &= \cos\widehat{\theta}_2\cos\theta_4 - \cos\theta_3\sin\widehat{\theta}_2\sin\theta_4\\
+r_{22} &= \cos\widehat{\theta}_2\sin\theta_4 - \cos\theta_3\cos\theta_4\sin\widehat{\theta}_2\\
+r_{23} &= \sin\widehat{\theta}_2\sin\theta_3\\
+r_{24} &= l_1 + l_3\cos\widehat{\theta}_2 + l_4\left(\cos\widehat{\theta}_2\cos\theta_4 - \cos\theta_3\sin\widehat{\theta}_2\sin\theta_4\right)\\
+r_{31} &= \sin\theta_4\left(\cos\theta_1\sin\theta_3 + \cos\widehat{\theta}_2\cos\theta_3\sin\theta_1\right) + \cos\theta_4\sin\theta_1\sin\widehat{\theta}_2\\
+r_{32} &= \cos\theta_4\left(\cos\theta_1\sin\theta_3 + \cos\widehat{\theta}_2\cos\theta_3\sin\theta_1\right) - \sin\theta_1\sin\widehat{\theta}_2\sin\theta_4\\
+r_{33} &= \cos\theta_1\cos\theta_3 - \cos\widehat{\theta}_2\sin\theta_1\sin\theta_3\\
+r_{34} &= l_2 + l_4\left(\sin\theta_4\left(\cos\theta_1\sin\theta_3 + \cos\widehat{\theta}_2\cos\theta_3\sin\theta_1\right) + \cos\theta_4\sin\theta_1\sin\widehat{\theta}_2\right) + l_3\sin\theta_1\sin\widehat{\theta}_2
 \end{align*}
-where: $l_1 =$ ShoulderOffsetY$+$ElbowOffsetY, $l_2 =$ ShoulderOffsetZ, $l_3 =$ UpperArmLength and $l_4 =$ HandOffsetX$+$LowerArmLength.
-
-As we can see now, the problem of inverse kinematics for the arms is far more complicated than the problem for the head. It is very difficult to extract a joint value from all these equations, so, we can use trigonometry to find the value of one joint. More specifically this joint is the elbow roll joint. We can observe that the upper arm, the lower arm with the hand offset and the distance from the position of the shoulder pitch joint to the end effector forms a triangle and we know the size of each side. The position of the shoulder pitch joint relative to the torso frame is known, and the position of the end effector is the target position. So, the distance can be calculated:
+where $\widehat{\theta}_2$ is the DH parameter $\theta$ for the second joint, $l_1 =$ ShoulderOffsetY$+$ElbowOffsetY, $l_2 =$ ShoulderOffsetZ, $l_3 =$ UpperArmLength and $l_4 =$ HandOffsetX$+$LowerArmLength.
+It is quite difficult to extract a joint value from these equations, so we will turn to trigonometry to find the value of the LElbowRoll joint. We can observe that the upper arm, the lower arm with the hand offset, and the segment from the position of the LShoulderPitch joint to the end effector form a triangle with known lengths for all sides. The position of the LShoulderPitch joint relatively to the torso frame is known, and the position of the end effector is the desired target position $(p_x,p_y,p_z)$. So, the distance $d$ between the position $(s_x,s_y,s_z)$ of the LShoulderPitch joint and the position of the end effector $(p_x,p_y,p_z)$ can be calculated as:
 \[
 d=\sqrt{\left(s_x-p_x\right)^2 + \left(s_y-p_y\right)^2 + \left(s_z-p_z\right)^2}
 \]
-where: $s_x = 0, s_y = l_1$ and $s_z = l_2$.
-Now we can use the cosine law and find $\theta_4$:
+where $s_x = 0$, $s_y = l_1$, and $s_z = l_2$.
+Now, we can use the cosine law to find the interior angle $\theta'_4$ between the upper and lower arm sides of the triangle:
 \[
-\theta_4 = \arccos\left(\frac{{l_3}^2 + {l_4}^2 - d^2}{2l_3l_4}\right)
+\theta'_4 = \arccos\left(\frac{{l_3}^2 + {l_4}^2 - d^2}{2l_3l_4}\right)
 \]
-Because $\theta_4$ represents an interior angle and the elbow roll joint is being stretched in the zero-position, the resulting angle is computed by:
+Since $\theta'_4$ represents an interior angle and the LElbowRoll joint is being stretched in the zero position, the resulting angle in this range $\theta''_4$ is computed by:
 \[
-\theta_4 = \pi - \theta_4
+\theta''_4 = \pi - \theta'_4
 \]
-Because the $\theta_4$ for the left arm take only negative values, we will take the $-\theta_4$ so:
+Since the LElbowRoll joint takes only negative values, we finally $\theta_4$ as:
 \[
-\theta_4 = - \theta_4
+\theta_4 = - \theta''_4
 \]
-The next angle that we can find is the $\theta_2$, so we can look for equations from the table symbolic matrix, where we only have $\theta_2$ and one more unknown $\theta$. Using $r_{22}$ we have:
+The next angle we can find is the $\widehat{\theta}_2$, so we focus on equations from the symbolic matrix, where we only have $\widehat{\theta}_2$ and one more unknown (excluding $\theta_4$). Using $r_{22}$, we have:
 \begin{align*}
-&T_{(2,2)} = -\cos\theta_2 - \cos\theta_3\cos\theta_4\sin\theta_2 &\Leftrightarrow\\
-&\cos\theta_3\sin\theta_2 = -\cfrac{\cos\theta_2\sin\theta_4 + T_{(2,2)}}{\cos\theta_4}
+T_{(2,2)} &= -\cos\widehat{\theta}_2 - \cos\theta_3\cos\theta_4\sin\widehat{\theta}_2 &\Leftrightarrow\\
+\cos\theta_3\sin\widehat{\theta}_2 &= -\cfrac{\cos\widehat{\theta}_2\sin\theta_4 + T_{(2,2)}}{\cos\theta_4}
 \end{align*}
-We can do the division because $\theta_4$ doesn't reach $\frac{\pi}{2} $ so, the cosine never becomes zero. Now we can go to $r_{24}$:
+This division is always feasible, because $\theta_4$ never reaches $\pm\frac{\pi}{2}$, therefore the cosine never becomes zero. Now, we focus on $r_{24}$:
 \begin{align*}
-&T_{(2,4)} = p_y = l_1 + l_3\cos\theta_2 + l_4\left(\cos\theta_2\cos\theta_4 - \cos\theta_3\sin\theta_2\sin\theta_4\right)&\Leftrightarrow\\
-&p_y - l_1 =l_3\cos\theta_2 + l_4\cos\theta_2\cos\theta_4 - l_4\left(-\frac{\cos\theta_2\sin\theta_4 + T_{(2,2)}}{\cos\theta_4}\right)\sin\theta_4&\Leftrightarrow\\
-&p_y - l_1 - \frac{l_4\sin\theta_4 T_{(2,2)}}{\cos\theta_4} = \cos\theta_2\left(l_3 + l_4\cos\theta_4 + l_4\frac{{\sin\theta_4}^2}{\cos\theta_4}\right)&\Leftrightarrow\\
-&\theta_2 = \arccos\left(\cfrac{p_y - l_1 - \frac{l_4\sin\theta_4 T_{(2,2)}}{\cos\theta_4}}{l_3 + l_4\cos\theta_4 + l_4\frac{\sin^2\theta_4}{\cos\theta_4}}\right) \hspace{2cm} \text{because }   l_3 + l_4\cos\theta_4 + l_4\frac{\sin^2\theta_4}{\cos\theta_4}>0 \hspace{-0.8cm}
+&T_{(2,4)} = p_y = l_1 + l_3\cos\widehat{\theta}_2 + l_4\left(\cos\widehat{\theta}_2\cos\theta_4 - \cos\theta_3\sin\widehat{\theta}_2\sin\theta_4\right)&\Leftrightarrow\\
+&p_y - l_1 =l_3\cos\widehat{\theta}_2 + l_4\cos\widehat{\theta}_2\cos\theta_4 - l_4\left(-\frac{\cos\widehat{\theta}_2\sin\theta_4 + T_{(2,2)}}{\cos\theta_4}\right)\sin\theta_4&\Leftrightarrow\\
+&p_y - l_1 - \frac{l_4\sin\theta_4 T_{(2,2)}}{\cos\theta_4} = \cos\widehat{\theta}_2\left(l_3 + l_4\cos\theta_4 + l_4\frac{{\sin\theta_4}^2}{\cos\theta_4}\right)&\Leftrightarrow\\
+&\widehat{\theta}_2 = \arccos\left(\cfrac{p_y - l_1 - \frac{l_4\sin\theta_4 T_{(2,2)}}{\cos\theta_4}}{l_3 + l_4\cos\theta_4 + l_4\frac{\sin^2\theta_4}{\cos\theta_4}}\right) \hspace{2cm} \text{because }   l_3 + l_4\cos\theta_4 + l_4\frac{\sin^2\theta_4}{\cos\theta_4}>0 \hspace{-0.8cm}
 \end{align*}
-Now the final $\theta_2$ is: $\theta_2 = \theta_2 + \frac{\pi}{2}$ because in the DH parameters we had added $\frac{\pi}{2}$ to the $\theta$ parameter for the second joint of the arm. From now on, we must substract $\frac{\pi}{2}$ from $\theta_2$ if we want to use it to calculate a result from the equations. Next we will calculate the $\theta_3$ angle:
+Now the final joint value $\theta_2$ is $\theta_2 = \widehat{\theta}_2 + \frac{\pi}{2}$. From now on, we substitute $\theta_2 - \frac{\pi}{2}$ in $\widehat{\theta}_2$.
+Next, we will compute the $\theta_3$ angle:
 \begin{align*}
-&T_{(2,3)} = \sin\left(\theta_2 - \frac{\pi}{2}\right)\sin\theta_3 &\Leftrightarrow \\
-& \theta_3 = \arcsin\left( \cfrac{ T_{(2,3)} }{ \sin\left(\theta_2-\frac{\pi}{2}\right)}\right)  &\text{because }    \theta_2 \neq \left|\frac{\pi}{2}\right|
+T_{(2,3)} &= \sin\left(\theta_2 - \frac{\pi}{2}\right)\sin\theta_3 &\Leftrightarrow \\
+ \theta_3 &= \arcsin\left( \cfrac{ T_{(2,3)} }{ \sin\left(\theta_2-\frac{\pi}{2}\right)}\right)  &\text{because }    \theta_2 \neq \left|\frac{\pi}{2}\right|
 \end{align*}
-Finally, we must extract the value for $\theta_1$:
+Finally, we can extract the value for $\theta_1$:
 \begin{align*}
-&T_{(1,3)} = \cos\theta_3\sin\theta_1 + \cos\theta_1\cos\left(\theta_2 - \frac{\pi}{2}\right)\sin\theta_3 &\Leftrightarrow \\
-&\sin\theta_1 = \cfrac{T_{(1,3)} - \cos\theta_1\cos\left(\theta_2 - \frac{\pi}{2}\right)\sin\theta_3}{\cos\theta_3}  &\text{when } \theta_3 \neq \left|\frac{\pi}{2}\right|\\
-&\cos\theta_1 = \cfrac{T_{(1,3)}}{\cos\left(\theta_2 - \frac{\pi}{2}\right)\sin\theta_3}  &\text{when} \quad \theta_3 = \left|\frac{\pi}{2}\right|
+T_{(1,3)} &= \cos\theta_3\sin\theta_1 + \cos\theta_1\cos\left(\theta_2 - \frac{\pi}{2}\right)\sin\theta_3 &\Leftrightarrow \\
+\sin\theta_1 &= \cfrac{T_{(1,3)} - \cos\theta_1\cos\left(\theta_2 - \frac{\pi}{2}\right)\sin\theta_3}{\cos\theta_3}  &\text{when } \theta_3 \neq \left|\frac{\pi}{2}\right|\\
+\cos\theta_1 &= \cfrac{T_{(1,3)}}{\cos\left(\theta_2 - \frac{\pi}{2}\right)\sin\theta_3}  &\text{when } \theta_3 = \left|\frac{\pi}{2}\right|
 \end{align*}
 So, now we have two possible solutions for $\theta_1$ and we choose between them depending on the value of $\theta_3$. So, when $\theta_3 = \left|\frac{\pi}{2}\right|$:
 \begin{align*}
@@ -361,8 +364,8 @@ Now we have calculated all the joints for the left arm, but we will have a lot o
 \theta_1 &= \pm\arccos\left(\cfrac{T_{(3,3)} - \cfrac{T_{(1,3)}\sin\theta_3\cos\left(\theta_2 - \frac{\pi}{2}\right)}{\cos\theta_3}}{\cos\theta_3 + \cfrac{\cos^2\left(\theta_2-\frac{\pi}{2}\right)\sin^2\theta_3}{\cos\theta_3}}\right) &\text{if } \theta_3 \neq \cfrac{\pi}{2}\\
 \theta_1 &= \pm\arccos\left(\cfrac{T_{(1,3)}}{\cos\left(\theta_2 - \frac{\pi}{2}\right)\sin\theta_3}\right) &\text{if } \theta_3 = \cfrac{\pi}{2}
 \end{align*}
-\subsection{Inverse Kinematics for the Right Hand}
-As we said before, the right and left arm are symmetric, thus, the solution is almost the same. This differs from above only at the distances over the $y$-axis and for the right hand the $\theta$ parameter does not subtract $\frac{\pi}{2}$ but it adds $\frac{\pi}{2}$. The kinematic chain for the right arm has an extra rotation matrix after the last translation:
+\subsection{Inverse Kinematics for the Right Arm}
+As we said before, the right and left arm are symmetric, thus, the solution is almost the same. This differs from above only at the distances over the $y$-axis and for the right arm the $\theta$ parameter does not subtract $\frac{\pi}{2}$ but it adds $\frac{\pi}{2}$. The kinematic chain for the right arm has an extra rotation matrix after the last translation:
 \[
 T^\text{End}_\text{Base} = A^0_\text{Base}T^1_0T^2_1T^3_2T^4_3R_z(\tfrac{\pi}{2})A^\text{End}_{4}R_z(-\pi)
 \]
