@@ -419,14 +419,18 @@ We can now find $\theta_4$ with the same way that we find $\theta_4$ for the arm
 \[
 d = \sqrt{\left(s_x-p_x\right)^2 + \left(s_y-p_y\right)^2 + \left(s_z-p_z\right)^2}
 \]
-where $s_x = 0$, $s_y = $HipOffsetY, $s_z =$HipOffsetZ, $p_x = T_{\text{llegInv}(1,4)}$, $p_y = T_{\text{llegInv}(2,4)}$ and $p_z = T_{\text{llegInv}(3,4)}$.
+where $s_x = 0$, $s_y = $HipOffsetY, $s_z =$HipOffsetZ, $p_x = T_{\text{llegInv}(1,4)}$, $p_y = T_{\text{llegInv}(2,4)}$ and $p_z = T_{\text{llegInv}(3,4)}$. Now, we can use the cosine law to find the interior angle $\theta'_4$ between the thign and tibia sides of the triangle:
 Now from the law of cosines we have:
 \[
-\theta_4 =\arccos\left(\frac{{l_1}^2 + {l_2}^2 - d^2}{2 l_1 l_2}\right)\\
+\theta'_4 =\arccos\left(\frac{{l_1}^2 + {l_2}^2 - d^2}{2 l_1 l_2}\right)\\
 \]
-Because $\theta_4$ represents an interior angle and the knee roll joint is being stretched in the zero-position, the resulting angle is computed by:
+Since $\theta'_4$ represents an interior angle and the LKneePitch joint is being stretched in the zero position, the resulting angle in this range $\theta''_4$ is computed by:
 \[
-\theta_4 = \pi - \theta_4
+\theta''_4 = \pi - \theta'_4
+\]
+Finally, because the range of this joint includes both possitive and negative angles the resulting joint value is:
+\[
+\theta_4 = \pm\theta''_4
 \]
 Next, we will extract the $\theta_6$ angle. We can extract this angle from the translation matrix using $r_{24}$ and $r_{34}$:
 \begin{align*}
@@ -502,7 +506,7 @@ The equations above don't have any problem with division by zero because of the 
 Below there are all the equations of inverse kinematics for the left leg:
 \begin{align*}
 T_\text{llegInv} &= \left(R_x(\tfrac{\pi}{4})\left(\left(A^0_\text{Base}\right)^{-1} T_\text{lleg} \left(A^\text{End}_6\right)^{-1}\right)\right)^{-1} \\
-\theta_4 &=\pi - \arccos\left(\frac{{l_1}^2 + {l_2}^2 - \sqrt{\left(s_x-p_x\right)^2 + \left(s_y-p_y\right)^2 + \left(s_z-p_z\right)^2}^2}{2 l_1 l_2}\right) \\
+\theta_4 &=\pm\left(\pi - \arccos\left(\frac{{l_1}^2 + {l_2}^2 - \sqrt{\left(s_x-p_x\right)^2 + \left(s_y-p_y\right)^2 + \left(s_z-p_z\right)^2}^2}{2 l_1 l_2}\right)\right) \\
 \theta_6 &= \arctan\left(\frac{p_y}{p_z}\right)\hspace{3cm}\text{if} \left(l_2\cos\theta_5 + l_1 \cos\left(\theta_4 + \theta_5\right)\right) \neq 0 \\
 T_{\text{llegInv}'} &= \left(\left(T_\text{llegInv}\right)^{-1}\left(T^6_5R_z\left(\pi\right)R_y(-\tfrac{\pi}{2})\right)^{-1}\right)^{-1} \\
 \theta_5 &= \arcsin\left(-\frac{p_y\left(l_2+l_1\cos\theta_4\right) + l_1p_x\sin\theta_4}{{l_1}^2\sin^2\theta_4 + \left(l_2 + l_1\cos\theta_4\right)}\right) \\
@@ -513,6 +517,12 @@ T_{\text{llegInv}''} &= \left(\left(T_{\text{llegInv}'}\right)^{-1}\left(T^4_3T^
 \theta_3 &= \pi - \arcsin\left(\cfrac{T_{\text{llegInv}''(2,2)}}{\sin\left(\theta_2+\frac{\pi}{4}\right)}\right) \\
 \theta_1 &= \pm\arccos\left(\cfrac{T_{\text{llegInv}''(3,3)}}{\sin\left(\theta_2+\frac{\pi}{4}\right)}\right) + \cfrac{\pi}{2}
 \end{align*}
+
+
+
+
+
+
 
 \subsection{Inverse Kinematics for the Right Leg}
 As we mentioned before, the chains of the legs are symmetric, so we will have a similar solution for the problem as we had with the arms. The only changes are in the rotation matrix that we use to rotate the HipYawPitch joint. Now we must rotate by $-\frac{\pi}{4}$.
@@ -534,7 +544,7 @@ T_\text{rlegInv} = {\left(T_\text{rlegRotated}\right)}^{-1}
 After that, the symbolic matrix for the right leg is exactly the same as the symbolic matrix for the left leg. From this point of view, if we follow all the steps as we did with the left leg, we will conclude to the same equations. So, the final equations are:
 \begin{align*}
 T_\text{rlegInv} &= \left(R_x(\tfrac{\pi}{4})\left(\left(A^0_\text{Base}\right)^{-1} T_\text{rleg} \left(A^\text{End}_6\right)^{-1}\right)\right)^{-1} \\
-\theta_4 &=\pi - \arccos\left(\frac{{l_1}^2 + {l_2}^2 - \sqrt{\left(s_x-p_x\right)^2 + \left(s_y-p_y\right)^2 + \left(s_z-p_z\right)^2}^2}{2 l_1 l_2}\right) \\
+\theta_4 &=\pm\left(\pi - \arccos\left(\frac{{l_1}^2 + {l_2}^2 - \sqrt{\left(s_x-p_x\right)^2 + \left(s_y-p_y\right)^2 + \left(s_z-p_z\right)^2}^2}{2 l_1 l_2}\right)\right) \\
 \theta_6 &= \arctan\left(\frac{p_y}{p_z}\right)\hspace{3cm}\text{if} \left(l_2\cos\theta_5 + l_1 \cos\left(\theta_4 + \theta_5\right)\right) \neq 0 \\
 T_{\text{rlegInv}'} &= \left(\left(T_\text{rlegInv}\right)^{-1}\left(T^6_5R_z\left(\pi\right)R_y(-\tfrac{\pi}{2})\right)^{-1}\right)^{-1} \\
 \theta_5 &= \arcsin\left(-\frac{p_y\left(l_2+l_1\cos\theta_4\right) + l_1p_x\sin\theta_4}{{l_1}^2\sin^2\theta_4 + \left(l_2 + l_1\cos\theta_4\right)}\right) \\
@@ -545,6 +555,12 @@ T_{\text{rlegInv}''} &= \left(\left(T_{\text{rlegInv}'}\right)^{-1}\left(T^4_3T^
 \theta_3 &= \pi - \arcsin\left(\cfrac{T_{\text{rlegInv}''(2,2)}}{\sin\left(\theta_2 - \frac{\pi}{4}\right)}\right) \\
 \theta_1 &= \pm\arccos\left(\cfrac{T_{\text{rlegInv}''(3,3)}}{\sin\left(\theta_2 - \frac{\pi}{4}\right)}\right) + \cfrac{\pi}{2}
 \end{align*}
+
+
+
+
+
+
 
 \subsection{Undefined Target Points For Legs}
 \label{undefined}
