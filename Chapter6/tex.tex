@@ -1,43 +1,69 @@
 \chapter{NAO Kinematics: The Results}
 \label{Results}
-We have a lot of ways to check if solutions for both problems are working correctly. The testing for forward kinematics is trivial; we just move the end effector to a position and we just check if forward kinematics returned the correct position and orientation. On the other hand, the testing of inverse kinematics was more difficult because we must give a valid target point if we want inverse kinematics to return a solution.
 
-The problem is that we don't know the work space for the end effectors of NAO. So, we came up with another way to validate our solution. We moved one end effector to a random position, then we took the position and the orientation of this point from forward kinematics and then we assigned this point as the target point for inverse kinematics. Then we checked if inverse kinematics found a solution and we know that the solution inverse kinematics returned is correct, because there is a step of forward kinematics inside inverse kinematics that validates the output.
+There are several ways to validate solutions to forward and inverse kinematics and verify that the method used works properly. The verification of forward kinematics is trivial; we just move the end effector of a kinematic chain to a point and we check if forward kinematics returns the correct position and orientation. On the other hand, verification of inverse kinematics is more difficult, because we must give a valid (accessible) target point as input, otherwise inverse kinematics cannot find a solution.
 
-We made two demos to present kinematics in real world. The first demo tests inverse kinematics of the arm along with forward kinematics of the legs. The second demo is more complicated and checks inverse kinematics of the legs and the calculation of the center of mass.
+A practical problem is there is no clear way to know the exact work space for the end effectors of NAO. Therefore, we came up with another way of verifying our solution. We manually move an end effector to a random point, we read off the position and the orientation of this point from the forward kinematics, and then we assign this point as the target point for inverse kinematics. Finally, we check if inverse kinematics finds a solution and we know right away that this solution is correct, because the solution is check through forward kinematics against the given target point before returned.
+
+We created two demonstrations to show the effectiveness and the efficiency of our kinematics in the real world. The first demonstration is a pointing-to-the-ball task, whereby a standing robot tracks a ball in the field and uses forward kinematics of the legs and inverse kinematics of the arms to point to the exact location of the ball with its extended arm(s). The second demonstration is more complicated and consists of a simple balancing method, whereby the robot calculates its current center of mass through forward kinematics and drives one of its legs to the projection of the center of mass on the floor using inverse kinematics to maintain balance.
 
 
-\section{Real Time Performance}
-In table~\ref{times} we can see the execution times for each function (of inverse kinematics) in microseconds (us). Unfortunately, we can't compare these times with the Aldebaran's solution execution time, because it is not independent and along with the solution for inverse kinematics, it does the movement of the joints of the chain. So, we can't extract ``clean'' times from the execution.
+\section{Real-Time Performance}
+One of the goals of this work was to implement a software library for real-time kinematics computations on the robot. We measured the performance of our implementation for each of the function we offer. Table~\ref{times} shows average execution times for each function in microseconds (us). Averages were taken over 6000 measurements of execution time on the robot CPU. Unfortunately, we cannot compare these times with the Aldebaran's solution execution time, because we no access to the proprietary NaoQi middleware. 
 
-\begin{table}[!h]
-\centering
-\caption{Execution Times}
-\vspace*{0.06cm}
-\begin{tabular}{|l|c|}
-\hline
-\textbf{Function} & \textbf{Time (us)}\\ \hline
-Forward For Head & 54.28 \\
-Forward For Left Arm & 66.72 \\
-Forward For Right Arm & 69.54 \\
-Forward For Left Leg & 80.88 \\
-Forward For Right Leg & 80.78 \\
-Inverse For Head & 70.79 \\
-Inverse For Left Arm & 170.55 \\
-Inverse For Right Arm & 200.00 \\
-Inverse For Left Leg & 185.29 \\
-Inverse For Right Leg & 184.85 \\
-Calculation of CoM & 394.55 \\
-\hline
-\end{tabular}
+%\begin{table}[!t]
+%\centering
+%\caption{Execution Times}
+%\vspace*{0.06cm}
+%\begin{tabular}{|l|c|}
+%\hline
+%\textbf{Function} & \textbf{Time (us)}\\ \hline
+%Forward For Head & 54.28 \\
+%Forward For Left Arm & 66.72 \\
+%Forward For Right Arm & 69.54 \\
+%Forward For Left Leg & 80.88 \\
+%Forward For Right Leg & 80.78 \\
+%Inverse For Head & 70.79 \\
+%Inverse For Left Arm & 170.55 \\
+%Inverse For Right Arm & 200.00 \\
+%Inverse For Left Leg & 185.29 \\
+%Inverse For Right Leg & 184.85 \\
+%Calculation of CoM & 394.55 \\
+%\hline
+%\end{tabular}
+%\label{times}
+%\end{table}
+
+\begin{table}[!t]
+\caption{On-board execution times of the NAO kinematics library}
 \label{times}
+\begin{center}
+\begin{tabularx}{9.3cm}{lc}
+\toprule%
+\textbf{Kinematics Function} & \textbf{Time (us)}\\
+\midrule [\heavyrulewidth]%
+Forward Kinematics for Head & 54.28 \\
+Forward Kinematics for Left Arm & 66.72 \\
+Forward Kinematics for Right Arm & 69.54 \\
+Forward Kinematics for Left Leg & 80.88 \\
+Forward Kinematics for Right Leg & 80.78 \\
+Inverse Kinematics for Head & 70.79 \\
+Inverse Kinematics for Left Arm & 170.55 \\
+Inverse Kinematics for Right Arm & 200.00 \\
+Inverse Kinematics for Left Leg & 185.29 \\
+Inverse Kinematics for Right Leg & 184.85 \\
+Calculation of the Center of Mass & 394.55 \\
+\bottomrule%
+\end{tabularx}
+\end{center}
 \end{table}
 
-\section{Pointing To The Ball}
-In the first demo we want to make NAO point to the ball with the hands. We used, along with the kinematics, the vision~\cite{orfanoudakis2011} and the world state model of the robot. First, NAO searches for the ball and when it finds it, NAO points to the ball with one or two hands. With the help of the world state model, if NAO loses the ball, it can continue to point to the area that the ball must be according to the last vision observations.
+\section{Demonstration I: Pointing to the Ball}
 
-The ball observation can be described as a two-dimensional point without orientation. The coordination of the ball is described as polar coordinates, so we have the distance and the angle of the observation relatively to the projection of the torso on the floor. We must now move this point from two-dimensions to three-dimensions and give it an orientation. First, we transform the polar coordinates to Cartesian coordinates ($ p_x,p_y $) and we add the height of the torso as the $p_z$. Now we know the position in the three-dimensional space and we also know that $a_x$ equals to zero because we are only rotating $y$-axis (up/down) and $z$-axis (right/left). To find the two other orientations, we get the straight line that connects the position of the ball and the position of the shoulder pitch joint relatively to the torso frame. Then we have that $a_y$ equals to the angle between this line and the $y$-axis and similarly we find the $a_z$. Now we must calculate the position of the target point, which is in the line and from a distance $d$ from the joint, where $d$ is the size of the stretched arm (this is the maximum size of the arm). We need to bring the target point to that distance, because only then it will be a valid target point for inverse kinematics. We do this operation two times, one for each arm (different position of the shoulder joint) and then we give to inverse kinematics for left and right arm the resulted target points. Below there are images from the demo:
-\begin{figure}[!h]
+In the first demonstration, our goal is to make the NAO point to the ball with its stretched arms. Apart from the kinematics, to realize this task we employed the KVision module~\cite{orfanoudakis2011} for ball recognition of the Kouretes team, along with the module that updates the local world state belief of the robot. Initially, NAO searches for the ball by scanning the field with its head. When it finds the ball, it points directly to the ball with the left, the right, or both arms, depending on where the ball is located (left, right, or front). Thanks to the filtering of the world state module, if NAO loses momentarily the ball from its visual field, it can continue pointing to the location indicated by the ball model. 
+
+
+\begin{figure}[!t]
 \centerline{
 \includegraphics[width=0.32\textwidth]{Figures/Demo1/1.png}
 \includegraphics[width=0.32\textwidth]{Figures/Demo1/2.png}
@@ -49,30 +75,41 @@ The ball observation can be described as a two-dimensional point without orienta
 \includegraphics[width=0.32\textwidth]{Figures/Demo1/5.png}
 \includegraphics[width=0.32\textwidth]{Figures/Demo1/6.png}
 }
-\vspace{-0.1cm}
-\caption{Point the ball using forward and inverse kinematics}
+%\vspace{-0.1cm}
+\caption{Pointing to the ball with the NAO using forward and inverse kinematics}
 \label{demo1}
-\vspace*{0.5cm}
+%\vspace*{0.5cm}
 \end{figure}
-\section{Balancing Using The Center of Mass}
 
-In the second demo we want to make NAO to move one of its legs to the point of the projection of the CoM on the floor, so, we will have a very basic balancing system. First of all, we must calculate the position of the CoM using forward kinematics. Now we have the CoM position relatively to the torso frame. The problem is that the torso frame is never parallel to the floor. Thus, we get from the gyro-meters the angleX and angleY of the torso plain. Now we can take the position of the CoM relatively to the rotated torso:
+The ball observation can be described as a two-dimensional point without orientation. The location of the ball is given in polar coordinates, that is distance and bearing relatively to the projection of the robot torso on the floor. We must now transform this point from the two dimensions to the three dimensions and give it an orientation. To do so, we transform the polar coordinates to Cartesian coordinates $(p_x,p_y)$ and we add the height of the torso as the third coordinate $p_z$ to form the ball position $(p_x,p_y,p_z)$ in the three-dimensional space.  We also know that $a_x$ equals to zero, because we are only rotating about the $y$-axis (up/down) and the $z$-axis (right/left). To find the two other orientations, we focus on the straight line that connects the position of the ball and the position of the ShoulderPitch joint relatively to the torso frame. The orientation $a_y$ is the angle between this line and the $y$-axis and the orientation $a_z$ is the angle between this line and the $z$-axis. Additionally, the position of the target point lies along this line at a distance $d$ from the ShoulderPitch joint, where $d$ is the total length of the stretched arm. We need to set the target point at that distance to make it a valid target point for inverse kinematics. We run this procedure twice, once for each arm (the difference is the position of the corresponding ShoulderPitch joints), and finally obtain the solution(s) from inverse kinematics for the left and right arms for the corresponding target points. If both solutions are returned, the robot raises both arms pointing to the ball. If only one solution is returned, the robot raises only one arm; the other arm cannot point to the ball, as it is not possible to reach the correct target point due to physical constraints. Figure~\ref{demo1} shows snapshots from this demonstration.
 
+This demonstration was presented by team Kouretes at the SPL Open Challenge Competition at RoboCup 2012 in Mexico City, Mexico. Figure~\ref{fig:open} shows a picture taken during the open challenge presentation. 
+
+\begin{figure}[!t]
+\centerline{
+\includegraphics[width=.8\textwidth]{Figures/openchallenge2012.png}
+}
+\caption{Pointing-to-the-ball at SPL Open Challenge Competition of RoboCup 2012}
+\label{fig:open}
+\end{figure}
+
+
+
+\section{Demonstration II: Basic CoM Balancing}
+
+In the second demonstration, we seek to implement a very basic balancing method. In particular, we want to make NAO move one of its feet to the point of the projection of the CoM on the floor. First, we calculate the position of the CoM using forward kinematics, which gives the CoM position relatively to the torso frame. The problem is that the $x$-$y$ plane of the torso frame is rarely parallel to the floor. Thus, we read off the inertial unit of the robot the current rotation (angleX and angleY) of the torso plane. Now, we can calculate the position of the CoM relatively to the rotated torso:
 \[
 	T_{\text{rotated}} = R_y(\text{angleY})R_x(\text{angleX})A_{\text{CoM}}
 \]
-
-Then we put a custom value to $p_z$ which represents the desired torso height from the floor, so, now we have $T_{\text{rotated}'}$. Now we must rotate back to the torso frame, so:
-
+Then, we assign a custom value to $p_z$ in $T_{(4,3)}$, which represents the desired torso height from the floor, so, and that yields $T_{\text{rotated}'}$. Now we must rotate back to the torso frame:
 \[
-	T_{\text{final}} = \left(R_y(\text{angleY})R_x(\text{angleX})\right)^{-1}T_{\text{rotated}'}
+	T_{\text{final}} = \big(R_y(\text{angleY})R_x(\text{angleX})\big)^{-1}T_{\text{rotated}'}
 \]
+Finally, we extract $p_x$, $p_y$, and $p_z$ from $T_{\text{final}}$ and we set $(p_x,p_y,p_z)$ as the target position for inverse kinematics. The target orientation is set to $(a_x,a_y,a_z) = (-\text{angleX}, -\text{angleY}, 0)$, because we do not care about the rotation around the $z$-axis. 
 
-Finally, we set  $p_x$, $p_y$ and $p_z$ from $T_{\text{final}}$ as the target position for inverse kinematics and we set $a_x = -$angleX, $a_y = -$angleY and $a_z = 0$ as the target rotation, because we don't care about rotation around $z$-axis. Now the target point is the projection of the CoM to the floor and the rotation of the end effector is parallel to the frame of the floor.
+Figure~\ref{demo2} shows snapshots from this demonstration. Note that the foot is always parallel to the floor. It happens some times, that some robots have displaced inertial unit (accelerometers and gyro-meters). On these robots the foot is not parallel to the floor, but this represents a hardware problem, not a kinematics problem.
 
-In the figures below we can see that the foot is always parallel to the floor. It happens some times, that some robots have displaced inertial unit (accelerometers and gyro-meters). On these robots we can see that the foot is not parallel to the floor but this is a hardware problem and not a kinematics problem.
-
-\begin{figure}[!h]
+\begin{figure}[!t]
 \centerline{
 \includegraphics[width=0.32\textwidth]{Figures/Demo2/1.png}
 \includegraphics[width=0.32\textwidth]{Figures/Demo2/2.png}
@@ -84,8 +121,8 @@ In the figures below we can see that the foot is always parallel to the floor. I
 \includegraphics[width=0.32\textwidth]{Figures/Demo2/5.png}
 \includegraphics[width=0.32\textwidth]{Figures/Demo2/6.png}
 }
-\vspace{-0.1cm}
-\caption{Basic balance system using center of mass}
-\label{demo1}
-\vspace*{0.5cm}
+%\vspace{-0.1cm}
+\caption{Simple balancing method for the NAO using the center of mass}
+\label{demo2}
+%\vspace*{0.5cm}
 \end{figure}

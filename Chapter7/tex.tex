@@ -1,11 +1,20 @@
 \chapter{Conclusion}
 \label{conclusion}
-Our approach is not a breakthrough because this is the way to solve kinematics for any chain. Despite this, Kouretes are immediately the only team in RoboCup SPL League that have an analytical solution without approximations for every kinematic chain of the NAO robot. Kinematics is the bases for a lot of applications, as it is described below, and having that implemented, we can expand our code and become more competitive against other teams, because our code lucks a good motion management. Furthermore, it is possible now to extract the accurate position of cammera's horizon being used by the vision module.  
+
+Kinematics is the base for several applications related to robot motion. Our approach to NAO kinematics is based on standard principled methods for studying robot kinematic chains. Nevertheless, no complete analytical solution for the NAO robot had been published before. Our work offers such a complete analytical solution, which we expect will be useful not only to RoboCup SPL teams, but also to any NAO software developer. 
+
+
 \section{Future Work}
-Having described the inverse kinematics mechanism, it is now possible for Kouretes team to make their own independent movements (totally separated from Aldebaran's framework). Below, examples for future work follow:
+The work in this thesis can be used as the base for a several future research directions, some of which are listed below. It is also a step towards making the software architecture of our team independent from Aldebaran's development framework.
 
 \subsubsection*{Omni-Directional Walk}
-We want to make NAO walk to any direction, this is called omni-directional walk. The trajectories of walk are being calculated dynamically and for this reason, we need an inverse kinematics mechanism. Also, while the robot is walking, we must keep it in balance, so we need the position of the center of mass for the balancing system.
+
+The ability of a robot to walk towards any desired direction is called omni-directional walk. The feet (and arms) trajectories in omni-directional walk engines are being calculated dynamically and for this reason an inverse kinematics mechanism is more than necessary for the robot to be able to follow them. 
+
+\subsubsection*{Dynamic Balancing}
+
+As the robot walks, kicks, or performs any kind of motion, it must maintain its balance. Knowledge of the position of the center of mass at all times is more than necessary for successful balancing.
 
 \subsubsection*{Kick Engine}
-It is crucial to fix a mechanism for dynamic kick executions. Now, our team, has only static kicks, designed before the game but the problem with those kicks is that there are not designed to be balanced and often some robots fall down when they execute these kicks. With inverse kinematics and balancing, we can make a kick engine, that takes care for the balance of the robot and execute a kick trajectory that is designed in run time.
+
+Currently, our team relies  only on static predefined kicks designed. The problem with those kicks is that they cannot absorb random disturbances and quite often robots executing them fall down. With inverse kinematics and balancing in place, the team can develop a dynamic kick engine, which takes care of balancing the robot on one leg, while following a dynamic kick trajectory based on the ball's position with the other leg.
