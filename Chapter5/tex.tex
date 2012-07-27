@@ -232,6 +232,19 @@ Given $T$, our goal now is to find a set of joint values that leads to the same 
 
 As we shall see below, we obtain some of the solutions using $\arccos$ and $\arcsin$. The problem is that $\arcsin$ returns an angle in $\left[-\tfrac{\pi}{2},+\tfrac{\pi}{2}\right]$ and $\arccos$ returns an angle in $\left[0,\pi\right]$, even though the possible values of a joint can be in the range $\left[-\pi,+\pi\right]$. Thus, if $\theta^*_i$ is a value returned by $\arcsin$ or $\arccos$ as a solution, there is one additional symmetric solution, $\pi - \theta^*_i$ for $\arcsin$ and $-\theta^*_i$ for $\arccos$. Due to these symmetries, the equations lead to a small number of distinct candidate solutions, some of which may be infeasible or invalid because of the constrained range of each joint. To determine a valid and correct solution, we simply run each one of these solutions through the forward kinematics to verify that indeed the end effector of the chain reaches the desired position and orientation. Invalid solutions are discarded and only correct ones are kept. 
 
+In summary, the solution methodology we followed to solve the inverse kinematics problem includes the following steps: 
+\begin{enumerate}
+%\itemsep 6pt
+\item Construct the (numeric) transformation matrix to the target point
+\item Construct the (symbolic) transformation matrix through the chain
+\item Form a non-linear system by equating the two matrices 
+\item Manipulate both sides to make the problem easier
+\item Find values for some joints through geometry and trigonometry
+\item Find values for the remaining joints from the non-linear system
+\item Validate all candidate solutions through forward kinematics
+\end{enumerate}
+This methodology is quite generic and can be used in solving the problem for any kinematic chain of up to six DOF. Some steps of this methodology appear in the literature, however to our knowledge no previous work has employed all these seven steps together. 
+
 
 \subsection{Inverse Kinematics for the Head}
 The head chain consists of only two joints, therefore we can work either with the position $(p_x,p_y,p_z)$ or with the orientation $(a_x,a_y,a_z)$ of the target point to obtain a solution. In the latter case, we can achieve the desired target orientation simply by setting the HeadYaw and HeadPitch joints to $a_z$ and $a_y$ respectively. In the former case, we first construct the symbolic matrix from forward kinematics along the head chain:
@@ -303,25 +316,25 @@ r_{32} &= \cos\theta_4\left(\cos\theta_1\sin\theta_3 + \cos\widehat{\theta}_2\co
 r_{33} &= \cos\theta_1\cos\theta_3 - \cos\widehat{\theta}_2\sin\theta_1\sin\theta_3\\
 r_{34} &= l_2 + l_4\left(\sin\theta_4\left(\cos\theta_1\sin\theta_3 + \cos\widehat{\theta}_2\cos\theta_3\sin\theta_1\right) + \cos\theta_4\sin\theta_1\sin\widehat{\theta}_2\right) + l_3\sin\theta_1\sin\widehat{\theta}_2
 \end{align*}
-where $\widehat{\theta}_2$ is the DH parameter $\theta$ for the second joint, $l_1 =$ ShoulderOffsetY$+$ElbowOffsetY, $l_2 =$ ShoulderOffsetZ, $l_3 =$ UpperArmLength and $l_4 =$ HandOffsetX$+$LowerArmLength.
+where $\widehat{\theta}_2$ is the DH parameter $\theta$ for the second (LShoulderRoll) joint, $l_1 =$ ShoulderOffsetY$+$ElbowOffsetY, $l_2 =$ ShoulderOffsetZ, $l_3 =$ UpperArmLength, and $l_4 =$ HandOffsetX$+$LowerArmLength.
 It is quite difficult to extract a joint value from these equations, so we will turn to trigonometry to find the value of the LElbowRoll joint. We can observe that the upper arm, the lower arm with the hand offset, and the segment from the position of the LShoulderPitch joint to the end effector form a triangle with known lengths for all sides. The position of the LShoulderPitch joint relatively to the torso frame is known, and the position of the end effector is the desired target position $(p_x,p_y,p_z)$. So, the distance $d$ between the position $(s_x,s_y,s_z)$ of the LShoulderPitch joint and the position of the end effector $(p_x,p_y,p_z)$ can be calculated as:
 \[
 d=\sqrt{\left(s_x-p_x\right)^2 + \left(s_y-p_y\right)^2 + \left(s_z-p_z\right)^2}
 \]
 where $s_x = 0$, $s_y = l_1$, and $s_z = l_2$.
-Now, we can use the cosine law to find the interior angle $\theta'_4$ between the upper and lower arm sides of the triangle:
+Now, we can use the law of cosines to find the interior angle $\theta'_4$ between the upper and lower arm sides of the triangle:
 \[
 \theta'_4 = \arccos\left(\frac{{l_3}^2 + {l_4}^2 - d^2}{2l_3l_4}\right)
 \]
-Since $\theta'_4$ represents an interior angle and the LElbowRoll joint is being stretched in the zero position, the resulting angle in this range $\theta''_4$ is computed by:
+Since $\theta'_4$ represents an interior angle, whereas the LElbowRoll joint is stretched in the zero position, the resulting angle in this range $\theta''_4$ is computed by:
 \[
 \theta''_4 = \pi - \theta'_4
 \]
-Since the LElbowRoll joint takes only negative values, we finally $\theta_4$ as:
+Since the LElbowRoll joint takes only negative values, we finally compute $\theta_4$ as:
 \[
 \theta_4 = - \theta''_4
 \]
-The next angle we can find is the $\widehat{\theta}_2$, so we focus on equations from the symbolic matrix, where we only have $\widehat{\theta}_2$ and one more unknown (excluding $\theta_4$). Using $r_{22}$, we have:
+The next angle we can find is $\widehat{\theta}_2$, so we focus on equations from the symbolic matrix, where we only have $\widehat{\theta}_2$ and one more unknown (excluding $\theta_4$, which is already found). Using $r_{22}$, we have:
 \begin{align*}
 T_{(2,2)} &= -\cos\widehat{\theta}_2 - \cos\theta_3\cos\theta_4\sin\widehat{\theta}_2 &\Leftrightarrow\\
 \cos\theta_3\sin\widehat{\theta}_2 &= -\cfrac{\cos\widehat{\theta}_2\sin\theta_4 + T_{(2,2)}}{\cos\theta_4}
@@ -333,7 +346,7 @@ This division is always feasible, because $\theta_4$ never reaches $\pm\frac{\pi
 &p_y - l_1 - \frac{l_4\sin\theta_4 T_{(2,2)}}{\cos\theta_4} = \cos\widehat{\theta}_2\left(l_3 + l_4\cos\theta_4 + l_4\frac{{\sin\theta_4}^2}{\cos\theta_4}\right)&\Leftrightarrow\\
 &\widehat{\theta}_2 = \arccos\left(\cfrac{p_y - l_1 - \frac{l_4\sin\theta_4 T_{(2,2)}}{\cos\theta_4}}{l_3 + l_4\cos\theta_4 + l_4\frac{\sin^2\theta_4}{\cos\theta_4}}\right) \hspace{2cm} \text{because }   l_3 + l_4\cos\theta_4 + l_4\frac{\sin^2\theta_4}{\cos\theta_4}>0 \hspace{-0.8cm}
 \end{align*}
-Now the final joint value $\theta_2$ is $\theta_2 = \widehat{\theta}_2 + \frac{\pi}{2}$. From now on, we substitute $\theta_2 - \frac{\pi}{2}$ in $\widehat{\theta}_2$.
+Now the final joint value is $\theta_2 = \widehat{\theta}_2 + \frac{\pi}{2}$. From now on, we substitute $\theta_2 - \frac{\pi}{2}$ in $\widehat{\theta}_2$.
 Next, we will compute the $\theta_3$ angle:
 \begin{align*}
 T_{(2,3)} &= \sin\left(\theta_2 - \frac{\pi}{2}\right)\sin\theta_3 &\Leftrightarrow \\
@@ -345,17 +358,17 @@ T_{(1,3)} &= \cos\theta_3\sin\theta_1 + \cos\theta_1\cos\left(\theta_2 - \frac{\
 \sin\theta_1 &= \cfrac{T_{(1,3)} - \cos\theta_1\cos\left(\theta_2 - \frac{\pi}{2}\right)\sin\theta_3}{\cos\theta_3}  &\text{when } \theta_3 \neq \left|\frac{\pi}{2}\right|\\
 \cos\theta_1 &= \cfrac{T_{(1,3)}}{\cos\left(\theta_2 - \frac{\pi}{2}\right)\sin\theta_3}  &\text{when } \theta_3 = \left|\frac{\pi}{2}\right|
 \end{align*}
-So, now we have two possible solutions for $\theta_1$ and we choose between them depending on the value of $\theta_3$. So, when $\theta_3 = \left|\frac{\pi}{2}\right|$:
+There are two possible solutions for $\theta_1$ depending on the value of $\theta_3$. So, when $\theta_3 = \left|\frac{\pi}{2}\right|$:
 \begin{align*}
 &\theta_1 = \arccos\left(\cfrac{T_{(1,3)}}{\cos\left(\theta_2 - \frac{\pi}{2}\right)\sin\theta_3}\right)
 \end{align*}
-Else if $\theta_2 \neq \left|\frac{\pi}{2}\right|$, we will find the $\theta_1$ from $r_{33}$ and we will replace $\sin\theta_1$ with the result above. So:
+Otherwise, if $\theta_3 \neq \left|\frac{\pi}{2}\right|$, we find $\theta_1$ from $r_{33}$ after replacing $\sin\theta_1$ in $r_{33}$ with the result shown above. So:
 \begin{align*}
-&T_{(3,3)} = \cos\theta_1\cos\theta_3 - \cos\left(\theta_2 - \frac{\pi}{2}\right)\sin\theta_1\sin\theta_3 &\Leftrightarrow \\
-&T_{(3,3)} = \cos\theta_1\cos\theta_3 - \left(\cfrac{T_{(1,3)} - \cos\theta_1\cos\left(\theta_2 - \frac{\pi}{2}\right)\sin\theta_3}{\cos\theta_3}\right)\sin\theta_3\cos\left(\theta_2 - \frac{\pi}{2}\right) &\Leftrightarrow \\
-&\theta_1 = \arccos\left(\cfrac{T_{(3,3)} -\cfrac{ T_{(1,3)}\sin\theta_3\cos\left(\theta_2 - \frac{\pi}{2}\right)}{\cos\theta_3}}{\cos\theta_3 + \cfrac{\cos^2\left(\theta_2-\frac{\pi}{2}\right)\sin^2\theta_3}{\cos\theta_3}}\right)
+T_{(3,3)} &= \cos\theta_1\cos\theta_3 - \cos\left(\theta_2 - \frac{\pi}{2}\right)\sin\theta_1\sin\theta_3 &\Leftrightarrow \\
+T_{(3,3)} &= \cos\theta_1\cos\theta_3 - \left(\cfrac{T_{(1,3)} - \cos\theta_1\cos\left(\theta_2 - \frac{\pi}{2}\right)\sin\theta_3}{\cos\theta_3}\right)\sin\theta_3\cos\left(\theta_2 - \frac{\pi}{2}\right) &\Leftrightarrow \\
+\theta_1 &= \arccos\left(\cfrac{T_{(3,3)} -\cfrac{ T_{(1,3)}\sin\theta_3\cos\left(\theta_2 - \frac{\pi}{2}\right)}{\cos\theta_3}}{\cos\theta_3 + \cfrac{\cos^2\left(\theta_2-\frac{\pi}{2}\right)\sin^2\theta_3}{\cos\theta_3}}\right)
 \end{align*}
-Now we have calculated all the joints for the left arm, but we will have a lot of invalid angle sets. We will find the correct set after the forward kinematics validation step. Below there are all the inverse kinematics joint's equations for the left arm:
+At this point, we have multiple solution sets for all the joints of the left arm, but some of them may be invalid. We find the correct set(s) through a forward kinematics validation step. In summary, the final inverse kinematics equations for the left arm chain are:
 \begin{align*}
 \theta_4 &= -\left(\pi - \arccos\left(\cfrac{{l_3}^2 + {l_4}^2 - \sqrt{(s_x-p_x)^2 + (s_y-p_y)^2 + (s_z-p_z)^2}^2 }{2 l_3 l_4}\right)\right)\\
 \theta_2 &= \pm\arccos\left(\cfrac{p_y - l_1 - \left(\frac{l_4\sin\theta_4 T_{(2,2)}}{\cos\theta_4}\right)}{l_3 +l_4\cos\theta_4 + l_4\frac{\sin^2\theta_4}{\cos\theta_4}}\right)+\cfrac{\pi}{2}\\
@@ -364,125 +377,130 @@ Now we have calculated all the joints for the left arm, but we will have a lot o
 \theta_1 &= \pm\arccos\left(\cfrac{T_{(3,3)} - \cfrac{T_{(1,3)}\sin\theta_3\cos\left(\theta_2 - \frac{\pi}{2}\right)}{\cos\theta_3}}{\cos\theta_3 + \cfrac{\cos^2\left(\theta_2-\frac{\pi}{2}\right)\sin^2\theta_3}{\cos\theta_3}}\right) &\text{if } \theta_3 \neq \cfrac{\pi}{2}\\
 \theta_1 &= \pm\arccos\left(\cfrac{T_{(1,3)}}{\cos\left(\theta_2 - \frac{\pi}{2}\right)\sin\theta_3}\right) &\text{if } \theta_3 = \cfrac{\pi}{2}
 \end{align*}
+
+
+
 \subsection{Inverse Kinematics for the Right Arm}
-As we said before, the right and left arm are symmetric, thus, the solution is almost the same. This differs from above only at the distances over the $y$-axis and for the right arm the $\theta$ parameter does not subtract $\frac{\pi}{2}$ but it adds $\frac{\pi}{2}$. The kinematic chain for the right arm has an extra rotation matrix after the last translation:
+
+The right and left arms are symmetric, thus the solution for the right arm differs only in the distances along the $y$-axis and in the $\widehat{\theta}_2$ parameter which adds $\frac{\pi}{2}$. Additionally, the kinematic chain for the right arm has an extra rotation matrix after the last translation:
 \[
 T^\text{End}_\text{Base} = A^0_\text{Base}T^1_0T^2_1T^3_2T^4_3R_z(\tfrac{\pi}{2})A^\text{End}_{4}R_z(-\pi)
 \]
-We can remove this rotation from the reconstructed matrix , and then the chain will be the same as the chain for the left arm. So, first of all we reconstruct the final transformation matrix from the target point parameters and then we remove the rotation:
+We can completely remove this extra rotation from both transformation matrices (numeric and symbolic) without affecting the solution of the non-linear system. 
 \[
-T_\text{rhandUnrotated} = T_\text{rhand}{\left(R_z(-\pi)\right)}^{-1}
+T_\text{rhandUnrotated} = T{\big(R_z(-\pi)\big)}^{-1}
 \]
-The only changes on the symbolic table are in the translation part:
+It is now clear that the chain for the right arm is almost the same as the chain for the left arm. The only difference in the symbolic table is in the translation part:
 \begin{align*}
 &r_{14} = l_4\left(\sin\theta_4\left(\sin\theta_1\sin\theta_3 - \cos\theta_1\cos\widehat{\theta}_2\cos\theta_3\right) - \cos\theta_1\cos\theta_4\sin\widehat{\theta}_2\right) + l_3\cos\theta_1\sin\widehat{\theta}_2\\
 &r_{24} = -l_1 - l_3\cos\widehat{\theta}_2 - l_4\left(\cos\widehat{\theta}_2\cos\theta_4 - \cos\theta_3\sin\widehat{\theta}_2\sin\theta_4\right)\\
 &r_{34} = l_2 - l_4\left(\sin\theta_4\left(\cos\theta_1\sin\theta_3 + \cos\widehat{\theta}_2\cos\theta_3\sin\theta_1\right) + \cos\theta_4\sin\theta_1\sin\widehat{\theta}_2\right) - l_3\sin\theta_1\sin\widehat{\theta}_2
 \end{align*}
-As we can see, the changes don't have any impact in our solution for the left arm, e.g. no one denominator becomes zero with these changes. So, as in the previous section, we will get the equations below:
+As we can see, the changes don't have any impact in the solution given for the left arm, that is, no denominator becomes zero after these changes. So, according to the previous section, the final inverse kinematics equations for the right arm chain are:
 \begin{align*}
-T_\text{rhandUnrotated} &= T_\text{rhand}{\left(R_z(-\pi)\right)}^{-1}\\
+T' &= T_\text{rhandUnrotated} = T{\big(R_z(-\pi)\big)}^{-1}\\
 \theta_4 &= \pi - \arccos\left(\cfrac{{l_3}^2 + {l_4}^2 - \sqrt{(s_x-p_x)^2 + (s_y-p_y)^2 + (s_z-p_z)^2}^2 }{2 l_3 l_4}\right)\\
-\theta_2 &= \pm\arccos\left(\cfrac{ - p_y - l_1 - \left(\frac{l_4\sin\theta_4T_{(2,2)}}{\cos\theta_4} \right)}{l_3 +l_4\cos\theta_4 + l_4\frac{\sin^2\theta_4}{\cos\theta_4}}\right)-\frac{\pi}{2}\\
-\theta_3 &= \arcsin\left(\cfrac{T_{(2,3)}}{\sin\left(\theta_2 + \frac{\pi}{2}\right)}\right)\displaybreak[0]\\
-\theta_3 &= \pi - \arcsin\left(\cfrac{T_{(2,3)}}{\sin\left(\theta_2 + \frac{\pi}{2}\right)}\right) \\
-\theta_1 &= \pm\arccos\left(\cfrac{T_{(3,3)} - \cfrac{T_{(1,3)}\sin\theta_3\cos\left(\theta_2 + \frac{\pi}{2}\right)}{\cos\theta_3}}{\cos\theta_3 + \cfrac{\cos^2\left(\theta_2 + \frac{\pi}{2}\right)\sin^2\theta_3}{\cos\theta_3}}\right) \hspace{2cm}\text{if } \theta_3 \neq \cfrac{\pi}{2}& \\
-\theta_1 &= \pm\arccos\left(\cfrac{T_{(1,3)}}{\cos\left(\theta_2 +\frac{\pi}{2}\right)\sin\theta_3}\right) \hspace{4.4cm}\text{if } \theta_3 = \cfrac{\pi}{2}
+\theta_2 &= \pm\arccos\left(\cfrac{ - p_y - l_1 - \left(\frac{l_4\sin\theta_4T'_{(2,2)}}{\cos\theta_4} \right)}{l_3 +l_4\cos\theta_4 + l_4\frac{\sin^2\theta_4}{\cos\theta_4}}\right)-\frac{\pi}{2}\\
+\theta_3 &= \arcsin\left(\cfrac{T'_{(2,3)}}{\sin\left(\theta_2 + \frac{\pi}{2}\right)}\right)\displaybreak[0]\\
+\theta_3 &= \pi - \arcsin\left(\cfrac{T'_{(2,3)}}{\sin\left(\theta_2 + \frac{\pi}{2}\right)}\right) \\
+\theta_1 &= \pm\arccos\left(\cfrac{T'_{(3,3)} - \cfrac{T'_{(1,3)}\sin\theta_3\cos\left(\theta_2 + \frac{\pi}{2}\right)}{\cos\theta_3}}{\cos\theta_3 + \cfrac{\cos^2\left(\theta_2 + \frac{\pi}{2}\right)\sin^2\theta_3}{\cos\theta_3}}\right) &\text{if } \theta_3 \neq \cfrac{\pi}{2}& \\
+\theta_1 &= \pm\arccos\left(\cfrac{T'_{(1,3)}}{\cos\left(\theta_2 +\frac{\pi}{2}\right)\sin\theta_3}\right) &\text{if } \theta_3 = \cfrac{\pi}{2}
 \end{align*}
+
+
+
+
+
 \subsection{Inverse Kinematics for the Left Leg}
-The kinematic chain for the legs has six joints, so, it will be much more difficult to find a solution. The symbolic matrix for this chain was too huge, therefore we want to make it smaller. First, to make the matrix smaller, we will remove the known rotations and translations from the kinematic chain:
+
+The kinematic chain of each leg has six joints, so it is much more difficult to find a solution. Since the first three joints of the chain (LHipYawPitch,  LHipRoll, LHipPitch) have intersecting axes, the problem is possibly solvable. The symbolic matrix for this chain was too complicated, therefore in order to simplify it, we remove the known translations from the kinematic chain:
 \[
-T_{\text{lleg}} = A^0_\text{Base}T^1_0T^2_1T^3_2T^4_3T^5_4T^6_5R_z(\pi)R_y(-\tfrac{\pi}{2})A^\text{End}_6
+T = A^0_\text{Base}T^1_0T^2_1T^3_2T^4_3T^5_4T^6_5R_z(\pi)R_y(-\tfrac{\pi}{2})A^\text{End}_6
 \]
 \[
-T_{\text{lleg}'} = T_\text{lleg}{\left(A^\text{End}_6\right)}^{-1}
+\widehat{T} = {\left(A^0_\text{Base}\right)}^{-1}T{\left(A^\text{End}_6\right)}^{-1}
 \]
+Now, we have the chain from the base frame of the first joint to the (rotated) frame of the last joint. The first joint, LHipYawPitch, is rotated by $-\frac{3\pi}{4} $ about the $ x $-axis. We rotate the origin of the chain by $\frac{\pi}{4}$ about the $x$-axis, which makes the first joint (LHipYawPitch) a yaw joint (aligned with the $z$-axis):
 \[
-T_{\text{lleg}''} = {\left(A^0_\text{Base}\right)}^{-1}T_{\text{lleg}'}
+\widetilde{T} = R_x(\tfrac{\pi}{4})\widehat{T}
 \]
-Now we have the chain from the base frame of the first joint to the frame of the last joint. The first joint, HipYawPitch, is rotated by $-\frac{3\pi}{4} $ in the $ x $-axis. We will add a rotation a the start of the chain to rotate the $x$-axis by $\frac{\pi}{4}$. Then the first joint will be a yaw joint and then we will have three intersected joints and the problem will becomes solvable:
+Now. the end effector is the LAnkleRoll joint and the base is the rotated LHipYawPitch joint. The first four joints (LHipYawPitch, LHipRoll, LHipPitch, LKneePitch) affect the position and orientation of the end effector and the other two joints (LAnklePitch, LAnkleRoll) affect only its orientation. It would be convenient, if only three joints were affecting the position of the end effector, since we are in the three-dimensional space. Thus, we invert the transformation matrix to form the reverse chain. Now only the LAnkleRoll, LAnklePitch, and LKneePitch joints affect the position:
 \[
-T_\text{llegRotated} = R_x(\tfrac{\pi}{4})T_{\text{lleg}''}
+T' = {\left(\widetilde{T}\right)}^{-1}
 \]
-Now the end effector is the last joint (ankle roll) and the base is the first joint (rotated HipYawPitch). The first four joints are responsible for the position and orientation of the end effector and the other two joints are only responsible for the orientation. It would be easier if we have only three joints responsible for the position of the end effector, thus, we will invert the transformation matrix. Now only the ankle roll, ankle pitch and knee pitch are responsible for the position:
-\[
-T_\text{llegInv} = {\left(T_\text{llegRotated}\right)}^{-1}
-\]
-The resulted symbolic matrix is pretty large and we will use only the translation part, so:
+The resulting symbolic matrix is still quite complex, but for now we only need the translation block, which is simple:
 \begin{align*}
 &r_{14} = l_2\sin\theta_5 - l_1\sin\left(\theta_4 + \theta_5\right)\\
 &r_{24} = \left(l_2\cos\theta_5 + l_1 \cos\left(\theta_4 + \theta_5\right)\right)\sin\theta_6\\
 &r_{34} = \left(l_2\cos\theta_5 + l_1 \cos\left(\theta_4 + \theta_5\right)\right)\cos\theta_6
 \end{align*}
-where $l_1 =$ ThightLength and $l_2 =$ TibiaLength.
-We can now find $\theta_4$ with the same way that we find $\theta_4$ for the arms. So, we have a triangle with the following sides: ThighLength, TibiaLength and the distance from the base to the end effector:
+where $l_1 =$ ThighLength and $l_2 =$ TibiaLength.
+We can now find $\theta_4$ the same way we found $\theta_4$ for the arms. We focus on the triangle formed by the leg with  ThighLength, TibiaLength, and the distance from the base to the end effector in the reverse chain as sides:
 \[
-d = \sqrt{\left(s_x-p_x\right)^2 + \left(s_y-p_y\right)^2 + \left(s_z-p_z\right)^2}
+d = \sqrt{\left(s_x-p'_x\right)^2 + \left(s_y-p'_y\right)^2 + \left(s_z-p'_z\right)^2}
 \]
-where $s_x = 0$, $s_y = $HipOffsetY, $s_z =$HipOffsetZ, $p_x = T_{\text{llegInv}(1,4)}$, $p_y = T_{\text{llegInv}(2,4)}$ and $p_z = T_{\text{llegInv}(3,4)}$. Now, we can use the cosine law to find the interior angle $\theta'_4$ between the thign and tibia sides of the triangle:
-Now from the law of cosines we have:
+where $s_x = 0$, $s_y = $ HipOffsetY, $s_z =$ HipOffsetZ, $p'_x = T'_{(1,4)}$, $p'_y = T'_{(2,4)}$, and $p'_z = T'_{(3,4)}$. Now, we can use the law of cosines to find the interior angle $\theta'_4$ between the thigh and tibia sides of the triangle:
 \[
 \theta'_4 =\arccos\left(\frac{{l_1}^2 + {l_2}^2 - d^2}{2 l_1 l_2}\right)\\
 \]
-Since $\theta'_4$ represents an interior angle and the LKneePitch joint is being stretched in the zero position, the resulting angle in this range $\theta''_4$ is computed by:
+Since $\theta'_4$ represents an interior angle, whereas the LKneePitch joint is stretched in the zero position, the resulting angle in this range $\theta''_4$ is computed by:
 \[
 \theta''_4 = \pi - \theta'_4
 \]
-Finally, because the range of this joint includes both possitive and negative angles the resulting joint value is:
+Since the range of the LKneePitch joint includes both positive and negative angles, we finally compute $\theta_4$ as:
 \[
 \theta_4 = \pm\theta''_4
 \]
-Next, we will extract the $\theta_6$ angle. We can extract this angle from the translation matrix using $r_{24}$ and $r_{34}$:
+Next, we extract the $\theta_6$ angle from the translation block using $r_{24}$ and $r_{34}$:
 \begin{align*}
-\frac{r_{24}}{r_{34}} &= \frac{p_y}{p_z} &\Leftrightarrow \\
-\frac{\left(l_2\cos\theta_5 + l_1 \cos\left(\theta_4 + \theta_5\right)\right)\sin\theta_6}{\left(l_2\cos\theta_5 + l_1 \cos\left(\theta_4 + \theta_6\right)\right) \cos\theta_5} &= \frac{p_y}{p_z} &\Leftrightarrow \\
-\theta_6 &= \arctan\left(\frac{p_y}{p_z}\right)&\text{if} \left(l_2\cos\theta_5 + l_1 \cos\left(\theta_4 + \theta_5\right)\right) \neq 0
+\frac{r_{24}}{r_{34}} &= \frac{p'_y}{p'_z} &\Leftrightarrow \\
+\frac{\left(l_2\cos\theta_5 + l_1 \cos\left(\theta_4 + \theta_5\right)\right)\sin\theta_6}{\left(l_2\cos\theta_5 + l_1 \cos\left(\theta_4 + \theta_6\right)\right) \cos\theta_6} &= \frac{p'_y}{p'_z} &\Leftrightarrow \\
+\theta_6 &= \arctan\left(\frac{p'_y}{p'_z}\right)&\text{if} \left(l_2\cos\theta_5 + l_1 \cos\left(\theta_4 + \theta_5\right)\right) \neq 0
 \end{align*}
-Because we don't know $\theta_5$, we can't find when this equation is zero. So we will have division by zero, but in reality we will not have this problem, because we are using the atan2 function in our program and the result will be just undefined. So, the program will continue to run but the validation step will reject all the solutions. In figure~\ref{fig:unlocus} we can see the locus of the equation, which gives the undefined points. In Subsection~\ref{undefined} we present the locus along with the values of the ankle pitch ($\theta_5$) and knee pitch ($\theta_4$) for a series of moves of the robot and we discuss what we do when we are in this locus.
+Since we don't know $\theta_5$, we cannot determine in advance when the denominator becomes zero. Figure~\ref{fig:unlocus} shows the locus of this equation in the space of the KneePitch and AnklePitch joints; in these configurations, no solution can be extracted. In practice, a division by zero will never occur, because we are using the {\tt atan2} function in our implementation and the result will be just undefined. These ``undefined'' solutions will be rejected by the validation step.
 
 \begin{figure}[!h]
 	\begin{center}
 		\includegraphics[height = 10cm]{Figures/locus.pdf}
- 		\caption{Undefined Locus For Legs}
+ 		\caption{Locus of leg configurations with undefined inverse kinematics solutions}
  		\label{fig:unlocus}
 	\end{center}
 \end{figure}
 
-Now we can reconstruct and remove the rotation at the end and the transformation from ankle pitch to ankle roll from the chain to make it simpler
+To move on, we go back to $\widetilde{T}$ and we remove the two rotations at the end of the chain along with the transformation $T^6_5$ which is now known, because $\theta_6$ is known:
 \[
-T_{\text{llegRotated}'} = T_\text{llegRotated}\left(T^6_5R_z\left(\pi\right)R_y(-\tfrac{\pi}{2})\right)^{-1}
+\widetilde{T}' = \widetilde{T}\left(T^6_5R_z\left(\pi\right)R_y(-\tfrac{\pi}{2})\right)^{-1}
 \]
+Then, we form the reverse chain: 
 \[
-T_{\text{llegInv}'} = \left( T_{\text{llegRotated}'} \right) ^{-1}
+T'' = \left( \widetilde{T}' \right) ^{-1}
 \]
-Now we have $p_x = T_{\text{llegInv}'(1,4)}$, $p_y = T_{\text{llegInv}'(2,4)}$ and $p_z = T_{\text{llegInv}'(3,4)}$. From the new symbolic transformation matrix we have:
+and we extract the new target position $p''_x = T''_{(1,4)}$, $p''_y = T''_{(2,4)}$, and $p''_z = T''_{(3,4)}$. The translation block of the new symbolic transformation matrix is:
 \begin{align*}
 &r_{14} = l_2\cos\theta_5 + l_1\left(\cos\theta_5\cos\theta_4 - \sin\theta_5\sin\theta_4\right)\\
 &r_{24} = -l_2\sin\theta_5 - l_1\left(\sin\theta_5\cos\theta_4 + \cos\theta_5\sin\theta_4\right)\\
 &r_{34} = 0
 \end{align*}
-We only need the translation part to extract $\theta_5$, so:
+In these equations, $\theta_5$ is the only unknown and can be found as follows:
 \begin{align*}
-&\cos\theta_5\left(l_2+l_1\cos\theta_4\right) = p_x + l_2\sin\theta_5\sin\theta_4 & \Leftrightarrow\\
-&\cos\theta_5 = \cfrac{p_x + l_1\sin\theta_5\sin\theta_4}{l_2+l_1\cos\theta_4}&\text{if }l_2+l_1\cos\theta_4\neq0\\
+r_{14} &= p''_x & \Leftrightarrow\\
+\left(l_2+l_1\cos\theta_4\right) \cos\theta_5 &= p''_x + l_1\sin\theta_5\sin\theta_4 & \Leftrightarrow\\
+\cos\theta_5 &= \cfrac{p''_x + l_1\sin\theta_5\sin\theta_4}{l_2+l_1\cos\theta_4}&\text{if }l_2+l_1\cos\theta_4\neq0\\
 \end{align*}
-The $l_2+l_1\cos\theta_4$ is zero if and only if $\cos\theta_4 = 1.029$. So it is always greater than zero, because $-1 \leq \cos \leq 1$:
+Given the lengths of the links of the robot, the denominator $l_2+l_1\cos\theta_4$ becomes zero, only if $\cos\theta_4 = -1.029$, which is impossible, since $|\cos\theta_4| \le 1$. We continue with $r_{24}$: 
 \begin{align*}
-&\sin\theta_5\left(-l_2-l_1\cos\theta_4\right) - l_2\cos\theta_5\sin\theta_4 = p_y& \Leftrightarrow\\
-&\sin\theta_5\left(-l_2-l_1\cos\theta_4\right) - l_2\cfrac{p_x + l_1\sin\theta_5\sin\theta_4}{l_2+l_1\cos\theta_4}\sin\theta_4\ =p_y & \Leftrightarrow\\
-&-\sin\theta_5\left(l_2+l_1\cos\theta_4\right) - \cfrac{l_2p_x\sin\theta_4}{l_2+l_1\cos\theta_4} - \cfrac{-{l_2}^2\sin\theta_5\sin^2\theta_4}{l_2+l_1\cos\theta_4} = p_y&\Leftrightarrow\\
-&-\sin\theta_5\left(l_2+l_1\cos\theta_4\right)^2 - {l_2}^2\sin\theta_5\sin^2\theta_4 = p_y\left(l_2+l_1\cos\theta_4\right) + l_2p_x\sin\theta_4 & \Leftrightarrow\\
-&\theta_5 = \arcsin\left(-\frac{p_y\left(l_2+l_1\cos\theta_4\right) + l_1p_x\sin\theta_4}{{l_1}^2\sin^2\theta_4 + \left(l_2 + l_1\cos\theta_4\right)}\right)
+&\sin\theta_5\left(-l_2-l_1\cos\theta_4\right) - l_2\cos\theta_5\sin\theta_4 = p''_y& \Leftrightarrow\\
+&\sin\theta_5\left(-l_2-l_1\cos\theta_4\right) - l_2\cfrac{p''_x + l_1\sin\theta_5\sin\theta_4}{l_2+l_1\cos\theta_4}\sin\theta_4\ =p''_y & \Leftrightarrow\\
+&-\sin\theta_5\left(l_2+l_1\cos\theta_4\right) - \cfrac{l_2p''_x\sin\theta_4}{l_2+l_1\cos\theta_4} - \cfrac{-{l_2}^2\sin\theta_5\sin^2\theta_4}{l_2+l_1\cos\theta_4} = p''_y&\Leftrightarrow\\
+&-\sin\theta_5\left(l_2+l_1\cos\theta_4\right)^2 - {l_2}^2\sin\theta_5\sin^2\theta_4 = p''_y\left(l_2+l_1\cos\theta_4\right) + l_2p''_x\sin\theta_4 & \Leftrightarrow\\
+&\theta_5 = \arcsin\left(-\frac{p''_y\left(l_2+l_1\cos\theta_4\right) + l_1p''_x\sin\theta_4}{{l_1}^2\sin^2\theta_4 + \left(l_2 + l_1\cos\theta_4\right)^2}\right)
 \end{align*}
-We can do the division because ${l_1}^2\sin^2\theta_4 + \left(l_2 + l_1\cos\theta_4\right)^2$ is obviously greater than zero. 
-Now we can remove the two transformations of $\theta_4$ and $\theta_5$ from the symbolic matrix and then we will have a transformation matrix that is a rotation matrix:
+The division is always feasible, because ${l_1}^2\sin^2\theta_4 + \left(l_2 + l_1\cos\theta_4\right)^2$ is obviously greater than zero. 
+Now, we can go back $\widetilde{T}'$ and remove the two transformations $T^4_3$ and $T^5_4$, since $\theta_4$ and $\theta_5$ are known: 
 \[
-T_{\text{llegRotated}''} = T_{\text{llegRotated}'}\left(T^4_3T^5_4\right)^{-1}
+T''' = \widetilde{T}' \left(T^4_3T^5_4\right)^{-1}
 \]
-\[
-T_{\text{llegInv}''} = \left(T_{\text{llegRotated}''}\right)^{-1}
-\]
-And the rotation part is:
+The translation block in this transformation is zero, because the only joints left are the three hip joints. The rotation block of the transformation is:
 \begin{align*}
 &r_{11} = \cos\widehat{\theta}_1\cos\widehat{\theta}_2\cos\theta_4 - \sin\widehat{\theta}_1\sin\theta_3\\
 &r_{12} = -\cos\theta_3\sin\widehat{\theta}_1 - \cos\widehat{\theta}_1\cos\widehat{\theta}_2\sin\theta_3\\
@@ -494,7 +512,8 @@ And the rotation part is:
 &r_{32} = -\cos\widehat{\theta}_1\cos\theta_3 + \cos\widehat{\theta}_2\sin\widehat{\theta}_1\sin\theta_3\\
 &r_{33} = -\sin\widehat{\theta}_1\sin\widehat{\theta}_2
 \end{align*}
-Finally we can extract, from the transformation matrix, the remaining three angles:
+where $\widehat{\theta}_1$ is the DH parameter $\theta$ for the first (LHipYawPitch) joint and $\widehat{\theta}_2$ is the DH parameter $\theta$ for the second (LHipRoll) joint.
+Now, we can extract the remaining three angles as follows:
 \begin{align*}
 \widehat{\theta}_2 &= \arccos T_{\text{llegInv}''(2,3)}\\
 \theta_2 &= \widehat{\theta}_2 - \cfrac{\pi}{4}\\
@@ -502,8 +521,9 @@ Finally we can extract, from the transformation matrix, the remaining three angl
 \widehat{\theta}_1 &= \arccos\left(\cfrac{T_{\text{llegInv}''(3,3)}}{\sin\left(\theta_2+\frac{\pi}{4}\right)}\right)\\
 \theta_1 &= \widehat{\theta}_1 + \cfrac{\pi}{2}
 \end{align*}
-The equations above don't have any problem with division by zero because of the restriction of NAO. The HipRoll joint $(\theta_2)$ doesn't reach $-\frac{\pi}{4}$ or $\frac{3\pi}{4}$ so the denominator never becomes zero. Finally, we will do a forward validation step for all possible set of angles.
-Below there are all the equations of inverse kinematics for the left leg:
+The equations above are valid, because by the robot specifications the LHipRoll joint $(\theta_2)$ cannot reach $-\frac{\pi}{4}$ or $\frac{3\pi}{4}$ and therefore the denominator $\sin\left(\theta_2+\frac{\pi}{4}\right)$ never becomes zero. 
+
+In summary, the equations of inverse kinematics for the left leg are:
 \begin{align*}
 T_\text{llegInv} &= \left(R_x(\tfrac{\pi}{4})\left(\left(A^0_\text{Base}\right)^{-1} T_\text{lleg} \left(A^\text{End}_6\right)^{-1}\right)\right)^{-1} \\
 \theta_4 &=\pm\left(\pi - \arccos\left(\frac{{l_1}^2 + {l_2}^2 - \sqrt{\left(s_x-p_x\right)^2 + \left(s_y-p_y\right)^2 + \left(s_z-p_z\right)^2}^2}{2 l_1 l_2}\right)\right) \\
