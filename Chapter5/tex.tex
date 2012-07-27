@@ -370,8 +370,8 @@ T_{(3,3)} &= \cos\theta_1\cos\theta_3 - \left(\cfrac{T_{(1,3)} - \cos\theta_1\co
 \end{align*}
 At this point, we have multiple solution sets for all the joints of the left arm, but some of them may be invalid. We find the correct set(s) through a forward kinematics validation step. In summary, the final inverse kinematics equations for the left arm chain are:
 \begin{align*}
-\theta_4 &= -\left(\pi - \arccos\left(\cfrac{{l_3}^2 + {l_4}^2 - \sqrt{(s_x-p_x)^2 + (s_y-p_y)^2 + (s_z-p_z)^2}^2 }{2 l_3 l_4}\right)\right)\\
-\theta_2 &= \pm\arccos\left(\cfrac{p_y - l_1 - \left(\frac{l_4\sin\theta_4 T_{(2,2)}}{\cos\theta_4}\right)}{l_3 +l_4\cos\theta_4 + l_4\frac{\sin^2\theta_4}{\cos\theta_4}}\right)+\cfrac{\pi}{2}\\
+\theta_4 &= -\left(\pi - \arccos\left(\cfrac{{l_3}^2 + {l_4}^2 - \sqrt{\left(s_x-T_{(1,4)}\right)^2 + \left(s_y-T_{(2,4)}\right)^2 + \left(s_z-T_{(3,4)}\right)^2}^2 }{2 l_3 l_4}\right)\right)\\
+\theta_2 &= \pm\arccos\left(\cfrac{T_{(2,4)} - l_1 - \left(\frac{l_4\sin\theta_4 T_{(2,2)}}{\cos\theta_4}\right)}{l_3 +l_4\cos\theta_4 + l_4\frac{\sin^2\theta_4}{\cos\theta_4}}\right)+\cfrac{\pi}{2}\\
 \theta_3 &= \arcsin\left(\cfrac{T_{(2,3)}}{\sin\left(\theta_2-\frac{\pi}{2}\right)}\right)\\
 \theta_3 &= \pi - \arcsin\left(\frac{T_{(2,3)}}{\sin\left(\theta_2-\frac{\pi}{2}\right)}\right)\\
 \theta_1 &= \pm\arccos\left(\cfrac{T_{(3,3)} - \cfrac{T_{(1,3)}\sin\theta_3\cos\left(\theta_2 - \frac{\pi}{2}\right)}{\cos\theta_3}}{\cos\theta_3 + \cfrac{\cos^2\left(\theta_2-\frac{\pi}{2}\right)\sin^2\theta_3}{\cos\theta_3}}\right) &\text{if } \theta_3 \neq \cfrac{\pi}{2}\\
@@ -399,9 +399,9 @@ It is now clear that the chain for the right arm is almost the same as the chain
 As we can see, the changes don't have any impact in the solution given for the left arm, that is, no denominator becomes zero after these changes. So, according to the previous section, the final inverse kinematics equations for the right arm chain are:
 \begin{align*}
 T' &= T_\text{rhandUnrotated} = T{\big(R_z(-\pi)\big)}^{-1}\\
-\theta_4 &= \pi - \arccos\left(\cfrac{{l_3}^2 + {l_4}^2 - \sqrt{(s_x-p_x)^2 + (s_y-p_y)^2 + (s_z-p_z)^2}^2 }{2 l_3 l_4}\right)\\
-\theta_2 &= \pm\arccos\left(\cfrac{ - p_y - l_1 - \left(\frac{l_4\sin\theta_4T'_{(2,2)}}{\cos\theta_4} \right)}{l_3 +l_4\cos\theta_4 + l_4\frac{\sin^2\theta_4}{\cos\theta_4}}\right)-\frac{\pi}{2}\\
-\theta_3 &= \arcsin\left(\cfrac{T'_{(2,3)}}{\sin\left(\theta_2 + \frac{\pi}{2}\right)}\right)\displaybreak[0]\\
+\theta_4 &= \pi - \arccos\left(\cfrac{{l_3}^2 + {l_4}^2 - \sqrt{\left(s_x-T'_{(1,4)}\right)^2 + \left(s_y-T'_{(2,4)}\right)^2 + \left(s_z-T'_{(3,4)}\right)^2}^2 }{2 l_3 l_4}\right)\\
+\theta_2 &= \pm\arccos\left(\cfrac{ - T'_{(2,4)} - l_1 - \left(\frac{l_4\sin\theta_4T'_{(2,2)}}{\cos\theta_4} \right)}{l_3 +l_4\cos\theta_4 + l_4\frac{\sin^2\theta_4}{\cos\theta_4}}\right)-\frac{\pi}{2}\\
+\theta_3 &= \arcsin\left(\cfrac{T'_{(2,3)}}{\sin\left(\theta_2 + \frac{\pi}{2}\right)}\right)\\
 \theta_3 &= \pi - \arcsin\left(\cfrac{T'_{(2,3)}}{\sin\left(\theta_2 + \frac{\pi}{2}\right)}\right) \\
 \theta_1 &= \pm\arccos\left(\cfrac{T'_{(3,3)} - \cfrac{T'_{(1,3)}\sin\theta_3\cos\left(\theta_2 + \frac{\pi}{2}\right)}{\cos\theta_3}}{\cos\theta_3 + \cfrac{\cos^2\left(\theta_2 + \frac{\pi}{2}\right)\sin^2\theta_3}{\cos\theta_3}}\right) &\text{if } \theta_3 \neq \cfrac{\pi}{2}& \\
 \theta_1 &= \pm\arccos\left(\cfrac{T'_{(1,3)}}{\cos\left(\theta_2 +\frac{\pi}{2}\right)\sin\theta_3}\right) &\text{if } \theta_3 = \cfrac{\pi}{2}
@@ -515,27 +515,27 @@ The translation block in this transformation is zero, because the only joints le
 where $\widehat{\theta}_1$ is the DH parameter $\theta$ for the first (LHipYawPitch) joint and $\widehat{\theta}_2$ is the DH parameter $\theta$ for the second (LHipRoll) joint.
 Now, we can extract the remaining three angles as follows:
 \begin{align*}
-\widehat{\theta}_2 &= \arccos T_{\text{llegInv}''(2,3)}\\
+\widehat{\theta}_2 &= \arccos T'''_{(2,3)}\\
 \theta_2 &= \widehat{\theta}_2 - \cfrac{\pi}{4}\\
-\theta_3 &= \arcsin\left(\cfrac{T_{\text{llegInv}''(2,2)}}{\sin\left(\theta_2+\frac{\pi}{4}\right)}\right)\\
-\widehat{\theta}_1 &= \arccos\left(\cfrac{T_{\text{llegInv}''(3,3)}}{\sin\left(\theta_2+\frac{\pi}{4}\right)}\right)\\
+\theta_3 &= \arcsin\left(\cfrac{T'''_{(2,2)}}{\sin\left(\theta_2+\frac{\pi}{4}\right)}\right)\\
+\widehat{\theta}_1 &= \arccos\left(\cfrac{T'''_{(3,3)}}{\sin\left(\theta_2+\frac{\pi}{4}\right)}\right)\\
 \theta_1 &= \widehat{\theta}_1 + \cfrac{\pi}{2}
 \end{align*}
 The equations above are valid, because by the robot specifications the LHipRoll joint $(\theta_2)$ cannot reach $-\frac{\pi}{4}$ or $\frac{3\pi}{4}$ and therefore the denominator $\sin\left(\theta_2+\frac{\pi}{4}\right)$ never becomes zero. 
 
 In summary, the equations of inverse kinematics for the left leg are:
 \begin{align*}
-T_\text{llegInv} &= \left(R_x(\tfrac{\pi}{4})\left(\left(A^0_\text{Base}\right)^{-1} T_\text{lleg} \left(A^\text{End}_6\right)^{-1}\right)\right)^{-1} \\
-\theta_4 &=\pm\left(\pi - \arccos\left(\frac{{l_1}^2 + {l_2}^2 - \sqrt{\left(s_x-p_x\right)^2 + \left(s_y-p_y\right)^2 + \left(s_z-p_z\right)^2}^2}{2 l_1 l_2}\right)\right) \\
-\theta_6 &= \arctan\left(\frac{p_y}{p_z}\right)\hspace{3cm}\text{if} \left(l_2\cos\theta_5 + l_1 \cos\left(\theta_4 + \theta_5\right)\right) \neq 0 \\
-T_{\text{llegInv}'} &= \left(\left(T_\text{llegInv}\right)^{-1}\left(T^6_5R_z\left(\pi\right)R_y(-\tfrac{\pi}{2})\right)^{-1}\right)^{-1} \\
-\theta_5 &= \arcsin\left(-\frac{p_y\left(l_2+l_1\cos\theta_4\right) + l_1p_x\sin\theta_4}{{l_1}^2\sin^2\theta_4 + \left(l_2 + l_1\cos\theta_4\right)}\right) \\
-\theta_5 &= \pi - \arcsin\left(-\frac{p_y\left(l_2+l_1\cos\theta_4\right) + l_1p_x\sin\theta_4}{{l_1}^2\sin^2\theta_4 + \left(l_2 + l_1\cos\theta_4\right)}\right)\\
-T_{\text{llegInv}''} &= \left(\left(T_{\text{llegInv}'}\right)^{-1}\left(T^4_3T^5_4\right)^{-1}\right)^{-1} \\
-\theta_2 &= \pm\arccos T_{\text{llegInv}''(2,3)} - \cfrac{\pi}{4} \\
-\theta_3 &= \arcsin\left(\cfrac{T_{\text{llegInv}''(2,2)}}{\sin\left(\theta_2+\frac{\pi}{4}\right)}\right) \\
-\theta_3 &= \pi - \arcsin\left(\cfrac{T_{\text{llegInv}''(2,2)}}{\sin\left(\theta_2+\frac{\pi}{4}\right)}\right) \\
-\theta_1 &= \pm\arccos\left(\cfrac{T_{\text{llegInv}''(3,3)}}{\sin\left(\theta_2+\frac{\pi}{4}\right)}\right) + \cfrac{\pi}{2}
+T' &= \left(R_x(\tfrac{\pi}{4})\left(\left(A^0_\text{Base}\right)^{-1} T \left(A^\text{End}_6\right)^{-1}\right)\right)^{-1} \\
+\theta_4 &=\pm\left(\pi - \arccos\left(\frac{{l_1}^2 + {l_2}^2 - \sqrt{\left(s_x-T'_{(1,4)}\right)^2 + \left(s_y-T'_{(2,4)}\right)^2 + \left(s_z-T'_{(3,4)}\right)^2}^2}{2 l_1 l_2}\right)\right) \\
+\theta_6 &= \arctan\left(\frac{T'_{(2,4)}}{T'_{(3,4)}}\right)\hspace{6.5cm}\text{if} \left(l_2\cos\theta_5 + l_1 \cos\left(\theta_4 + \theta_5\right)\right) \neq 0 \\
+T'' &= \left(\left(T'\right)^{-1}\left(T^6_5R_z\left(\pi\right)R_y(-\tfrac{\pi}{2})\right)^{-1}\right)^{-1} \\
+\theta_5 &= \arcsin\left(-\frac{T''_{(2,4)}\left(l_2+l_1\cos\theta_4\right) + l_1T''_{(1,4)}\sin\theta_4}{{l_1}^2\sin^2\theta_4 + \left(l_2 + l_1\cos\theta_4\right)}\right) \\
+\theta_5 &= \pi - \arcsin\left(-\frac{T''_{(2,4)}\left(l_2+l_1\cos\theta_4\right) + l_1T''_{(1,4)}\sin\theta_4}{{l_1}^2\sin^2\theta_4 + \left(l_2 + l_1\cos\theta_4\right)}\right) \\
+T''' &= \left(T''\right)^{-1}\left(T^4_3T^5_4\right)^{-1}\\
+\theta_2 &= \pm\arccos\left(T'''_{(2,3)}\right) - \cfrac{\pi}{4} \\
+\theta_3 &= \arcsin\left(\cfrac{T'''_{(2,2)}}{\sin\left(\theta_2+\frac{\pi}{4}\right)}\right) \\
+\theta_3 &= \pi - \arcsin\left(\cfrac{T'''_{(2,2)}}{\sin\left(\theta_2+\frac{\pi}{4}\right)}\right) \\
+\theta_1 &= \pm\arccos\left(\cfrac{T'''_{(3,3)}}{\sin\left(\theta_2+\frac{\pi}{4}\right)}\right) + \cfrac{\pi}{2}
 \end{align*}
 
 
@@ -547,33 +547,30 @@ T_{\text{llegInv}''} &= \left(\left(T_{\text{llegInv}'}\right)^{-1}\left(T^4_3T^
 \subsection{Inverse Kinematics for the Right Leg}
 As we mentioned before, the chains of the legs are symmetric, so we will have a similar solution for the problem as we had with the arms. The only changes are in the rotation matrix that we use to rotate the HipYawPitch joint. Now we must rotate by $-\frac{\pi}{4}$.
 \[
-T_{\text{rleg}} = A^0_\text{Base}T^1_0T^2_1T^3_2T^4_3T^5_4T^6_5R_z(\pi)R_y(-\tfrac{\pi}{2})A^\text{End}_6
+T = A^0_\text{Base}T^1_0T^2_1T^3_2T^4_3T^5_4T^6_5R_z(\pi)R_y(-\tfrac{\pi}{2})A^\text{End}_6
 \]
 \[
-T_{\text{rleg}'} = T_\text{rleg}{\left(A^\text{End}_6\right)}^{-1}
+\widehat{T} = {\left(A^0_\text{Base}\right)}^{-1}T{\left(A^\text{End}_6\right)}^{-1}
 \]
 \[
-T_{\text{rleg}''} = {\left(A^0_\text{Base}\right)}^{-1}T_{\text{rleg}'}
+\widetilde{T} = R_x(-\tfrac{\pi}{4}) \widehat{T}
 \]
 \[
-T_\text{rlegRotated} = R_x(-\tfrac{\pi}{4}) T_{\text{rleg}''}
-\]
-\[
-T_\text{rlegInv} = {\left(T_\text{rlegRotated}\right)}^{-1}
+T' = {\left(\widetilde{T}\right)}^{-1}
 \]
 After that, the symbolic matrix for the right leg is exactly the same as the symbolic matrix for the left leg. From this point of view, if we follow all the steps as we did with the left leg, we will conclude to the same equations. So, the final equations are:
 \begin{align*}
-T_\text{rlegInv} &= \left(R_x(\tfrac{\pi}{4})\left(\left(A^0_\text{Base}\right)^{-1} T_\text{rleg} \left(A^\text{End}_6\right)^{-1}\right)\right)^{-1} \\
-\theta_4 &=\pm\left(\pi - \arccos\left(\frac{{l_1}^2 + {l_2}^2 - \sqrt{\left(s_x-p_x\right)^2 + \left(s_y-p_y\right)^2 + \left(s_z-p_z\right)^2}^2}{2 l_1 l_2}\right)\right) \\
-\theta_6 &= \arctan\left(\frac{p_y}{p_z}\right)\hspace{3cm}\text{if} \left(l_2\cos\theta_5 + l_1 \cos\left(\theta_4 + \theta_5\right)\right) \neq 0 \\
-T_{\text{rlegInv}'} &= \left(\left(T_\text{rlegInv}\right)^{-1}\left(T^6_5R_z\left(\pi\right)R_y(-\tfrac{\pi}{2})\right)^{-1}\right)^{-1} \\
-\theta_5 &= \arcsin\left(-\frac{p_y\left(l_2+l_1\cos\theta_4\right) + l_1p_x\sin\theta_4}{{l_1}^2\sin^2\theta_4 + \left(l_2 + l_1\cos\theta_4\right)}\right) \\
-\theta_5 &= \pi - \arcsin\left(-\frac{p_y\left(l_2+l_1\cos\theta_4\right) + l_1p_x\sin\theta_4}{{l_1}^2\sin^2\theta_4 + \left(l_2 + l_1\cos\theta_4\right)}\right)\\
-T_{\text{rlegInv}''} &= \left(\left(T_{\text{rlegInv}'}\right)^{-1}\left(T^4_3T^5_4\right)^{-1}\right)^{-1} \\
-\theta_2 &= \pm\arccos T_{\text{rlegInv}''(2,3)} + \cfrac{\pi}{4} \\
-\theta_3 &= \arcsin\left(\cfrac{T_{\text{rlegInv}''(2,2)}}{\sin\left(\theta_2 - \frac{\pi}{4}\right)}\right) \\
-\theta_3 &= \pi - \arcsin\left(\cfrac{T_{\text{rlegInv}''(2,2)}}{\sin\left(\theta_2 - \frac{\pi}{4}\right)}\right) \\
-\theta_1 &= \pm\arccos\left(\cfrac{T_{\text{rlegInv}''(3,3)}}{\sin\left(\theta_2 - \frac{\pi}{4}\right)}\right) + \cfrac{\pi}{2}
+T' &= \left(R_x(\tfrac{\pi}{4})\left(\left(A^0_\text{Base}\right)^{-1} T \left(A^\text{End}_6\right)^{-1}\right)\right)^{-1} \\
+\theta_4 &=\pm\left(\pi - \arccos\left(\frac{{l_1}^2 + {l_2}^2 - \sqrt{\left(s_x-T'_{(1,4)}\right)^2 + \left(s_y-T'_{(2,4)}\right)^2 + \left(s_z-T'_{(3,4)}\right)^2}^2}{2 l_1 l_2}\right)\right) \\
+\theta_6 &= \arctan\left(\frac{T'_{(2,4)}}{T'_{(3,4)}}\right)\hspace{6.5cm}\text{if} \left(l_2\cos\theta_5 + l_1 \cos\left(\theta_4 + \theta_5\right)\right) \neq 0 \\
+T'' &= \left(\left(T'\right)^{-1}\left(T^6_5R_z\left(\pi\right)R_y(-\tfrac{\pi}{2})\right)^{-1}\right)^{-1} \\
+\theta_5 &= \arcsin\left(-\frac{T''_{(2,4)}\left(l_2+l_1\cos\theta_4\right) + l_1T''_{(1,4)}\sin\theta_4}{{l_1}^2\sin^2\theta_4 + \left(l_2 + l_1\cos\theta_4\right)}\right) \\
+\theta_5 &= \pi - \arcsin\left(-\frac{T''_{(2,4)}\left(l_2+l_1\cos\theta_4\right) + l_1T''_{(1,4)}\sin\theta_4}{{l_1}^2\sin^2\theta_4 + \left(l_2 + l_1\cos\theta_4\right)}\right)\\
+T''' &= \left(T''\right)^{-1}\left(T^4_3T^5_4\right)^{-1} \\
+\theta_2 &= \pm\arccos\left(T'''_{(2,3)}\right) + \cfrac{\pi}{4} \\
+\theta_3 &= \arcsin\left(\cfrac{T'''_{(2,2)}}{\sin\left(\theta_2 - \frac{\pi}{4}\right)}\right) \\
+\theta_3 &= \pi - \arcsin\left(\cfrac{T'''_{(2,2)}}{\sin\left(\theta_2 - \frac{\pi}{4}\right)}\right) \\
+\theta_1 &= \pm\arccos\left(\cfrac{T'''_{(3,3)}}{\sin\left(\theta_2 - \frac{\pi}{4}\right)}\right) + \cfrac{\pi}{2}
 \end{align*}
 
 
