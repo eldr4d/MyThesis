@@ -336,7 +336,7 @@ Since the LElbowRoll joint takes only negative values, we finally compute $\thet
 \]
 The next angle we can find is $\widehat{\theta}_2$, so we focus on equations from the symbolic matrix, where we only have $\widehat{\theta}_2$ and one more unknown (excluding $\theta_4$, which is already found). Using $r_{22}$, we have:
 \begin{align*}
-T_{(2,2)} &= -\cos\widehat{\theta}_2 - \cos\theta_3\cos\theta_4\sin\widehat{\theta}_2 &\Leftrightarrow\\
+T_{(2,2)} &= -\cos\widehat{\theta}_2\sin\theta_4 - \cos\theta_3\cos\theta_4\sin\widehat{\theta}_2 &\Leftrightarrow\\
 \cos\theta_3\sin\widehat{\theta}_2 &= -\cfrac{\cos\widehat{\theta}_2\sin\theta_4 + T_{(2,2)}}{\cos\theta_4}
 \end{align*}
 This division is always feasible, because $\theta_4$ never reaches $\pm\frac{\pi}{2}$, therefore the cosine never becomes zero. Now, we focus on $r_{24}$:
@@ -366,7 +366,7 @@ Otherwise, if $\theta_3 \neq \left|\frac{\pi}{2}\right|$, we find $\theta_1$ fro
 \begin{align*}
 T_{(3,3)} &= \cos\theta_1\cos\theta_3 - \cos\left(\theta_2 - \frac{\pi}{2}\right)\sin\theta_1\sin\theta_3 &\Leftrightarrow \\
 T_{(3,3)} &= \cos\theta_1\cos\theta_3 - \left(\cfrac{T_{(1,3)} - \cos\theta_1\cos\left(\theta_2 - \frac{\pi}{2}\right)\sin\theta_3}{\cos\theta_3}\right)\sin\theta_3\cos\left(\theta_2 - \frac{\pi}{2}\right) &\Leftrightarrow \\
-\theta_1 &= \arccos\left(\cfrac{T_{(3,3)} -\cfrac{ T_{(1,3)}\sin\theta_3\cos\left(\theta_2 - \frac{\pi}{2}\right)}{\cos\theta_3}}{\cos\theta_3 + \cfrac{\cos^2\left(\theta_2-\frac{\pi}{2}\right)\sin^2\theta_3}{\cos\theta_3}}\right)
+\theta_1 &= \arccos\left(\cfrac{T_{(3,3)} +\cfrac{ T_{(1,3)}\sin\theta_3\cos\left(\theta_2 - \frac{\pi}{2}\right)}{\cos\theta_3}}{\cos\theta_3 + \cfrac{\cos^2\left(\theta_2-\frac{\pi}{2}\right)\sin^2\theta_3}{\cos\theta_3}}\right)
 \end{align*}
 At this point, we have multiple solution sets for all the joints of the left arm, but some of them may be invalid. We find the correct set(s) through a forward kinematics validation step. In summary, the final inverse kinematics equations for the left arm chain are:
 \begin{align*}
@@ -374,7 +374,7 @@ At this point, we have multiple solution sets for all the joints of the left arm
 \theta_2 &= \pm\arccos\left(\cfrac{T_{(2,4)} - l_1 - \left(\frac{l_4\sin\theta_4 T_{(2,2)}}{\cos\theta_4}\right)}{l_3 +l_4\cos\theta_4 + l_4\frac{\sin^2\theta_4}{\cos\theta_4}}\right)+\cfrac{\pi}{2}\\
 \theta_3 &= \arcsin\left(\cfrac{T_{(2,3)}}{\sin\left(\theta_2-\frac{\pi}{2}\right)}\right)\\
 \theta_3 &= \pi - \arcsin\left(\frac{T_{(2,3)}}{\sin\left(\theta_2-\frac{\pi}{2}\right)}\right)\\
-\theta_1 &= \pm\arccos\left(\cfrac{T_{(3,3)} - \cfrac{T_{(1,3)}\sin\theta_3\cos\left(\theta_2 - \frac{\pi}{2}\right)}{\cos\theta_3}}{\cos\theta_3 + \cfrac{\cos^2\left(\theta_2-\frac{\pi}{2}\right)\sin^2\theta_3}{\cos\theta_3}}\right) &\text{if } \theta_3 \neq \cfrac{\pi}{2}\\
+\theta_1 &= \pm\arccos\left(\cfrac{T_{(3,3)} + \cfrac{T_{(1,3)}\sin\theta_3\cos\left(\theta_2 - \frac{\pi}{2}\right)}{\cos\theta_3}}{\cos\theta_3 + \cfrac{\cos^2\left(\theta_2-\frac{\pi}{2}\right)\sin^2\theta_3}{\cos\theta_3}}\right) &\text{if } \theta_3 \neq \cfrac{\pi}{2}\\
 \theta_1 &= \pm\arccos\left(\cfrac{T_{(1,3)}}{\cos\left(\theta_2 - \frac{\pi}{2}\right)\sin\theta_3}\right) &\text{if } \theta_3 = \cfrac{\pi}{2}
 \end{align*}
 
@@ -403,7 +403,7 @@ T' &= T_\text{rhandUnrotated} = T{\big(R_z(-\pi)\big)}^{-1}\\
 \theta_2 &= \pm\arccos\left(\cfrac{ - T'_{(2,4)} - l_1 - \left(\frac{l_4\sin\theta_4T'_{(2,2)}}{\cos\theta_4} \right)}{l_3 +l_4\cos\theta_4 + l_4\frac{\sin^2\theta_4}{\cos\theta_4}}\right)-\frac{\pi}{2}\\
 \theta_3 &= \arcsin\left(\cfrac{T'_{(2,3)}}{\sin\left(\theta_2 + \frac{\pi}{2}\right)}\right)\\
 \theta_3 &= \pi - \arcsin\left(\cfrac{T'_{(2,3)}}{\sin\left(\theta_2 + \frac{\pi}{2}\right)}\right) \\
-\theta_1 &= \pm\arccos\left(\cfrac{T'_{(3,3)} - \cfrac{T'_{(1,3)}\sin\theta_3\cos\left(\theta_2 + \frac{\pi}{2}\right)}{\cos\theta_3}}{\cos\theta_3 + \cfrac{\cos^2\left(\theta_2 + \frac{\pi}{2}\right)\sin^2\theta_3}{\cos\theta_3}}\right) &\text{if } \theta_3 \neq \cfrac{\pi}{2}& \\
+\theta_1 &= \pm\arccos\left(\cfrac{T'_{(3,3)} + \cfrac{T'_{(1,3)}\sin\theta_3\cos\left(\theta_2 + \frac{\pi}{2}\right)}{\cos\theta_3}}{\cos\theta_3 + \cfrac{\cos^2\left(\theta_2 + \frac{\pi}{2}\right)\sin^2\theta_3}{\cos\theta_3}}\right) &\text{if } \theta_3 \neq \cfrac{\pi}{2}& \\
 \theta_1 &= \pm\arccos\left(\cfrac{T'_{(1,3)}}{\cos\left(\theta_2 +\frac{\pi}{2}\right)\sin\theta_3}\right) &\text{if } \theta_3 = \cfrac{\pi}{2}
 \end{align*}
 
@@ -489,10 +489,10 @@ r_{14} &= p''_x & \Leftrightarrow\\
 \end{align*}
 Given the lengths of the links of the robot, the denominator $l_2+l_1\cos\theta_4$ becomes zero, only if $\cos\theta_4 = -1.029$, which is impossible, since $|\cos\theta_4| \le 1$. We continue with $r_{24}$: 
 \begin{align*}
-&\sin\theta_5\left(-l_2-l_1\cos\theta_4\right) - l_2\cos\theta_5\sin\theta_4 = p''_y& \Leftrightarrow\\
-&\sin\theta_5\left(-l_2-l_1\cos\theta_4\right) - l_2\cfrac{p''_x + l_1\sin\theta_5\sin\theta_4}{l_2+l_1\cos\theta_4}\sin\theta_4\ =p''_y & \Leftrightarrow\\
-&-\sin\theta_5\left(l_2+l_1\cos\theta_4\right) - \cfrac{l_2p''_x\sin\theta_4}{l_2+l_1\cos\theta_4} - \cfrac{-{l_2}^2\sin\theta_5\sin^2\theta_4}{l_2+l_1\cos\theta_4} = p''_y&\Leftrightarrow\\
-&-\sin\theta_5\left(l_2+l_1\cos\theta_4\right)^2 - {l_2}^2\sin\theta_5\sin^2\theta_4 = p''_y\left(l_2+l_1\cos\theta_4\right) + l_2p''_x\sin\theta_4 & \Leftrightarrow\\
+&\sin\theta_5\left(-l_2-l_1\cos\theta_4\right) - l_1\cos\theta_5\sin\theta_4 = p''_y& \Leftrightarrow\\
+&\sin\theta_5\left(-l_2-l_1\cos\theta_4\right) - l_1\cfrac{p''_x + l_1\sin\theta_5\sin\theta_4}{l_2+l_1\cos\theta_4}\sin\theta_4\ =p''_y & \Leftrightarrow\\
+&-\sin\theta_5\left(l_2+l_1\cos\theta_4\right) - \cfrac{l_1p''_x\sin\theta_4}{l_2+l_1\cos\theta_4} - \cfrac{{l_1}^2\sin\theta_5\sin^2\theta_4}{l_2+l_1\cos\theta_4} = p''_y&\Leftrightarrow\\
+&-\sin\theta_5\left(l_2+l_1\cos\theta_4\right)^2 - {l_1}^2\sin\theta_5\sin^2\theta_4 = p''_y\left(l_2+l_1\cos\theta_4\right) + l_1p''_x\sin\theta_4 & \Leftrightarrow\\
 &\theta_5 = \arcsin\left(-\frac{p''_y\left(l_2+l_1\cos\theta_4\right) + l_1p''_x\sin\theta_4}{{l_1}^2\sin^2\theta_4 + \left(l_2 + l_1\cos\theta_4\right)^2}\right)
 \end{align*}
 The division is always feasible, because ${l_1}^2\sin^2\theta_4 + \left(l_2 + l_1\cos\theta_4\right)^2$ is obviously greater than zero. 
