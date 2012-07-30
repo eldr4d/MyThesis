@@ -9,7 +9,7 @@ We created two demonstrations to show the effectiveness and the efficiency of ou
 
 
 \section{Real-Time Performance}
-One of the goals of this work was to implement a software library for real-time kinematics computations on the robot. We measured the performance of our implementation for each of the function we offer. Table~\ref{times} shows average execution times for each function in microseconds (us). Averages were taken over 6000 measurements of execution time on the robot CPU. Unfortunately, we cannot compare these times with the Aldebaran's solution execution time, because we no access to the proprietary NaoQi middleware. 
+One of the goals of this work was to implement a software library for real-time kinematics computations on the robot. We measured the performance of our implementation for each of the functions we offer. Table~\ref{times} shows average execution times for each function in microseconds (us). Averages were taken over 6000 measurements of execution time on the robot CPU. Unfortunately, we cannot compare these times with Aldebaran's solution execution time, because we no access inside the proprietary NaoQi middleware. 
 
 %\begin{table}[!t]
 %\centering
@@ -58,6 +58,22 @@ Calculation of the Center of Mass & 394.55 \\
 \end{center}
 \end{table}
 
+
+\section{Locus of Problematic Inverse Kinematics}
+\label{undefined}
+As mentioned in Section~\ref{invleftleg}, there are a few target points for the legs which lead to an infinity of solutions for the AnkleRoll joints, while the KneePitch and AnklePitch joints take specific values. Even though this is not a problem, to verify that in practice the robot never reaches any of these configurations, we let the robot perform the entire range of motions available to it during operation in a RoboCup field (walk, kicks, stand-up, etc.). We recorded all configurations encountered in the KneePitch and AnklePitch subspace of both legs and we plotted these configurations alongside the locus of the problematic configurations. The results are shown in Figure~\ref{fig:undefined}. It is clear that no motion brought the robot to these configurations. In practice, it is rather unlike that anyone will consistently give target points that drive the joints in that area. This is true, because, when executing a trajectory, inverse kinematics are called on a sequence of target points (at a frequency of 50 to 100 Hz), so even if one of them falls right into the problematic fraction of the three-dimensional space, it is highly unlike that the next one will do the same. At such a high frequency, the problematic solution will go unnoticed and the motion will proceed smoothly.
+
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[width=\textwidth]{Figures/undefined.pdf}
+ 		\caption{Trajectories of motion in a subspace of the leg joints}
+ 		\label{fig:undefined}
+	\end{center}
+\end{figure}
+
+\newpage
+
+
 \section{Demonstration I: Pointing to the Ball}
 
 In the first demonstration, our goal is to make the NAO point to the ball with its stretched arms. Apart from the kinematics, to realize this task we employed the KVision module~\cite{orfanoudakis2011} for ball recognition of the Kouretes team, along with the module that updates the local world state belief of the robot. Initially, NAO searches for the ball by scanning the field with its head. When it finds the ball, it points directly to the ball with the left, the right, or both arms, depending on where the ball is located (left, right, or front). Thanks to the filtering of the world state module, if NAO loses momentarily the ball from its visual field, it can continue pointing to the location indicated by the ball model. 
@@ -89,7 +105,7 @@ This demonstration was presented by team Kouretes at the SPL Open Challenge Comp
 \centerline{
 \includegraphics[width=.8\textwidth]{Figures/openchallenge2012.png}
 }
-\caption{Pointing-to-the-ball at SPL Open Challenge Competition of RoboCup 2012}
+\caption{Pointing to the ball at SPL Open Challenge Competition of RoboCup 2012}
 \label{fig:open}
 \end{figure}
 
@@ -122,7 +138,7 @@ Figure~\ref{demo2} shows snapshots from this demonstration. Note that the foot i
 \includegraphics[width=0.32\textwidth]{Figures/Demo2/6.png}
 }
 %\vspace{-0.1cm}
-\caption{Simple balancing method for the NAO using the center of mass}
+\caption{Basic balancing for the NAO using the projection of the center of mass}
 \label{demo2}
 %\vspace*{0.5cm}
 \end{figure}

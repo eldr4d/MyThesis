@@ -55,7 +55,8 @@ $T^1_0$ and $T^2_1$ are the DH transformation matrices of the corresponding join
 
 \begin{table}[t!]
 \centering
-\caption{DH parameters for the Head chain}
+\caption{DH parameters for the head chain of the NAO robot}
+\label{tab:DHhead}
 \begin{tabular}{|l|>{\centering\arraybackslash}m{2.55cm}|>{\centering\arraybackslash}m{2.55cm}|>{\centering\arraybackslash}m{2.55cm}|>{\centering\arraybackslash}m{2.55cm}|}
 \hline
 \textbf{Frame (Joint)} & $\mathbf{a}$ & $\boldsymbol{\alpha}$ & $\mathbf{d}$ & $\boldsymbol{\theta}$\\ \hline
@@ -67,7 +68,6 @@ Top Camera & \multicolumn{4}{c|}{$A(\text{\footnotesize{topCameraX}},0,\text{\fo
 Bottom Camera & \multicolumn{4}{c|}{$A(\text{\footnotesize{bottomCameraX}},0,\text{\footnotesize{bottomCameraZ}})$} \\ \hline
 \multicolumn{5}{|c|}{\footnotesize{topCameraX=53.9mm, topCameraZ=67.9mm, bottomCameraX=48.8mm, bottomCameraZ=23.8mm}} \\ \hline
 \end{tabular}
-\label{tab:DHhead}
 \end{table}
 
 \subsection{Forward Kinematics for the Left Arm}
@@ -78,7 +78,8 @@ The kinematic chain for the left arm consists of four joints. So, we need to fin
 
 \begin{table}[t!]
 \centering
-\caption{DH parameters for the Left Arm chain}
+\caption{DH parameters for the left arm chain of the NAO robot}
+\label{tab:DHlarm}
 \begin{tabular}{|l|>{\centering\arraybackslash}m{2.55cm}|>{\centering\arraybackslash}m{2.55cm}|>{\centering\arraybackslash}m{2.55cm}|>{\centering\arraybackslash}m{2.55cm}|}
 \hline
 \textbf{Frame (Joint)} & $\mathbf{a}$ & $\boldsymbol{\alpha}$ & $\mathbf{d}$ & $\boldsymbol{\theta}$\\ \hline
@@ -90,7 +91,6 @@ LElbowRoll & $0$ & $\frac{\pi}{2}$ & $0$ & $\theta_4$ \\ \hline
 Rotation & \multicolumn{4}{c|}{$R_z(\frac{\pi}{2})$} \\ \hline
 End effector & \multicolumn{4}{c|}{$A(\text{\footnotesize{HandOffsetX+LowerArmLength}},0,0)$} \\ \hline
 \end{tabular}
-\label{tab:DHlarm}
 \end{table}
 
 Table~\ref{tab:DHlarm} shows the DH parameters for all the joints of the left arm chain along with the necessary translations and rotations.
@@ -107,7 +107,8 @@ T^\text{End}_\text{Base} = A^0_\text{Base}T^1_0T^2_1T^3_2T^4_3R_z(\tfrac{\pi}{2}
 
 \begin{table}[!t]
 \centering
-\caption{DH parameters for Right Arm chain}
+\caption{DH parameters for the right arm chain of the NAO robot}
+\label{tab:DHrarm}
 \begin{tabular}{|l|>{\centering\arraybackslash}m{2.55cm}|>{\centering\arraybackslash}m{2.55cm}|>{\centering\arraybackslash}m{2.85cm}|>{\centering\arraybackslash}m{2.55cm}|}
 \hline
 \textbf{Frame (Joint)} & $\mathbf{a}$ & $\boldsymbol{\alpha}$ & $\mathbf{d}$ & $\boldsymbol{\theta}$\\ \hline
@@ -120,7 +121,6 @@ Rotation & \multicolumn{4}{c|}{$R_z(\frac{\pi}{2})$} \\ \hline
 End effector & \multicolumn{4}{c|}{$A(\text{\footnotesize{$-$HandOffsetX $-$ LowerArmLength}},0,0)$} \\ \hline
 Rotation Fix & \multicolumn{4}{c|}{$R_z(-\pi)$} \\ \hline
 \end{tabular}
-\label{tab:DHrarm}
 \end{table}
 
 
@@ -133,7 +133,8 @@ T^\text{End}_\text{Base} = A^0_\text{Base}T^1_0T^2_1T^3_2T^4_3T^5_4T^6_5R_z(\pi)
 
 \begin{table}[!t]
 \centering
-\caption{DH parameters for Left Leg chain}
+\caption{DH parameters for the left leg chain of the NAO robot}
+\label{tab:DHlleg}
 \begin{tabular}{|l|>{\centering\arraybackslash}m{2.55cm}|>{\centering\arraybackslash}m{2.55cm}|>{\centering\arraybackslash}m{2.55cm}|>{\centering\arraybackslash}m{2.55cm}|}
 \hline
 \textbf{Frame (Joint)} & $\mathbf{a}$ & $\boldsymbol{\alpha}$ & $\mathbf{d}$ & $\boldsymbol{\theta}$\\ \hline
@@ -147,7 +148,6 @@ LAnkleRoll & $0$ & $-\frac{\pi}{2}$ & $0$ & $\theta_6$ \\ \hline
 Rotation & \multicolumn{4}{c|}{$R_z(\pi)R_y(-\tfrac{\pi}{2})$} \\ \hline
 End effector & \multicolumn{4}{c|}{$A(0,0,\text{\footnotesize{$-$FootHeight}})$} \\ \hline
 \end{tabular}
-\label{tab:DHlleg}
 \end{table}
 
 
@@ -160,7 +160,8 @@ T^\text{End}_\text{Base} = A^0_\text{Base}T^1_0T^2_1T^3_2T^4_3T^5_4T^6_5R_z(\pi)
 
 \begin{table}[!t]
 \centering
-\caption{DH parameters for Right Leg chain}
+\caption{DH parameters for the right leg chain of the NAO robot}
+\label{tab:DHrleg}
 \begin{tabular}{|l|>{\centering\arraybackslash}m{2.55cm}|>{\centering\arraybackslash}m{2.55cm}|>{\centering\arraybackslash}m{2.55cm}|>{\centering\arraybackslash}m{2.55cm}|}
 \hline
 \textbf{Frame (Joint)} & $\mathbf{a}$ & $\boldsymbol{\alpha}$ & $\mathbf{d}$ & $\boldsymbol{\theta}$\\ \hline
@@ -174,7 +175,6 @@ RAnkleRoll & $0$ & $-\frac{\pi}{2}$ & $0$ & $\theta_6$ \\ \hline
 Rotation & \multicolumn{4}{c|}{$R_z(\pi)R_y(-\tfrac{\pi}{2})$} \\ \hline
 End effector & \multicolumn{4}{c|}{$A(0,0,\text{\footnotesize{$-$FootHeight}})$} \\ \hline
 \end{tabular}
-\label{tab:DHrleg}
 \end{table}
 
 
@@ -211,7 +211,7 @@ The CoM of the entire robot is calculated relatively to the torso frame and the 
 
 
 
-\section{Inverse Kinematics for NAO}
+\section{Inverse Kinematics for the NAO Robot}
 
 
 Forward kinematics can find the point of an end effector, relatively to the start frame, given the values of the joints. Now, we turn our attention to the inverse problem: find a set of values for the joints that drive a given end effector to a desired point relatively to the torso frame. The inverse kinematics presented below solve the problem for the five kinematic chains that start at the robot torso.
@@ -321,7 +321,7 @@ It is quite difficult to extract a joint value from these equations, so we will 
 \[
 d=\sqrt{\left(s_x-p_x\right)^2 + \left(s_y-p_y\right)^2 + \left(s_z-p_z\right)^2}
 \]
-where $s_x = 0$, $s_y = l_1$, and $s_z = l_2$.
+where $(s_x,s_y,s_z) = (0,l_1,l_2)$.
 Now, we can use the law of cosines to find the interior angle $\theta'_4$ between the upper and lower arm sides of the triangle:
 \[
 \theta'_4 = \arccos\left(\frac{{l_3}^2 + {l_4}^2 - d^2}{2l_3l_4}\right)
@@ -412,23 +412,24 @@ T' &= T_\text{rhandUnrotated} = T{\big(R_z(-\pi)\big)}^{-1}\\
 
 
 \subsection{Inverse Kinematics for the Left Leg}
+\label{invleftleg}
 
-The kinematic chain of each leg has six joints, so it is much more difficult to find a solution. Since the first three joints of the chain (LHipYawPitch,  LHipRoll, LHipPitch) have intersecting axes, the problem is possibly solvable. The symbolic matrix for this chain was too complicated, therefore in order to simplify it, we remove the known translations from the kinematic chain:
+The kinematic chain of the left leg has six joints, so it is much more difficult to find a solution. Since the first three joints of the chain (LHipYawPitch,  LHipRoll, LHipPitch) have intersecting axes, the problem is possibly solvable. The symbolic matrix for this chain is too complicated, therefore in order to simplify it, we remove the known translations from the kinematic chain:
 \[
 T = A^0_\text{Base}T^1_0T^2_1T^3_2T^4_3T^5_4T^6_5R_z(\pi)R_y(-\tfrac{\pi}{2})A^\text{End}_6
 \]
 \[
 \widehat{T} = {\left(A^0_\text{Base}\right)}^{-1}T{\left(A^\text{End}_6\right)}^{-1}
 \]
-Now, we have the chain from the base frame of the first joint to the (rotated) frame of the last joint. The first joint, LHipYawPitch, is rotated by $-\frac{3\pi}{4} $ about the $ x $-axis. We rotate the origin of the chain by $\frac{\pi}{4}$ about the $x$-axis, which makes the first joint (LHipYawPitch) a yaw joint (aligned with the $z$-axis):
+Now, we have a chain from the base frame of the first joint to the (rotated) frame of the last joint. The first joint, LHipYawPitch, is by construction rotated by $-\frac{3\pi}{4} $ about the $ x $-axis with respect to the torso frame. We rotate the origin of the chain by $\frac{\pi}{4}$ about the $x$-axis to make the first joint (LHipYawPitch) a yaw joint (aligned with the $z$-axis):
 \[
 \widetilde{T} = R_x(\tfrac{\pi}{4})\widehat{T}
 \]
-Now. the end effector is the LAnkleRoll joint and the base is the rotated LHipYawPitch joint. The first four joints (LHipYawPitch, LHipRoll, LHipPitch, LKneePitch) affect the position and orientation of the end effector and the other two joints (LAnklePitch, LAnkleRoll) affect only its orientation. It would be convenient, if only three joints were affecting the position of the end effector, since we are in the three-dimensional space. Thus, we invert the transformation matrix to form the reverse chain. Now only the LAnkleRoll, LAnklePitch, and LKneePitch joints affect the position:
+Now, the end effector is the LAnkleRoll joint and the base is the rotated LHipYawPitch joint. The first four joints (LHipYawPitch, LHipRoll, LHipPitch, LKneePitch) affect the position and orientation of the end effector and the other two joints (LAnklePitch, LAnkleRoll) affect only its orientation. It would be convenient, if only three joints were affecting the position of the end effector, since we operate in the three-dimensional space. Thus, we invert the transformation matrix to form the reverse chain. Now only the LAnkleRoll, LAnklePitch, and LKneePitch joints affect the position:
 \[
 T' = {\left(\widetilde{T}\right)}^{-1}
 \]
-The resulting symbolic matrix is still quite complex, but for now we only need the translation block, which is simple:
+The resulting symbolic matrix is still quite complex, but for now we only need the translation block, which is relatively simple:
 \begin{align*}
 &r_{14} = l_2\sin\theta_5 - l_1\sin\left(\theta_4 + \theta_5\right)\\
 &r_{24} = \left(l_2\cos\theta_5 + l_1 \cos\left(\theta_4 + \theta_5\right)\right)\sin\theta_6\\
@@ -439,15 +440,16 @@ We can now find $\theta_4$ the same way we found $\theta_4$ for the arms. We foc
 \[
 d = \sqrt{\left(s_x-p'_x\right)^2 + \left(s_y-p'_y\right)^2 + \left(s_z-p'_z\right)^2}
 \]
-where $s_x = 0$, $s_y = $ HipOffsetY, $s_z =$ HipOffsetZ, $p'_x = T'_{(1,4)}$, $p'_y = T'_{(2,4)}$, and $p'_z = T'_{(3,4)}$. Now, we can use the law of cosines to find the interior angle $\theta'_4$ between the thigh and tibia sides of the triangle:
+% MGL: Is this really the distance? Why do I think that s'_i must be 0 or p' =p?
+where $(s_x, s_y, s_z) = (0,0,0)$ is the new origin and $(p'_x, p'_y, p'_z) = (T'_{(1,4)}, T'_{(2,4)}, T'_{(3,4)})$ is the position of the new target point. Now, we can use the law of cosines to find the interior angle $\theta'_4$ between the thigh and tibia sides of the triangle:
 \[
 \theta'_4 =\arccos\left(\frac{{l_1}^2 + {l_2}^2 - d^2}{2 l_1 l_2}\right)\\
 \]
-Since $\theta'_4$ represents an interior angle, whereas the LKneePitch joint is stretched in the zero position, the resulting angle in this range $\theta''_4$ is computed by:
+Since $\theta'_4$ represents an interior angle, whereas the LKneePitch joint is stretched in the zero position, the resulting angle $\theta''_4$ in this range is computed by:
 \[
 \theta''_4 = \pi - \theta'_4
 \]
-Since the range of the LKneePitch joint includes both positive and negative angles, we finally compute $\theta_4$ as:
+Since the range of the LKneePitch joint includes both positive and negative angles, we finally extract $\theta_4$ as:
 \[
 \theta_4 = \pm\theta''_4
 \]
@@ -457,12 +459,12 @@ Next, we extract the $\theta_6$ angle from the translation block using $r_{24}$ 
 \frac{\left(l_2\cos\theta_5 + l_1 \cos\left(\theta_4 + \theta_5\right)\right)\sin\theta_6}{\left(l_2\cos\theta_5 + l_1 \cos\left(\theta_4 + \theta_6\right)\right) \cos\theta_6} &= \frac{p'_y}{p'_z} &\Leftrightarrow \\
 \theta_6 &= \arctan\left(\frac{p'_y}{p'_z}\right)&\text{if} \left(l_2\cos\theta_5 + l_1 \cos\left(\theta_4 + \theta_5\right)\right) \neq 0
 \end{align*}
-Since we don't know $\theta_5$, we cannot determine in advance when the denominator becomes zero. Figure~\ref{fig:unlocus} shows the locus of this equation in the space of the KneePitch and AnklePitch joints; in these configurations, no solution can be extracted. In practice, a division by zero will never occur, because we are using the {\tt atan2} function in our implementation and the result will be just undefined. These ``undefined'' solutions will be rejected by the validation step.
+Since we don't know $\theta_5$, we cannot determine in advance when this solution is valid. Figure~\ref{fig:unlocus} shows the locus of the equation $l_2\cos\theta_5 + l_1 \cos\left(\theta_4 + \theta_5\right) = 0$ in the space of the KneePitch ($\theta_4$) and AnklePitch ($\theta_5$) joints; in these configurations, which represent only a fraction of extreme values in the joint space, no unique solution can be extracted for $\theta_6$. Essentially, in these configurations, the position of the end effector of the reverse chain (the hip joints) falls on the rotation axis of first joint (LAnkleRoll) in the reverse chain and therefore the LAnkleRoll joint ($\theta_6$) has no effect on its position; an infinity of solutions exists, given that for any choice of $\theta_6$, there will be a corresponding set of choices for the hip joints that achieves the target orientation. In practice, even if one of these configurations shows up during the solution, a division by zero never occurs, because the {\tt atan2} function in our implementation simply returns a result of 0. We adopt the solution $\theta_6=0$, and we relay the problem of the target orientation to the hip joints; invalid solutions, if any, will be rejected by the validation step.
 
 \begin{figure}[!h]
 	\begin{center}
 		\includegraphics[height = 10cm]{Figures/locus.pdf}
- 		\caption{Locus of leg configurations with undefined inverse kinematics solutions}
+ 		\caption{Locus of leg configurations corresponding to non-unique solutions to $\theta_6$}
  		\label{fig:unlocus}
 	\end{center}
 \end{figure}
@@ -471,21 +473,21 @@ To move on, we go back to $\widetilde{T}$ and we remove the two rotations at the
 \[
 \widetilde{T}' = \widetilde{T}\left(T^6_5R_z\left(\pi\right)R_y(-\tfrac{\pi}{2})\right)^{-1}
 \]
-Then, we form the reverse chain: 
+Like before, we form the reverse chain: 
 \[
 T'' = \left( \widetilde{T}' \right) ^{-1}
 \]
-and we extract the new target position $p''_x = T''_{(1,4)}$, $p''_y = T''_{(2,4)}$, and $p''_z = T''_{(3,4)}$. The translation block of the new symbolic transformation matrix is:
+and we extract the new target position $(p''_x, p''_y, p''_z) = (T''_{(1,4)}, T''_{(2,4)}, T''_{(3,4)})$. The translation block of the new symbolic transformation matrix is:
 \begin{align*}
 &r_{14} = l_2\cos\theta_5 + l_1\left(\cos\theta_5\cos\theta_4 - \sin\theta_5\sin\theta_4\right)\\
 &r_{24} = -l_2\sin\theta_5 - l_1\left(\sin\theta_5\cos\theta_4 + \cos\theta_5\sin\theta_4\right)\\
 &r_{34} = 0
 \end{align*}
-In these equations, $\theta_5$ is the only unknown and can be found as follows:
+In these equations, $\theta_5$ is the only unknown. From $r_{14}$, we obtain an expression for $\cos\theta_5$:
 \begin{align*}
 r_{14} &= p''_x & \Leftrightarrow\\
 \left(l_2+l_1\cos\theta_4\right) \cos\theta_5 &= p''_x + l_1\sin\theta_5\sin\theta_4 & \Leftrightarrow\\
-\cos\theta_5 &= \cfrac{p''_x + l_1\sin\theta_5\sin\theta_4}{l_2+l_1\cos\theta_4}&\text{if }l_2+l_1\cos\theta_4\neq0\\
+\cos\theta_5 &= \cfrac{p''_x + l_1\sin\theta_5\sin\theta_4}{l_2+l_1\cos\theta_4}&\text{if }l_2+l_1\cos\theta_4\neq0
 \end{align*}
 Given the lengths of the links of the robot, the denominator $l_2+l_1\cos\theta_4$ becomes zero, only if $\cos\theta_4 = -1.029$, which is impossible, since $|\cos\theta_4| \le 1$. We continue with $r_{24}$: 
 \begin{align*}
@@ -495,12 +497,12 @@ Given the lengths of the links of the robot, the denominator $l_2+l_1\cos\theta_
 &-\sin\theta_5\left(l_2+l_1\cos\theta_4\right)^2 - {l_1}^2\sin\theta_5\sin^2\theta_4 = p''_y\left(l_2+l_1\cos\theta_4\right) + l_1p''_x\sin\theta_4 & \Leftrightarrow\\
 &\theta_5 = \arcsin\left(-\frac{p''_y\left(l_2+l_1\cos\theta_4\right) + l_1p''_x\sin\theta_4}{{l_1}^2\sin^2\theta_4 + \left(l_2 + l_1\cos\theta_4\right)^2}\right)
 \end{align*}
-The division is always feasible, because ${l_1}^2\sin^2\theta_4 + \left(l_2 + l_1\cos\theta_4\right)^2$ is obviously greater than zero. 
-Now, we can go back $\widetilde{T}'$ and remove the two transformations $T^4_3$ and $T^5_4$, since $\theta_4$ and $\theta_5$ are known: 
+The division is always feasible, because ${l_1}^2\sin^2\theta_4 + \left(l_2 + l_1\cos\theta_4\right)^2$ is obviously greater than zero for any value of $\theta_4$. 
+Now, we can go back to $\widetilde{T}'$ and remove the two transformations $T^4_3$ and $T^5_4$, since $\theta_4$ and $\theta_5$ are known: 
 \[
 T''' = \widetilde{T}' \left(T^4_3T^5_4\right)^{-1}
 \]
-The translation block in this transformation is zero, because the only joints left are the three hip joints. The rotation block of the transformation is:
+The translation block in the transformation $T'''$ must be zero, because the only joints left are the three hip joints, which only affect the orientation. The rotation block of the transformation is:
 \begin{align*}
 &r_{11} = \cos\widehat{\theta}_1\cos\widehat{\theta}_2\cos\theta_4 - \sin\widehat{\theta}_1\sin\theta_3\\
 &r_{12} = -\cos\theta_3\sin\widehat{\theta}_1 - \cos\widehat{\theta}_1\cos\widehat{\theta}_2\sin\theta_3\\
@@ -521,13 +523,14 @@ Now, we can extract the remaining three angles as follows:
 \widehat{\theta}_1 &= \arccos\left(\cfrac{T'''_{(3,3)}}{\sin\left(\theta_2+\frac{\pi}{4}\right)}\right)\\
 \theta_1 &= \widehat{\theta}_1 + \cfrac{\pi}{2}
 \end{align*}
-The equations above are valid, because by the robot specifications the LHipRoll joint $(\theta_2)$ cannot reach $-\frac{\pi}{4}$ or $\frac{3\pi}{4}$ and therefore the denominator $\sin\left(\theta_2+\frac{\pi}{4}\right)$ never becomes zero. 
+The equations above are valid, because by the robot construction the LHipRoll joint $(\theta_2)$ cannot reach $-\frac{\pi}{4}$ or $\frac{3\pi}{4}$ and therefore the denominator $\sin\left(\theta_2+\frac{\pi}{4}\right)$ never becomes zero. 
 
 In summary, the equations of inverse kinematics for the left leg are:
 \begin{align*}
 T' &= \left(R_x(\tfrac{\pi}{4})\left(\left(A^0_\text{Base}\right)^{-1} T \left(A^\text{End}_6\right)^{-1}\right)\right)^{-1} \\
-\theta_4 &=\pm\left(\pi - \arccos\left(\frac{{l_1}^2 + {l_2}^2 - \sqrt{\left(s_x-T'_{(1,4)}\right)^2 + \left(s_y-T'_{(2,4)}\right)^2 + \left(s_z-T'_{(3,4)}\right)^2}^2}{2 l_1 l_2}\right)\right) \\
-\theta_6 &= \arctan\left(\frac{T'_{(2,4)}}{T'_{(3,4)}}\right)\hspace{6.5cm}\text{if} \left(l_2\cos\theta_5 + l_1 \cos\left(\theta_4 + \theta_5\right)\right) \neq 0 \\
+\theta_4 &=\pm\left(\pi - \arccos\left(\frac{{l_1}^2 + {l_2}^2 - \sqrt{\left(0-T'_{(1,4)}\right)^2 + \left(0-T'_{(2,4)}\right)^2 + \left(0-T'_{(3,4)}\right)^2}^2}{2 l_1 l_2}\right)\right) \\
+\theta_6 &= \arctan\left(\frac{T'_{(2,4)}}{T'_{(3,4)}}\right)\hspace{5.78cm}\text{if} \left(l_2\cos\theta_5 + l_1 \cos\left(\theta_4 + \theta_5\right)\right) \neq 0 \\
+\theta_6 &= 0 \hspace{8.5cm} \text{if} \left(l_2\cos\theta_5 + l_1 \cos\left(\theta_4 + \theta_5\right)\right) = 0 \\
 T'' &= \left(\left(T'\right)^{-1}\left(T^6_5R_z\left(\pi\right)R_y(-\tfrac{\pi}{2})\right)^{-1}\right)^{-1} \\
 \theta_5 &= \arcsin\left(-\frac{T''_{(2,4)}\left(l_2+l_1\cos\theta_4\right) + l_1T''_{(1,4)}\sin\theta_4}{{l_1}^2\sin^2\theta_4 + \left(l_2 + l_1\cos\theta_4\right)}\right) \\
 \theta_5 &= \pi - \arcsin\left(-\frac{T''_{(2,4)}\left(l_2+l_1\cos\theta_4\right) + l_1T''_{(1,4)}\sin\theta_4}{{l_1}^2\sin^2\theta_4 + \left(l_2 + l_1\cos\theta_4\right)}\right) \\
@@ -545,7 +548,7 @@ T''' &= \left(T''\right)^{-1}\left(T^4_3T^5_4\right)^{-1}\\
 
 
 \subsection{Inverse Kinematics for the Right Leg}
-As we mentioned before, the chains of the legs are symmetric, so we will have a similar solution for the problem as we had with the arms. The only changes are in the rotation matrix that we use to rotate the HipYawPitch joint. Now we must rotate by $-\frac{\pi}{4}$.
+The chains of the two legs are symmetric, so the solution for the right leg will be quite similar to the solution for the left leg. The only difference is in the rotation matrix for the RHipYawPitch joint, which must be rotated by $-\frac{\pi}{4}$.
 \[
 T = A^0_\text{Base}T^1_0T^2_1T^3_2T^4_3T^5_4T^6_5R_z(\pi)R_y(-\tfrac{\pi}{2})A^\text{End}_6
 \]
@@ -558,11 +561,14 @@ T = A^0_\text{Base}T^1_0T^2_1T^3_2T^4_3T^5_4T^6_5R_z(\pi)R_y(-\tfrac{\pi}{2})A^\
 \[
 T' = {\left(\widetilde{T}\right)}^{-1}
 \]
-After that, the symbolic matrix for the right leg is exactly the same as the symbolic matrix for the left leg. From this point of view, if we follow all the steps as we did with the left leg, we will conclude to the same equations. So, the final equations are:
-\begin{align*}
-T' &= \left(R_x(\tfrac{\pi}{4})\left(\left(A^0_\text{Base}\right)^{-1} T \left(A^\text{End}_6\right)^{-1}\right)\right)^{-1} \\
-\theta_4 &=\pm\left(\pi - \arccos\left(\frac{{l_1}^2 + {l_2}^2 - \sqrt{\left(s_x-T'_{(1,4)}\right)^2 + \left(s_y-T'_{(2,4)}\right)^2 + \left(s_z-T'_{(3,4)}\right)^2}^2}{2 l_1 l_2}\right)\right) \\
-\theta_6 &= \arctan\left(\frac{T'_{(2,4)}}{T'_{(3,4)}}\right)\hspace{6.5cm}\text{if} \left(l_2\cos\theta_5 + l_1 \cos\left(\theta_4 + \theta_5\right)\right) \neq 0 \\
+Besides this change, all the steps followed to reach a solution for the left leg apply without change to the right leg as well. 
+
+Therefore, the equations of inverse kinematics for the right leg are:
+\begin{align*}%MGL: added the minus -
+T' &= \left(R_x(-\tfrac{\pi}{4})\left(\left(A^0_\text{Base}\right)^{-1} T \left(A^\text{End}_6\right)^{-1}\right)\right)^{-1} \\
+\theta_4 &=\pm\left(\pi - \arccos\left(\frac{{l_1}^2 + {l_2}^2 - \sqrt{\left(0-T'_{(1,4)}\right)^2 + \left(0-T'_{(2,4)}\right)^2 + \left(0-T'_{(3,4)}\right)^2}^2}{2 l_1 l_2}\right)\right) \\
+\theta_6 &= \arctan\left(\frac{T'_{(2,4)}}{T'_{(3,4)}}\right)\hspace{5.78cm}\text{if} \left(l_2\cos\theta_5 + l_1 \cos\left(\theta_4 + \theta_5\right)\right) \neq 0 \\
+\theta_6 &= 0 \hspace{8.5cm}\text{if} \left(l_2\cos\theta_5 + l_1 \cos\left(\theta_4 + \theta_5\right)\right) = 0 \\
 T'' &= \left(\left(T'\right)^{-1}\left(T^6_5R_z\left(\pi\right)R_y(-\tfrac{\pi}{2})\right)^{-1}\right)^{-1} \\
 \theta_5 &= \arcsin\left(-\frac{T''_{(2,4)}\left(l_2+l_1\cos\theta_4\right) + l_1T''_{(1,4)}\sin\theta_4}{{l_1}^2\sin^2\theta_4 + \left(l_2 + l_1\cos\theta_4\right)}\right) \\
 \theta_5 &= \pi - \arcsin\left(-\frac{T''_{(2,4)}\left(l_2+l_1\cos\theta_4\right) + l_1T''_{(1,4)}\sin\theta_4}{{l_1}^2\sin^2\theta_4 + \left(l_2 + l_1\cos\theta_4\right)}\right)\\
@@ -579,30 +585,22 @@ T''' &= \left(T''\right)^{-1}\left(T^4_3T^5_4\right)^{-1} \\
 
 
 
-\subsection{Undefined Target Points For Legs}
-\label{undefined}
-As we mentioned before, we have some target points for which we can't find an inverse kinematics solution. These target points are presented in the figure~\ref{fig:undefined}, alongside with all the values of the angles that are responsible for this singularity. As we can see, we let the robot to do a lot of movements in the field, and none of those movements was close to the points of the singularity. In real world, it is very rare for someone to give target points in that area. Also, when someone is executing a trajectory, they ''feed'' inverse kinematics with a lot of target points per second (usually they provide inverse kinematics with target points with frequency 50 to 100 Hz), so if one of those target points is in the area of singularity, we will find a solution for the next target point. Because we are working in high frequency rate, the singularity will be unnoticed and the movement will be continued normally.
 
-\begin{figure}[h]
-	\begin{center}
-		\includegraphics[height = 10cm]{Figures/undefined.pdf}
- 		\caption{Undefined Target Points For Legs}
- 		\label{fig:undefined}
-	\end{center}
-\end{figure}
 
 
 \section{Implementation}
-Now that we have all the equations for both problems, we must integrate them in the code of the team. The code of the team is written in \verb!C++! so because \verb!C++! doesn't have any library for fast linear algebra operations, we must develop a minimalistic matrix framework. Then, using this framework, we must write some functions that will implement the equations of forward and inverse kinematics in \verb!C++!.
+
+Having completed all forward and inverse kinematics in analytical form, our next goal is to integrate them in the code of our RoboCup team for real-time, on-board execution on the NAO robot. The software architecture and the entire code of the team is written in {\tt C++}. Given that {\tt C++} offers no library for optimized real-time matrix operations, we relied on KMat, a minimalistic framework for such operations. Using this framework, it was fairly easy to implement our own kinematics library in {\tt C++}, which includes functions that implement all equations of forward and inverse kinematics for the NAO robot.
 
 \subsection{KMat: Kouretes Math Library}
-KMat is a library developed by Emmanouil Orfanoudakis~\cite{orfanoudakis2011} that supports a strict subset of algebraic operations. The focus of the library is mainly in real numbers operations and the primary goal of KMat is low memory footprint and calculation efficiency. The typical linear algebra libraries do run-time validation for the compatibility of the operands and are optimized for large matrices. On the other hand, KMat is optimized for small matrices (typically $(3\times3)$ or $(4\times4)$) and only a subset of operations (addition, subtraction, multiplication, scalar addition, scalar multiplication, transposition, inversion) have been implemented. KMat supports two type of matrices: Dense matrices and Affine transformation matrices.
+KMat is a library developed by Emmanouil Orfanoudakis~\cite{orfanoudakis2011} that supports a selected subset of algebraic matrix operations. The focus of the library is mainly on real number operations and the primary goal of KMat is low memory footprint and calculation efficiency. Existing linear algebra libraries typically perform run-time validation for the compatibility of the operands and are optimized for large matrices. On the other hand, KMat is optimized for small matrices (typically $3\times3$ or $4\times4$) and supports only a selected subset of operations (addition, subtraction, multiplication, scalar addition, scalar multiplication, transposition, inversion). KMat is optimized for and supports two type of matrices: dense matrices and affine transformation matrices.
 
-For our work we used mainly the affine type of matrices and we expanded the functions of the library with some functions that are extremely useful for the kinematics computations. These functions are some initialization functions that initialize a matrix with the given DH parameters or reconstruct of the matrix given the target points etc.
+In our own work, we mainly used the functions offered for affine transformation matrices. In addition, we expanded the library with functionality that is extremely useful in the context of kinematics. These functions include matrix initialization given a set of DH parameters, construction of the transformation matrix for a given target point, etc.
 
-\subsection{Nao Kinematics in C++}
-Along with KMat we created two more libraries ForwardKinematics and InverseKinematics. ForwardKinematics has the functions to calculate the location of an end effector of a kinematic chain, given the joint values for this chain. The union of independent chains with common base frame is possible, so someone can take the position of the top camera relatively to one of the legs. Finally, we have a function to calculate the center of mass of the robot. The input of each function is the values of the joints with the order that they appear in the kinematic chains.
+\subsection{Nao Kinematics {\tt C++} Library}
 
-The inverse kinematics library has five functions, each of which solves the problem for a kinematic chain. All functions take, as input, the position and the orientation of the target point and the output is the values of the joints, for all the possible solutions for this point. It is possible to have a solution with two set of values and then the user can decide what output will be used. 
+We created two libraries, \texttt{ForwardKinematics} and \texttt{InverseKinematics}, for NAO kinematics in {\tt C++}. \texttt{ForwardKinematics} includes functions for calculating the point (position and orientation) of an end effector of a kinematic chain, given the joint values for this chain. The input to each of these functions is a list of values for the joints in the order they appear in corresponding kinematic chain. The output is a list of six numbers, the three Cartesian coordinates of the position and the three Euler angles for the orientation. The combination of independent chains with a common base frame is also possible, so that one can find, for example, the position and orientation of the top camera relatively to one of the legs. This library also includes a function for calculating the center of mass of the robot given a set of values for all joints.
 
-As we mentioned before, the legs have one common joint (HipYawPitch) but if we give two target points, one for each leg, inverse kinematics for the left leg will most likely  return a different value for this joint than the inverse kinematics for the right leg. We must decide what value will be set to the HipYawPitch joint and one solution to this problem is to make the support leg (the leg that keeps the robot in balance) the master of this joint or another solution is to get the mean of these two values. Both solutions are not perfect but with a large probability, if we design trajectories carefully, the resulted values from inverse kinematics for this joint will be close enough. Thus, we can use any of these two solutions and the result will be similar to the result if the joint was independent.
+The \texttt{InverseKinematics} library includes five functions, each of which solves the problem for one of the five kinematic chains. All functions take as input the position and the orientation of the desired target point and the output is a list of solutions, where each solution includes values for all the joints of the chain. Although multiple solutions are rare, all solutions found are returned so that the user can decide which one to use.
+
+A practical issue in inverse kinematics may have to be resolved manually, if it comes up. The two legs of the NAO robot have one common joint (HipYawPitch), therefore, if a user gives two target points, one for each leg, inverse kinematics for the left leg may return a different value for this joint than the inverse kinematics for the right leg. The user must decide which value to use to set the HipYawPitch joint. One choice is to give priority to the value returned by the leg that currently acts as support leg (the one on which the robot stands at the moment). Another choice is to set the joint to the mean of the two values. None of these choices is perfect, however it is likely that in a carefully-designed trajectory the resulting values from inverse kinematics for this joint will be close enough and the end result will be close to the desired one, independently of the user's choice. 
