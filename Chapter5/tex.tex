@@ -520,7 +520,7 @@ Now, we can extract the remaining three angles as follows:
 \widehat{\theta}_2 &= \arccos T'''_{(2,3)}\\
 \theta_2 &= \widehat{\theta}_2 - \cfrac{\pi}{4}\\
 \theta_3 &= \arcsin\left(\cfrac{T'''_{(2,2)}}{\sin\left(\theta_2+\frac{\pi}{4}\right)}\right)\\
-\widehat{\theta}_1 &= \arccos\left(\cfrac{T'''_{(3,3)}}{\sin\left(\theta_2+\frac{\pi}{4}\right)}\right)\\
+\widehat{\theta}_1 &= \arccos\left(\cfrac{T'''_{(1,3)}}{\sin\left(\theta_2+\frac{\pi}{4}\right)}\right)\\
 \theta_1 &= \widehat{\theta}_1 + \cfrac{\pi}{2}
 \end{align*}
 The equations above are valid, because by the robot construction the LHipRoll joint $(\theta_2)$ cannot reach $-\frac{\pi}{4}$ or $\frac{3\pi}{4}$ and therefore the denominator $\sin\left(\theta_2+\frac{\pi}{4}\right)$ never becomes zero. 
@@ -538,7 +538,7 @@ T''' &= \left(T''\right)^{-1}\left(T^4_3T^5_4\right)^{-1}\\
 \theta_2 &= \pm\arccos\left(T'''_{(2,3)}\right) - \cfrac{\pi}{4} \\
 \theta_3 &= \arcsin\left(\cfrac{T'''_{(2,2)}}{\sin\left(\theta_2+\frac{\pi}{4}\right)}\right) \\
 \theta_3 &= \pi - \arcsin\left(\cfrac{T'''_{(2,2)}}{\sin\left(\theta_2+\frac{\pi}{4}\right)}\right) \\
-\theta_1 &= \pm\arccos\left(\cfrac{T'''_{(3,3)}}{\sin\left(\theta_2+\frac{\pi}{4}\right)}\right) + \cfrac{\pi}{2}
+\theta_1 &= \pm\arccos\left(\cfrac{T'''_{(1,3)}}{\sin\left(\theta_2+\frac{\pi}{4}\right)}\right) + \cfrac{\pi}{2}
 \end{align*}
 
 
@@ -576,7 +576,7 @@ T''' &= \left(T''\right)^{-1}\left(T^4_3T^5_4\right)^{-1} \\
 \theta_2 &= \pm\arccos\left(T'''_{(2,3)}\right) + \cfrac{\pi}{4} \\
 \theta_3 &= \arcsin\left(\cfrac{T'''_{(2,2)}}{\sin\left(\theta_2 - \frac{\pi}{4}\right)}\right) \\
 \theta_3 &= \pi - \arcsin\left(\cfrac{T'''_{(2,2)}}{\sin\left(\theta_2 - \frac{\pi}{4}\right)}\right) \\
-\theta_1 &= \pm\arccos\left(\cfrac{T'''_{(3,3)}}{\sin\left(\theta_2 - \frac{\pi}{4}\right)}\right) + \cfrac{\pi}{2}
+\theta_1 &= \pm\arccos\left(\cfrac{T'''_{(1,3)}}{\sin\left(\theta_2 - \frac{\pi}{4}\right)}\right) + \cfrac{\pi}{2}
 \end{align*}
 
 
