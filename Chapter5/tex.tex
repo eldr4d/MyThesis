@@ -86,7 +86,7 @@ The kinematic chain for the left arm consists of four joints. So, we need to fin
 Base & \multicolumn{4}{c|}{$A(0,\text{\footnotesize{ShoulderOffsetY+ElbowOffsetY}},\text{\footnotesize{ShoulderOffsetZ}})$} \\ \hline
 LShoulderPitch & $0$ & $-\frac{\pi}{2}$ & $0$ & $\theta_1$ \\ \hline
 LShoulderRoll & $0$ & $\frac{\pi}{2}$ & $0$ & $\theta_2 - \frac{\pi}{2}$ \\ \hline
-LElbowYaw & $0$ & $-\frac{\pi}{2}$ & \footnotesize{UpperArmLength} & $\theta_3$ \\ \hline
+LElbowYaw & $0$ & $-\frac{\pi}{2}$ & \footnotesize{UpperArmLength} & $-\theta_3$ \\ \hline
 LElbowRoll & $0$ & $\frac{\pi}{2}$ & $0$ & $\theta_4$ \\ \hline
 Rotation & \multicolumn{4}{c|}{$R_z(\frac{\pi}{2})$} \\ \hline
 End effector & \multicolumn{4}{c|}{$A(\text{\footnotesize{HandOffsetX+LowerArmLength}},0,0)$} \\ \hline
@@ -303,20 +303,20 @@ r_{21} & r_{22} & r_{23} & r_{24}\\
 r_{31} & r_{32} & r_{33} & r_{34}\\
 0 & 0 & 0 & 1
 \end{bmatrix}\\
-r_{11} &= \sin\theta_4\left(\sin\theta_1\sin\theta_3 - \cos\theta_1\cos\widehat{\theta}_2\cos\theta_3\right) - \cos\theta_1\cos\theta_4\sin\widehat{\theta}_2\\
-r_{12} &= \cos\theta_4\left(\sin\theta_1\sin\theta_3 - \cos\theta_1\cos\widehat{\theta}_2\cos\theta_3\right) + \cos\theta_1\sin\widehat{\theta}_2\sin\theta_4\\
-r_{13} &= \cos\theta_3\sin\theta_1 + \cos\theta_1\cos\widehat{\theta}_2\sin\theta_3\\
-r_{14} &= l_4\left(\sin\theta_4\left(\sin\theta_1\sin\theta_3 - \cos\theta_1\cos\widehat{\theta}_2\cos\theta_3\right) - \cos\theta_1\cos\theta_4\sin\widehat{\theta}_2\right) - l_3\cos\theta_1\sin\widehat{\theta}_2\\
-r_{21} &= \cos\widehat{\theta}_2\cos\theta_4 - \cos\theta_3\sin\widehat{\theta}_2\sin\theta_4\\
-r_{22} &= \cos\widehat{\theta}_2\sin\theta_4 - \cos\theta_3\cos\theta_4\sin\widehat{\theta}_2\\
-r_{23} &= \sin\widehat{\theta}_2\sin\theta_3\\
-r_{24} &= l_1 + l_3\cos\widehat{\theta}_2 + l_4\left(\cos\widehat{\theta}_2\cos\theta_4 - \cos\theta_3\sin\widehat{\theta}_2\sin\theta_4\right)\\
-r_{31} &= \sin\theta_4\left(\cos\theta_1\sin\theta_3 + \cos\widehat{\theta}_2\cos\theta_3\sin\theta_1\right) + \cos\theta_4\sin\theta_1\sin\widehat{\theta}_2\\
-r_{32} &= \cos\theta_4\left(\cos\theta_1\sin\theta_3 + \cos\widehat{\theta}_2\cos\theta_3\sin\theta_1\right) - \sin\theta_1\sin\widehat{\theta}_2\sin\theta_4\\
-r_{33} &= \cos\theta_1\cos\theta_3 - \cos\widehat{\theta}_2\sin\theta_1\sin\theta_3\\
-r_{34} &= l_2 + l_4\left(\sin\theta_4\left(\cos\theta_1\sin\theta_3 + \cos\widehat{\theta}_2\cos\theta_3\sin\theta_1\right) + \cos\theta_4\sin\theta_1\sin\widehat{\theta}_2\right) + l_3\sin\theta_1\sin\widehat{\theta}_2
+r_{11} &= \sin\theta_4\left(\sin\theta_1\sin\widehat{\theta}_3 - \cos\theta_1\cos\widehat{\theta}_2\cos\widehat{\theta}_3\right) - \cos\theta_1\cos\theta_4\sin\widehat{\theta}_2\\
+r_{12} &= \cos\theta_4\left(\sin\theta_1\sin\widehat{\theta}_3 - \cos\theta_1\cos\widehat{\theta}_2\cos\widehat{\theta}_3\right) + \cos\theta_1\sin\widehat{\theta}_2\sin\theta_4\\
+r_{13} &= \cos\widehat{\theta}_3\sin\theta_1 + \cos\theta_1\cos\widehat{\theta}_2\sin\widehat{\theta}_3\\
+r_{14} &= l_4\left(\sin\theta_4\left(\sin\theta_1\sin\widehat{\theta}_3 - \cos\theta_1\cos\widehat{\theta}_2\cos\widehat{\theta}_3\right) - \cos\theta_1\cos\theta_4\sin\widehat{\theta}_2\right) - l_3\cos\theta_1\sin\widehat{\theta}_2\\
+r_{21} &= \cos\widehat{\theta}_2\cos\theta_4 - \cos\widehat{\theta}_3\sin\widehat{\theta}_2\sin\theta_4\\
+r_{22} &= \cos\widehat{\theta}_2\sin\theta_4 - \cos\widehat{\theta}_3\cos\theta_4\sin\widehat{\theta}_2\\
+r_{23} &= \sin\widehat{\theta}_2\sin\widehat{\theta}_3\\
+r_{24} &= l_1 + l_3\cos\widehat{\theta}_2 + l_4\left(\cos\widehat{\theta}_2\cos\theta_4 - \cos\widehat{\theta}_3\sin\widehat{\theta}_2\sin\theta_4\right)\\
+r_{31} &= \sin\theta_4\left(\cos\theta_1\sin\widehat{\theta}_3 + \cos\widehat{\theta}_2\cos\widehat{\theta}_3\sin\theta_1\right) + \cos\theta_4\sin\theta_1\sin\widehat{\theta}_2\\
+r_{32} &= \cos\theta_4\left(\cos\theta_1\sin\widehat{\theta}_3 + \cos\widehat{\theta}_2\cos\widehat{\theta}_3\sin\theta_1\right) - \sin\theta_1\sin\widehat{\theta}_2\sin\theta_4\\
+r_{33} &= \cos\theta_1\cos\widehat{\theta}_3 - \cos\widehat{\theta}_2\sin\theta_1\sin\widehat{\theta}_3\\
+r_{34} &= l_2 + l_4\left(\sin\theta_4\left(\cos\theta_1\sin\widehat{\theta}_3 + \cos\widehat{\theta}_2\cos\widehat{\theta}_3\sin\theta_1\right) + \cos\theta_4\sin\theta_1\sin\widehat{\theta}_2\right) + l_3\sin\theta_1\sin\widehat{\theta}_2
 \end{align*}
-where $\widehat{\theta}_2$ is the DH parameter $\theta$ for the second (LShoulderRoll) joint, $l_1 =$ ShoulderOffsetY$+$ElbowOffsetY, $l_2 =$ ShoulderOffsetZ, $l_3 =$ UpperArmLength, and $l_4 =$ HandOffsetX$+$LowerArmLength.
+where $\widehat{\theta}_2$ is the DH parameter $\theta$ for the second (LShoulderRoll) joint, $l_2 =$ ShoulderOffsetZ, $l_1 =$ ShoulderOffsetY $+$ ElbowOffsetY, $l_3 =$ UpperArmLength, and $l_4 =$ HandOffsetX~$+$~LowerArmLength.
 It is quite difficult to extract a joint value from these equations, so we will turn to trigonometry to find the value of the LElbowRoll joint. We can observe that the upper arm, the lower arm with the hand offset, and the segment from the position of the LShoulderPitch joint to the end effector form a triangle with known lengths for all sides. The position of the LShoulderPitch joint relatively to the torso frame is known, and the position of the end effector is the desired target position $(p_x,p_y,p_z)$. So, the distance $d$ between the position $(s_x,s_y,s_z)$ of the LShoulderPitch joint and the position of the end effector $(p_x,p_y,p_z)$ can be calculated as:
 \[
 d=\sqrt{\left(s_x-p_x\right)^2 + \left(s_y-p_y\right)^2 + \left(s_z-p_z\right)^2}
@@ -336,12 +336,12 @@ Since the LElbowRoll joint takes only negative values, we finally compute $\thet
 \]
 The next angle we can find is $\widehat{\theta}_2$, so we focus on equations from the symbolic matrix, where we only have $\widehat{\theta}_2$ and one more unknown (excluding $\theta_4$, which is already found). Using $r_{22}$, we have:
 \begin{align*}
-T_{(2,2)} &= -\cos\widehat{\theta}_2\sin\theta_4 - \cos\theta_3\cos\theta_4\sin\widehat{\theta}_2 &\Leftrightarrow\\
-\cos\theta_3\sin\widehat{\theta}_2 &= -\cfrac{\cos\widehat{\theta}_2\sin\theta_4 + T_{(2,2)}}{\cos\theta_4}
+T_{(2,2)} &= -\cos\widehat{\theta}_2\sin\theta_4 - \cos\widehat{\theta}_3\cos\theta_4\sin\widehat{\theta}_2 &\Leftrightarrow\\
+\cos\widehat{\theta}_3\sin\widehat{\theta}_2 &= -\cfrac{\cos\widehat{\theta}_2\sin\theta_4 + T_{(2,2)}}{\cos\theta_4}
 \end{align*}
 This division is always feasible, because $\theta_4$ never reaches $\pm\frac{\pi}{2}$, therefore the cosine never becomes zero. Now, we focus on $r_{24}$:
 \begin{align*}
-&T_{(2,4)} = p_y = l_1 + l_3\cos\widehat{\theta}_2 + l_4\left(\cos\widehat{\theta}_2\cos\theta_4 - \cos\theta_3\sin\widehat{\theta}_2\sin\theta_4\right)&\Leftrightarrow\\
+&T_{(2,4)} = p_y = l_1 + l_3\cos\widehat{\theta}_2 + l_4\left(\cos\widehat{\theta}_2\cos\theta_4 - \cos\widehat{\theta}_3\sin\widehat{\theta}_2\sin\theta_4\right)&\Leftrightarrow\\
 &p_y - l_1 =l_3\cos\widehat{\theta}_2 + l_4\cos\widehat{\theta}_2\cos\theta_4 - l_4\left(-\frac{\cos\widehat{\theta}_2\sin\theta_4 + T_{(2,2)}}{\cos\theta_4}\right)\sin\theta_4&\Leftrightarrow\\
 &p_y - l_1 - \frac{l_4\sin\theta_4 T_{(2,2)}}{\cos\theta_4} = \cos\widehat{\theta}_2\left(l_3 + l_4\cos\theta_4 + l_4\frac{{\sin\theta_4}^2}{\cos\theta_4}\right)&\Leftrightarrow\\
 &\widehat{\theta}_2 = \arccos\left(\cfrac{p_y - l_1 - \frac{l_4\sin\theta_4 T_{(2,2)}}{\cos\theta_4}}{l_3 + l_4\cos\theta_4 + l_4\frac{\sin^2\theta_4}{\cos\theta_4}}\right) \hspace{2cm} \text{because }   l_3 + l_4\cos\theta_4 + l_4\frac{\sin^2\theta_4}{\cos\theta_4}>0 \hspace{-0.8cm}
@@ -349,33 +349,43 @@ This division is always feasible, because $\theta_4$ never reaches $\pm\frac{\pi
 Now the final joint value is $\theta_2 = \widehat{\theta}_2 + \frac{\pi}{2}$. From now on, we substitute $\theta_2 - \frac{\pi}{2}$ in $\widehat{\theta}_2$.
 Next, we will compute the $\theta_3$ angle:
 \begin{align*}
-T_{(2,3)} &= \sin\left(\theta_2 - \frac{\pi}{2}\right)\sin\theta_3 &\Leftrightarrow \\
- \theta_3 &= \arcsin\left( \cfrac{ T_{(2,3)} }{ \sin\left(\theta_2-\frac{\pi}{2}\right)}\right)  &\text{because }    \theta_2 \neq \left|\frac{\pi}{2}\right|
+T_{(2,3)} &= \sin\left(\theta_2 - \frac{\pi}{2}\right)\sin\widehat{\theta}_3 &\Leftrightarrow \\
+ \widehat{\theta}_3 &= \arcsin\left( \cfrac{ T_{(2,3)} }{ \sin\left(\theta_2-\frac{\pi}{2}\right)}\right)  &\text{because }    \theta_2 \neq \left|\frac{\pi}{2}\right|\\
+ \theta_3 &= -\widehat{\theta}_3
 \end{align*}
 Finally, we can extract the value for $\theta_1$:
 \begin{align*}
-T_{(1,3)} &= \cos\theta_3\sin\theta_1 + \cos\theta_1\cos\left(\theta_2 - \frac{\pi}{2}\right)\sin\theta_3 &\Leftrightarrow \\
-\sin\theta_1 &= \cfrac{T_{(1,3)} - \cos\theta_1\cos\left(\theta_2 - \frac{\pi}{2}\right)\sin\theta_3}{\cos\theta_3}  &\text{when } \theta_3 \neq \left|\frac{\pi}{2}\right|\\
-\cos\theta_1 &= \cfrac{T_{(1,3)}}{\cos\left(\theta_2 - \frac{\pi}{2}\right)\sin\theta_3}  &\text{when } \theta_3 = \left|\frac{\pi}{2}\right|
+T_{(1,3)} &= \cos(-\theta_3)\sin\theta_1 + \cos\theta_1\cos\left(\theta_2 - \frac{\pi}{2}\right)\sin(-\theta_3) &\Leftrightarrow \\
+\sin\theta_1 &= \cfrac{T_{(1,3)} - \cos\theta_1\cos\left(\theta_2 - \frac{\pi}{2}\right)\sin(-\theta_3)}{\cos(-\theta_3)}  &\text{when } \theta_3 \neq \left|\frac{\pi}{2}\right|\\
+\cos\theta_1 &= \cfrac{T_{(1,3)}}{\cos\left(\theta_2 - \frac{\pi}{2}\right)\sin(-\theta_3)}  &\text{when } \theta_3 = \left|\frac{\pi}{2}\right|\text{ and } \theta_2 \neq0\\
+\widehat{T} &=T\left({A^{\text{End}}_4}\right)^{-1}&\\
+\cos\theta_1 &= \frac{\widehat{T}_{(1,4)}}{l_3}&\text{when } \theta_3 = \left|\frac{\pi}{2}\right|\text{ and } \theta_2 = 0
 \end{align*}
-There are two possible solutions for $\theta_1$ depending on the value of $\theta_3$. So, when $\theta_3 = \left|\frac{\pi}{2}\right|$:
+There are trhee possible solutions for $\theta_1$ depending on the value of $\theta_3$ and $\theta_2$. So, when $\theta_3 = \left|\frac{\pi}{2}\right|$ and $\theta_2 \neq 0$:
 \begin{align*}
-&\theta_1 = \arccos\left(\cfrac{T_{(1,3)}}{\cos\left(\theta_2 - \frac{\pi}{2}\right)\sin\theta_3}\right)
+&\theta_1 = \pm\arccos\left(\cfrac{T_{(1,3)}}{\cos\left(\theta_2 - \frac{\pi}{2}\right)\sin(-\theta_3)}\right)
+\end{align*}
+When, $\theta_3 = \left|\frac{\pi}{2}\right|$ and $\theta_2 = 0$:
+\begin{align*}
+\widehat{T} &=T\left({A^{\text{End}}_4}\right)^{-1}\\
+\theta_1 &= \pm\arccos\left(\frac{\widehat{T}_{(1,4)}}{l_3}\right)
 \end{align*}
 Otherwise, if $\theta_3 \neq \left|\frac{\pi}{2}\right|$, we find $\theta_1$ from $r_{33}$ after replacing $\sin\theta_1$ in $r_{33}$ with the result shown above. So:
 \begin{align*}
-T_{(3,3)} &= \cos\theta_1\cos\theta_3 - \cos\left(\theta_2 - \frac{\pi}{2}\right)\sin\theta_1\sin\theta_3 &\Leftrightarrow \\
-T_{(3,3)} &= \cos\theta_1\cos\theta_3 - \left(\cfrac{T_{(1,3)} - \cos\theta_1\cos\left(\theta_2 - \frac{\pi}{2}\right)\sin\theta_3}{\cos\theta_3}\right)\sin\theta_3\cos\left(\theta_2 - \frac{\pi}{2}\right) &\Leftrightarrow \\
-\theta_1 &= \arccos\left(\cfrac{T_{(3,3)} +\cfrac{ T_{(1,3)}\sin\theta_3\cos\left(\theta_2 - \frac{\pi}{2}\right)}{\cos\theta_3}}{\cos\theta_3 + \cfrac{\cos^2\left(\theta_2-\frac{\pi}{2}\right)\sin^2\theta_3}{\cos\theta_3}}\right)
+T_{(3,3)} &= \cos\theta_1\cos(-\theta_3) - \cos\left(\theta_2 - \frac{\pi}{2}\right)\sin\theta_1\sin(-\theta_3) &\Leftrightarrow \\
+T_{(3,3)} &= \cos\theta_1\cos(-\theta_3) - \left(\cfrac{T_{(1,3)} - \cos\theta_1\cos\left(\theta_2 - \frac{\pi}{2}\right)\sin(-\theta_3)}{\cos(-\theta_3)}\right)\sin(-\theta_3)\cos\left(\theta_2 - \frac{\pi}{2}\right) &\Leftrightarrow \\
+\theta_1 &= \arccos\left(\cfrac{T_{(3,3)} +\cfrac{ T_{(1,3)}\sin(-\theta_3)\cos\left(\theta_2 - \frac{\pi}{2}\right)}{\cos(-\theta_3)}}{\cos(-\theta_3) + \cfrac{\cos^2\left(\theta_2-\frac{\pi}{2}\right)\sin^2(-\theta_3)}{\cos(-\theta_3)}}\right)
 \end{align*}
 At this point, we have multiple solution sets for all the joints of the left arm, but some of them may be invalid. We find the correct set(s) through a forward kinematics validation step. In summary, the final inverse kinematics equations for the left arm chain are:
 \begin{align*}
 \theta_4 &= -\left(\pi - \arccos\left(\cfrac{{l_3}^2 + {l_4}^2 - \sqrt{\left(s_x-T_{(1,4)}\right)^2 + \left(s_y-T_{(2,4)}\right)^2 + \left(s_z-T_{(3,4)}\right)^2}^2 }{2 l_3 l_4}\right)\right)\\
 \theta_2 &= \pm\arccos\left(\cfrac{T_{(2,4)} - l_1 - \left(\frac{l_4\sin\theta_4 T_{(2,2)}}{\cos\theta_4}\right)}{l_3 +l_4\cos\theta_4 + l_4\frac{\sin^2\theta_4}{\cos\theta_4}}\right)+\cfrac{\pi}{2}\\
-\theta_3 &= \arcsin\left(\cfrac{T_{(2,3)}}{\sin\left(\theta_2-\frac{\pi}{2}\right)}\right)\\
-\theta_3 &= \pi - \arcsin\left(\frac{T_{(2,3)}}{\sin\left(\theta_2-\frac{\pi}{2}\right)}\right)\\
-\theta_1 &= \pm\arccos\left(\cfrac{T_{(3,3)} + \cfrac{T_{(1,3)}\sin\theta_3\cos\left(\theta_2 - \frac{\pi}{2}\right)}{\cos\theta_3}}{\cos\theta_3 + \cfrac{\cos^2\left(\theta_2-\frac{\pi}{2}\right)\sin^2\theta_3}{\cos\theta_3}}\right) &\text{if } \theta_3 \neq \cfrac{\pi}{2}\\
-\theta_1 &= \pm\arccos\left(\cfrac{T_{(1,3)}}{\cos\left(\theta_2 - \frac{\pi}{2}\right)\sin\theta_3}\right) &\text{if } \theta_3 = \cfrac{\pi}{2}
+\theta_3 &= -\arcsin\left(\cfrac{T_{(2,3)}}{\sin\left(\theta_2-\frac{\pi}{2}\right)}\right)\\
+\theta_3 &= -\left(\pi - \arcsin\left(\frac{T_{(2,3)}}{\sin\left(\theta_2-\frac{\pi}{2}\right)}\right)\right)\\
+\theta_1 &= \pm\arccos\left(\cfrac{T_{(3,3)} + \cfrac{T_{(1,3)}\sin(-\theta_3)\cos\left(\theta_2 - \frac{\pi}{2}\right)}{\cos(-\theta_3)}}{\cos(-\theta_3) + \cfrac{\cos^2\left(\theta_2-\frac{\pi}{2}\right)\sin^2(-\theta_3)}{\cos(-\theta_3)}}\right) \hspace*{2cm}\text{if } \theta_3 \neq \left|\frac{\pi}{2}\right|\\
+\theta_1 &= \pm\arccos\left(\cfrac{T_{(1,3)}}{\cos\left(\theta_2 - \frac{\pi}{2}\right)\sin(-\theta_3)}\right) \hspace*{4.9cm}\text{if } \theta_3 = \left|\frac{\pi}{2}\right| \text{ and } \theta_2 \neq 0\\
+\widehat{T} &=T\left({A^{\text{End}}_4}\right)^{-1}&\\
+\theta_1 &= \pm\arccos\left(\frac{\widehat{T}_{(1,4)}}{l_3}\right)\hspace*{7.8cm}\text{if } \theta_3 = \left|\frac{\pi}{2}\right|\text{ and } \theta_2 = 0
 \end{align*}
 
 
@@ -403,8 +413,10 @@ T' &= T_\text{rhandUnrotated} = T{\big(R_z(-\pi)\big)}^{-1}\\
 \theta_2 &= \pm\arccos\left(\cfrac{ - T'_{(2,4)} - l_1 - \left(\frac{l_4\sin\theta_4T'_{(2,2)}}{\cos\theta_4} \right)}{l_3 +l_4\cos\theta_4 + l_4\frac{\sin^2\theta_4}{\cos\theta_4}}\right)-\frac{\pi}{2}\\
 \theta_3 &= \arcsin\left(\cfrac{T'_{(2,3)}}{\sin\left(\theta_2 + \frac{\pi}{2}\right)}\right)\\
 \theta_3 &= \pi - \arcsin\left(\cfrac{T'_{(2,3)}}{\sin\left(\theta_2 + \frac{\pi}{2}\right)}\right) \\
-\theta_1 &= \pm\arccos\left(\cfrac{T'_{(3,3)} + \cfrac{T'_{(1,3)}\sin\theta_3\cos\left(\theta_2 + \frac{\pi}{2}\right)}{\cos\theta_3}}{\cos\theta_3 + \cfrac{\cos^2\left(\theta_2 + \frac{\pi}{2}\right)\sin^2\theta_3}{\cos\theta_3}}\right) &\text{if } \theta_3 \neq \cfrac{\pi}{2}& \\
-\theta_1 &= \pm\arccos\left(\cfrac{T'_{(1,3)}}{\cos\left(\theta_2 +\frac{\pi}{2}\right)\sin\theta_3}\right) &\text{if } \theta_3 = \cfrac{\pi}{2}
+\theta_1 &= \pm\arccos\left(\cfrac{T'_{(3,3)} + \cfrac{T'_{(1,3)}\sin\theta_3\cos\left(\theta_2 + \frac{\pi}{2}\right)}{\cos\theta_3}}{\cos\theta_3 + \cfrac{\cos^2\left(\theta_2 + \frac{\pi}{2}\right)\sin^2\theta_3}{\cos\theta_3}}\right) \hspace*{3cm}\text{if } \theta_3 \neq \cfrac{\pi}{2}& \\
+\theta_1 &= \pm\arccos\left(\cfrac{T'_{(1,3)}}{\cos\left(\theta_2 +\frac{\pi}{2}\right)\sin\theta_3}\right) \hspace*{5.5cm}\text{if } \theta_3 = \left|\frac{\pi}{2}\right| \text{ and } \theta_2 \neq 0\\
+\widehat{T} &=T'\left({A^{\text{End}}_4}\right)^{-1}&\\
+\theta_1 &= \pm\arccos\left(\frac{\widehat{T}_{(1,4)}}{l_3}\right)\hspace*{7.8cm}\text{if } \theta_3 = \left|\frac{\pi}{2}\right|\text{ and } \theta_2 = 0
 \end{align*}
 
 
@@ -576,7 +588,7 @@ T''' &= \left(T''\right)^{-1}\left(T^4_3T^5_4\right)^{-1} \\
 \theta_2 &= \pm\arccos\left(T'''_{(2,3)}\right) + \cfrac{\pi}{4} \\
 \theta_3 &= \arcsin\left(\cfrac{T'''_{(2,2)}}{\sin\left(\theta_2 - \frac{\pi}{4}\right)}\right) \\
 \theta_3 &= \pi - \arcsin\left(\cfrac{T'''_{(2,2)}}{\sin\left(\theta_2 - \frac{\pi}{4}\right)}\right) \\
-\theta_1 &= \pm\arccos\left(\cfrac{T'''_{(1,3)}}{\sin\left(\theta_2 - \frac{\pi}{4}\right)}\right) + \cfrac{\pi}{2}
+\theta_1 &= \pm\arccos\left(\cfrac{T'''_{(1c,3)}}{\sin\left(\theta_2 - \frac{\pi}{4}\right)}\right) + \cfrac{\pi}{2}
 \end{align*}
 
 
