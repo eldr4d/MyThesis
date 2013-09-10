@@ -299,7 +299,7 @@ The left arm chain is far more complicated than the head chain. First, we constr
 T = A^0_\text{Base}T^1_0T^2_1T^3_2T^4_3R_z(\tfrac{\pi}{2})A^\text{End}_{4}
 \]
 \[
-T' = \left(A_\text{Base}^0\right)^{-1}T\left(R_z(\tfrac{\pi}{2})\right)^{-1}\left(A_4^\text{End}\right)^{-1}
+T' = \left(A_\text{Base}^0\right)^{-1}T\left(A_4^\text{End}\right)^{-1}\left(R_z(\tfrac{\pi}{2})\right)^{-1}
 \]
 Then we invert $T'$:
 \[
@@ -370,8 +370,8 @@ Now the final two joint values can be easily extract:
 \]
 At this point, we have multiple solution sets for all the joints of the left arm, but some of them may be invalid. We find the correct set(s) through a forward kinematics validation step. In summary, the final inverse kinematics equations for the left arm chain are:
 \begin{align*}
-T' &= \left(A_\text{Base}^0\right)^{-1}T\left(R_z(\tfrac{\pi}{2})\right)^{-1}\left(A_4^\text{End}\right)^{-1}\\
-T'' &= \left(T'\right)^{-1}\\
+T' &= \left(A_\text{Base}^0\right)^{-1}T\left(A_4^\text{End}\right)^{-1}\\
+T'' &= \left(T'\right)^{-1}\left(R_z(\tfrac{\pi}{2})\right)^{-1}\\
 \theta_3 &= \left\{
 	\begin{array}{l}
 	arcsin\left(\frac{T''_{(3,4)}}{l_1}\right)\\
@@ -392,7 +392,7 @@ The right and left arms are symmetric, thus the solution for the right arm diffe
 It is clear that the chain for the right arm is the same as the chain for the left arm. 
 As we can see, the changes don't have any impact in the solution given for the left arm, that is, no denominator becomes zero after these changes. So, according to the previous section, the final inverse kinematics equations for the right arm chain are:
 \begin{align*}
-T' &= \left(A_\text{Base}^0\right)^{-1}T\left(R_z(\tfrac{\pi}{2})\right)^{-1}\left(A_4^\text{End}\right)^{-1}\\
+T' &= \left(A_\text{Base}^0\right)^{-1}T\left(A_4^\text{End}\right)^{-1}\left(R_z(\tfrac{\pi}{2})\right)^{-1}\\
 T'' &= \left(T'\right)^{-1}\\
 \theta_3 &= \left\{
 	\begin{array}{l}
